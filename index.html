@@ -19,7 +19,12 @@
                 theme: {
                     extend: {
                         fontSize: {
-                            'xs': ['0.75rem', { lineHeight: '1.1rem' }],
+                            'xs': ['12px', { lineHeight: '1.25rem' }],
+                            'sm': ['12px', { lineHeight: '1.25rem' }],
+                            'base': ['12px', { lineHeight: '1.25rem' }],
+                            'lg': ['12px', { lineHeight: '1.25rem' }],
+                            'xl': ['12px', { lineHeight: '1.25rem' }],
+                            '2xl': ['12px', { lineHeight: '1.25rem' }],
                         }
                     }
                 }
@@ -30,9 +35,18 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Padauk:wght@400;700&display=swap');
         html, body {
             font-family: 'Padauk', 'Inter', sans-serif;
-            font-size: 0.78rem;
+            font-size: 12px !important;
             overflow-x: hidden;
             max-width: 100vw;
+        }
+        /* Enforce uniform 12px font size across all screens, tables, inputs, and slide navigation menu */
+        aside, aside *, main, main *, header, header *,
+        #auth-gateway-screen, #auth-gateway-screen *,
+        #personnel-modal, #personnel-modal *,
+        #personnel-form-modal, #personnel-form-modal *,
+        #confirm-modal, #confirm-modal *,
+        #toast-container, #toast-container * {
+            font-size: 12px !important;
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {

@@ -1536,32 +1536,56 @@
                         <input type="checkbox" id="reset-chk-all" onchange="toggleAllResetCheckboxes(this.checked)" class="rounded text-blue-600">
                         <span>မျက်နှာပြင်အားလုံး (Select All)</span>
                     </label>
+                    <div class="space-y-1">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" name="reset-target" value="personnel" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
+                            <span>ဝန်ထမ်းစာရင်း (Personnel Directory)</span>
+                        </label>
+                        <div id="reset-personnel-subtype-wrap" class="hidden pl-6 pt-0.5 pb-1">
+                            <div class="flex items-center gap-2 bg-white dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-blue-200 dark:border-slate-600">
+                                <label for="reset-personnel-stafftype" class="text-[11px] font-semibold text-slate-600 dark:text-slate-300 whitespace-nowrap">ဝန်ထမ်းအမျိုးအစား:</label>
+                                <select id="reset-personnel-stafftype" class="flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded px-2 py-1 text-xs font-bold text-blue-800 dark:text-blue-300 outline-none"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" name="reset-target" value="absent" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
+                            <span>ပျက်ကွက်စာရင်း (Absent Strength & Reasons)</span>
+                        </label>
+                        <div id="reset-absent-subtype-wrap" class="hidden pl-6 pt-0.5 pb-1">
+                            <div class="flex items-center gap-2 bg-white dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-blue-200 dark:border-slate-600">
+                                <label for="reset-absent-stafftype" class="text-[11px] font-semibold text-slate-600 dark:text-slate-300 whitespace-nowrap">ဝန်ထမ်းအမျိုးအစား:</label>
+                                <select id="reset-absent-stafftype" class="flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded px-2 py-1 text-xs font-bold text-blue-800 dark:text-blue-300 outline-none"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" name="reset-target" value="duty" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
+                            <span>လုံခြုံရေးတာဝန် (Security Duty)</span>
+                        </label>
+                        <div id="reset-duty-subtype-wrap" class="hidden pl-6 pt-0.5 pb-1">
+                            <div class="flex items-center gap-2 bg-white dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-blue-200 dark:border-slate-600">
+                                <label for="reset-duty-type" class="text-[11px] font-semibold text-slate-600 dark:text-slate-300 whitespace-nowrap">လုံခြုံရေးအမျိုးအစား:</label>
+                                <select id="reset-duty-type" class="flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded px-2 py-1 text-xs font-bold text-blue-800 dark:text-blue-300 outline-none"></select>
+                            </div>
+                        </div>
+                    </div>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="reset-target" value="personnel" onchange="syncResetAllCheckbox()" class="rounded text-blue-600">
-                        <span>ဝန်ထမ်းစာရင်း (Personnel Directory)</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="reset-target" value="absent" onchange="syncResetAllCheckbox()" class="rounded text-blue-600">
-                        <span>ပျက်ကွက်စာရင်း (Absent Strength & Reasons)</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="reset-target" value="duty" onchange="syncResetAllCheckbox()" class="rounded text-blue-600">
-                        <span>လုံခြုံရေးတာဝန် (Security Duty)</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="reset-target" value="armory" onchange="syncResetAllCheckbox()" class="rounded text-blue-600">
+                        <input type="checkbox" name="reset-target" value="armory" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
                         <span>လက်နက် / ခဲယမ်းစာရင်း (Armory & Ammunition)</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="reset-target" value="prod" onchange="syncResetAllCheckbox()" class="rounded text-blue-600">
+                        <input type="checkbox" name="reset-target" value="prod" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
                         <span>Prod; Statement</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="reset-target" value="users" onchange="syncResetAllCheckbox()" class="rounded text-blue-600">
+                        <input type="checkbox" name="reset-target" value="users" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
                         <span>User Management (မူလ Admin သာချန်ထားမည်)</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="reset-target" value="settings" onchange="syncResetAllCheckbox()" class="rounded text-blue-600">
+                        <input type="checkbox" name="reset-target" value="settings" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
                         <span>Setting (ဝန်ထမ်းအမျိုးအစား၊ ဌာန၊ အဆင့်၊ အခြေအနေ)</span>
                     </label>
                 </div>
@@ -2365,6 +2389,24 @@
             document.querySelectorAll('input[name="reset-target"]').forEach(cb => {
                 cb.checked = false;
             });
+
+            const pSubSel = document.getElementById('reset-personnel-stafftype');
+            if (pSubSel) {
+                pSubSel.innerHTML = `<option value="ALL">အားလုံး (All)</option>` +
+                    staffTypeList.map(t => `<option value="${t}">${t}</option>`).join('');
+            }
+            const abSubSel = document.getElementById('reset-absent-stafftype');
+            if (abSubSel) {
+                abSubSel.innerHTML = `<option value="ALL">အားလုံး (All)</option>` +
+                    staffTypeList.map(t => `<option value="${t}">${t}</option>`).join('');
+            }
+            const dutySubSel = document.getElementById('reset-duty-type');
+            if (dutySubSel) {
+                dutySubSel.innerHTML = `<option value="ALL">အားလုံး (All)</option>` +
+                    securityDutyTypeList.map(dt => `<option value="${dt}">${dt}</option>`).join('');
+            }
+
+            handleResetTargetCheckboxChange();
             modal.classList.remove('hidden');
         }
 
@@ -2373,10 +2415,19 @@
             if (modal) modal.classList.add('hidden');
         }
 
+        function handleResetTargetCheckboxChange() {
+            syncResetAllCheckbox();
+            const isChecked = val => Boolean(document.querySelector(`input[name="reset-target"][value="${val}"]`)?.checked);
+            document.getElementById('reset-personnel-subtype-wrap')?.classList.toggle('hidden', !isChecked('personnel'));
+            document.getElementById('reset-absent-subtype-wrap')?.classList.toggle('hidden', !isChecked('absent'));
+            document.getElementById('reset-duty-subtype-wrap')?.classList.toggle('hidden', !isChecked('duty'));
+        }
+
         function toggleAllResetCheckboxes(checked) {
             document.querySelectorAll('input[name="reset-target"]').forEach(cb => {
                 cb.checked = checked;
             });
+            handleResetTargetCheckboxChange();
         }
 
         function syncResetAllCheckbox() {
@@ -2393,25 +2444,64 @@
                 showToast('Reset ပြုလုပ်လိုသည့် မျက်နှာပြင် အနည်းဆုံး ၁ ခု ရွေးချယ်ပေးပါ', 'error');
                 return;
             }
-            const labelNames = selected.map(k => RESET_TARGET_LABELS[k] || k).join('၊ ');
+
+            const subOptions = {
+                personnelStaffType: document.getElementById('reset-personnel-stafftype')?.value || 'ALL',
+                absentStaffType: document.getElementById('reset-absent-stafftype')?.value || 'ALL',
+                dutyType: document.getElementById('reset-duty-type')?.value || 'ALL'
+            };
+
+            const labelNames = selected.map(k => {
+                const baseLabel = RESET_TARGET_LABELS[k] || k;
+                if (k === 'personnel' && subOptions.personnelStaffType !== 'ALL') {
+                    return `${baseLabel} [${subOptions.personnelStaffType}]`;
+                }
+                if (k === 'absent' && subOptions.absentStaffType !== 'ALL') {
+                    return `${baseLabel} [${subOptions.absentStaffType}]`;
+                }
+                if (k === 'duty' && subOptions.dutyType !== 'ALL') {
+                    return `${baseLabel} [${subOptions.dutyType}]`;
+                }
+                return baseLabel;
+            }).join('၊ ');
+
             closeResetSelectionModal();
 
             openConfirmModal(`ရွေးချယ်ထားသော (${labelNames}) မျက်နှာပြင်များ၏ ဒေတာများကို မူလအခြေအနေသို့ Reset ပြုလုပ်မည်။ သေချာပါသလား?`, () => {
-                executeSelectedReset(selected, labelNames);
+                executeSelectedReset(selected, labelNames, subOptions);
             });
         }
 
-        function executeSelectedReset(targets, labelNames) {
+        function executeSelectedReset(targets, labelNames, subOptions = {}) {
             if (targets.includes('personnel')) {
-                personnelData = JSON.parse(JSON.stringify(DEFAULT_DATA.personnelData));
+                const pType = subOptions.personnelStaffType || 'ALL';
+                if (pType === 'ALL') {
+                    personnelData = JSON.parse(JSON.stringify(DEFAULT_DATA.personnelData));
+                } else {
+                    personnelData = personnelData.filter(p => p.staffType !== pType);
+                }
             }
             if (targets.includes('absent')) {
-                absentReasonCategories = JSON.parse(JSON.stringify(DEFAULT_DATA.absentReasonCategories));
-                absentReasonRows = JSON.parse(JSON.stringify(DEFAULT_DATA.absentReasonRows));
-                editingAbsentReasonIndex = -1;
+                const abType = subOptions.absentStaffType || 'ALL';
+                const defaultPresentStatus = statusList[0] || 'တန်းစီ';
+                if (abType === 'ALL') {
+                    absentReasonCategories = JSON.parse(JSON.stringify(DEFAULT_DATA.absentReasonCategories));
+                    absentReasonRows = JSON.parse(JSON.stringify(DEFAULT_DATA.absentReasonRows));
+                    editingAbsentReasonIndex = -1;
+                    personnelData = personnelData.map(p => p.status === 'ပျက်ကွက်' ? { ...p, status: defaultPresentStatus, absentReason: '' } : p);
+                } else {
+                    personnelData = personnelData.map(p => (p.status === 'ပျက်ကွက်' && p.staffType === abType)
+                        ? { ...p, status: defaultPresentStatus, absentReason: '' }
+                        : p);
+                }
             }
             if (targets.includes('duty')) {
-                securityDutyData = JSON.parse(JSON.stringify(DEFAULT_DATA.securityDutyData));
+                const dType = subOptions.dutyType || 'ALL';
+                if (dType === 'ALL') {
+                    securityDutyData = JSON.parse(JSON.stringify(DEFAULT_DATA.securityDutyData));
+                } else {
+                    securityDutyData = securityDutyData.filter(d => d.dutyType !== dType);
+                }
             }
             if (targets.includes('armory')) {
                 armoryData = JSON.parse(JSON.stringify(DEFAULT_DATA.armoryData));

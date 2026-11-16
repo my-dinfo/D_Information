@@ -4442,6 +4442,20 @@
             saveWorkbookToLocal(wb, 'Security_Duty_Roster.xlsx', 'လုံခြုံရေးတာဝန် စာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
         }
 
+        function updateDutySummaryBoxes(list = securityDutyData) {
+            const insideCount = list.filter(d => d.dutyType === 'တပ်တွင်း').length;
+            const outsideCount = list.filter(d => d.dutyType === 'တပ်ပြင်').length;
+            const totalCount = list.length;
+
+            const elInside = document.getElementById('d-sub-inside');
+            const elOutside = document.getElementById('d-sub-outside');
+            const elTotal = document.getElementById('d-sub-total');
+
+            if (elInside) elInside.textContent = toMyanmarNumerals(insideCount);
+            if (elOutside) elOutside.textContent = toMyanmarNumerals(outsideCount);
+            if (elTotal) elTotal.textContent = toMyanmarNumerals(totalCount);
+        }
+
         function initInlineDutyControls() {
             const typeSel = document.getElementById('d-in-type');
             const deptSel = document.getElementById('d-in-dept');

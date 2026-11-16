@@ -135,20 +135,11 @@
                 <!-- Inline Google Account Chooser Fallback (for offline / sandboxed preview without popup domain) -->
                 <div id="google-chooser-box" class="hidden p-3 rounded-xl bg-blue-50/90 dark:bg-slate-700/80 border border-blue-200 dark:border-slate-600 space-y-2.5">
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-blue-900 dark:text-blue-200 text-[11px]">Google Account ရွေးချယ်ရန် / ရိုက်ထည့်ရန်</span>
+                        <span class="font-bold text-blue-900 dark:text-blue-200 text-[11px]">Google Account Email ရိုက်ထည့်ရန်</span>
                         <button type="button" onclick="document.getElementById('google-chooser-box').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 font-bold">&times;</button>
                     </div>
-                    <div class="space-y-1.5">
-                        <button type="button" onclick="completeGoogleSession('ppa45929@gmail.com', 'Admin (ppa45929)')" class="w-full text-left p-2 rounded-lg bg-white dark:bg-slate-800 hover:bg-blue-100/70 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 flex items-center justify-between transition">
-                            <div>
-                                <div class="font-bold text-slate-900 dark:text-white">Admin Account</div>
-                                <div class="text-[10px] text-slate-500 font-mono">ppa45929@gmail.com</div>
-                            </div>
-                            <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px]">Admin</span>
-                        </button>
-                    </div>
-                    <div class="pt-1 border-t border-blue-200/70 dark:border-slate-600 flex gap-1.5">
-                        <input type="email" id="google-custom-email" class="flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 text-xs outline-none">
+                    <div class="flex gap-1.5">
+                        <input type="email" id="google-custom-email" placeholder="example@gmail.com" class="flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 text-xs outline-none">
                         <button type="button" onclick="submitCustomGoogleEmail()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs">ဆက်လုပ်မည်</button>
                     </div>
                 </div>
@@ -174,6 +165,12 @@
                                 <svg class="w-4 h-4 eye-closed hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
                             </button>
                         </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-0.5">
+                        <label class="inline-flex items-center gap-2 cursor-pointer select-none text-slate-600 dark:text-slate-300 font-semibold">
+                            <input type="checkbox" id="login-remember-me" class="w-3.5 h-3.5 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500">
+                            <span>Remember me</span>
+                        </label>
                     </div>
                     <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition">
                         Log In
@@ -322,7 +319,7 @@
                 <div id="header-user-avatar" class="w-6 h-6 rounded-full bg-blue-600 text-white font-extrabold text-[11px] flex items-center justify-center flex-shrink-0">G</div>
                 <div class="flex items-center justify-between gap-1.5 min-w-0 flex-1 md:hidden md:group-hover/sidebar:flex">
                     <span id="header-user-name" class="font-bold text-slate-900 dark:text-white truncate text-xs">Guest</span>
-                    <span id="header-user-role-badge" class="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-slate-200 text-slate-900 flex-shrink-0">User</span>
+                    <span id="header-user-role-badge" class="hidden invisible px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-slate-200 text-slate-900 flex-shrink-0">User</span>
                 </div>
             </div>
             <button onclick="handleUserLogout()" title="Logout" class="md:w-full py-2 px-3 md:px-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5 flex-shrink-0">
@@ -390,8 +387,8 @@
                             <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-base">👥</div>
                         </div>
                         <div class="flex gap-1.5 mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-[10px] font-bold">
-                            <span id="dash-present-badge" class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">တန်းစီ: ၀ ဦး</span>
-                            <span id="dash-absent-badge" class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300">ပျက်ကွက်: ၀ ဦး</span>
+                            <span id="dash-present-badge" class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">တန်းစီ: ၀</span>
+                            <span id="dash-absent-badge" class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300">ပျက်ကွက်: ၀</span>
                         </div>
                     </div>
                 </div>
@@ -575,7 +572,7 @@
                         </select>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="exportAbsentExcel()" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg text-xs shadow-sm transition">Export Excel</button>
+                        <button onclick="exportAbsentExcel()" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg text-xs shadow-sm transition">Export</button>
                         <button onclick="triggerExcelImport('absent')" class="role-write-action px-3.5 py-2 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-lg text-xs shadow-sm transition">Import</button>
                         <input type="file" id="ab-excel-input" accept=".xlsx,.xls,.csv,.json" class="hidden" onchange="handleExcelImport(event, 'absent')">
                     </div>
@@ -592,8 +589,8 @@
                                 <th class="p-3 text-left">အကြောင်းအရာ</th>
                                 <th class="p-3 text-center">ဌနခ</th>
                                 <th class="p-3 text-center">စမရ</th>
-                                <th class="p-3 text-center">ထလရ(၁)</th>
-                                <th class="p-3 text-center">ထလရ(၂)</th>
+                                <th class="p-3 text-center">ထလရ-၁</th>
+                                <th class="p-3 text-center">ထလရ-၂</th>
                                 <th class="p-3 text-center">စဆရ</th>
                                 <th class="p-3 text-center">စုစုပေါင်း</th>
                             </tr>
@@ -629,7 +626,7 @@
                         <span class="font-bold text-xs">📌 ပျက်ကွက်အကြောင်းအရင်း</span>
                         <div class="role-write-action flex items-center gap-1.5">
                             <input type="text" id="new-absent-reason-input" class="bg-white text-slate-900 rounded-lg px-2.5 py-1 text-xs outline-none">
-                            <button onclick="addCustomAbsentReasonCategory()" class="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs transition">+ အကြောင်းအရင်းထည့်</button>
+                            <button onclick="addCustomAbsentReasonCategory()" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs shadow-sm transition inline-flex items-center gap-1 leading-none"><span class="font-black leading-none" style="font-size: 20px !important;">+</span><span>Add</span></button>
                         </div>
                     </div>
                     <table class="w-full text-xs whitespace-nowrap">
@@ -638,8 +635,8 @@
                                 <th class="p-3 text-left">အကြောင်းအရာ</th>
                                 <th class="p-3 text-center">ဌနခ</th>
                                 <th class="p-3 text-center">စမရ</th>
-                                <th class="p-3 text-center">ထလရ(၁)</th>
-                                <th class="p-3 text-center">ထလရ(၂)</th>
+                                <th class="p-3 text-center">ထလရ-၁</th>
+                                <th class="p-3 text-center">ထလရ-၂</th>
                                 <th class="p-3 text-center">စဆရ</th>
                                 <th class="p-3 text-center">စုစုပေါင်း</th>
                                 <th class="p-3 text-center">လုပ်ဆောင်ချက်</th>
@@ -654,10 +651,10 @@
                 <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-x-auto">
                     <div class="px-4 py-3 bg-slate-800 text-white flex justify-between items-center gap-2">
                         <div class="flex items-center gap-2">
-                            <span class="font-bold text-xs">👥 လက်ရှိ ပျက်ကွက်ဝန်ထမ်း အမည်စာရင်း</span>
+                            <span class="font-bold text-xs">👥 ပျက်ကွက်အမည်စာရင်း</span>
                             <span id="absent-detail-count-badge" class="px-2 py-0.5 rounded-full bg-rose-600 text-white font-bold text-[11px]">၀ ဦး</span>
                         </div>
-                        <button onclick="openNewAbsentPersonnelModal()" class="role-write-action px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs shadow-sm transition">+ အသစ်ထည့်ရန်</button>
+                        <button onclick="openNewAbsentPersonnelModal()" class="role-write-action px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs shadow-sm transition inline-flex items-center gap-1 leading-none"><span class="font-black leading-none" style="font-size: 20px !important;">+</span><span>Add</span></button>
                     </div>
                     <table class="w-full text-left text-xs whitespace-nowrap">
                         <thead class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600">
@@ -1218,7 +1215,9 @@
                                 <button onclick="inlineSaveUser()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition shadow-sm text-center">Save</button>
                                 <button onclick="inlineDeleteUser()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition shadow-sm text-center">Delete</button>
                                 <button onclick="inlineClearUser()" class="bg-slate-500 hover:bg-slate-600 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition shadow-sm text-center">Clear</button>
-                                <button onclick="exportUsersExcel()" class="col-span-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition shadow-sm text-center">Export Excel</button>
+                                <button onclick="triggerExcelImport('users')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition shadow-sm text-center">Import</button>
+                                <button onclick="exportUsersExcel()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition shadow-sm text-center">Export</button>
+                                <input type="file" id="u-excel-input" accept=".xlsx,.xls,.csv,.json" class="hidden" onchange="handleExcelImport(event, 'users')">
                             </div>
                         </div>
                     </div>
@@ -1617,6 +1616,7 @@
     <script>
         const STORAGE_KEY = 'DI_SYSTEM_STATE_V1';
         const ACTIVE_AUTH_SESSION_KEY = 'DI_ACTIVE_AUTH_SESSION_V1';
+        const REMEMBER_ME_STORAGE_KEY = 'DI_REMEMBER_ME_CREDENTIALS_V1';
         const FIREBASE_PENDING_SYNC_KEY = 'DI_FIREBASE_PENDING_SYNC_V1';
 
         const FIREBASE_CONFIG = {
@@ -1765,7 +1765,43 @@
                 signupTab.className = 'py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
                 signupForm.classList.add('hidden');
                 loginForm.classList.remove('hidden');
+                loadRememberedLoginCredentials();
             }
+        }
+
+        function loadRememberedLoginCredentials() {
+            const emailInput = document.getElementById('login-email');
+            const passInput = document.getElementById('login-password');
+            const rememberChk = document.getElementById('login-remember-me');
+            if (!emailInput || !passInput || !rememberChk) return;
+
+            try {
+                const raw = localStorage.getItem(REMEMBER_ME_STORAGE_KEY);
+                if (raw) {
+                    const saved = JSON.parse(raw);
+                    if (saved && saved.remember) {
+                        emailInput.value = saved.email || '';
+                        passInput.value = saved.password || '';
+                        rememberChk.checked = true;
+                        return;
+                    }
+                }
+            } catch (err) {}
+            rememberChk.checked = false;
+        }
+
+        function saveRememberedLoginCredentials(email, password, remember) {
+            try {
+                if (remember) {
+                    localStorage.setItem(REMEMBER_ME_STORAGE_KEY, JSON.stringify({
+                        email,
+                        password,
+                        remember: true
+                    }));
+                } else {
+                    localStorage.removeItem(REMEMBER_ME_STORAGE_KEY);
+                }
+            } catch (err) {}
         }
 
         function applyUserSession(userObj, notify = true) {
@@ -1791,10 +1827,10 @@
             if (roleBadge) {
                 roleBadge.textContent = isViewOnly ? 'View Only (User3)' : userObj.role;
                 roleBadge.className = isAdmin
-                    ? 'px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-purple-400 text-slate-950'
+                    ? 'hidden invisible px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-purple-400 text-slate-950'
                     : isViewOnly
-                    ? 'px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-slate-200 text-slate-900'
-                    : 'px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-emerald-400 text-slate-950';
+                    ? 'hidden invisible px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-slate-200 text-slate-900'
+                    : 'hidden invisible px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-emerald-400 text-slate-950';
             }
 
             if (isViewOnly) {
@@ -1823,11 +1859,17 @@
 
         function handleEmailLogin(e) {
             e.preventDefault();
-            let emailVal = document.getElementById('login-email').value.trim().toLowerCase();
+            let emailVal = (document.getElementById('login-email')?.value || '').trim().toLowerCase();
             if (emailVal === 'ppa45929@gmailcom') emailVal = 'ppa45929@gmail.com';
-            const passVal = document.getElementById('login-password').value;
+            const passVal = (document.getElementById('login-password')?.value || '').trim();
+            const rememberMe = Boolean(document.getElementById('login-remember-me')?.checked);
 
-            const matched = userData.find(u => u.username.toLowerCase() === emailVal);
+            if (!emailVal || !passVal) {
+                showToast('အီးမေးလ်နှင့် စကားဝှက် ဖြည့်သွင်းပေးပါ', 'error');
+                return;
+            }
+
+            const matched = userData.find(u => (u.username || '').trim().toLowerCase() === emailVal);
             if (!matched) {
                 showToast('ဤအီးမေးလ်ဖြင့် မှတ်ပုံတင်ထားသော အကောင့် မတွေ့ပါ — Google Account သို့မဟုတ် Sign Up ပြုလုပ်ပါ', 'error');
                 return;
@@ -1836,10 +1878,17 @@
                 showToast('ဤအကောင့်အား Admin မှ ယာယီပိတ်ထားပါသည် (Suspended)', 'error');
                 return;
             }
-            if (matched.password && matched.password !== passVal) {
+            const storedPass = (matched.password || '').trim();
+            if (!storedPass) {
+                // If account was originally created via Google Sign-In without password, bind this password now
+                matched.password = passVal;
+                saveSystemState();
+                syncToFirebaseFirestore(`bind_password:${emailVal}`);
+            } else if (storedPass !== passVal) {
                 showToast('စကားဝှက် (Password) မှားယွင်းနေပါသည်', 'error');
                 return;
             }
+            saveRememberedLoginCredentials(emailVal, passVal, rememberMe);
             applyUserSession(matched, true);
         }
 
@@ -1866,14 +1915,23 @@
             if (emailVal === 'ppa45929@gmailcom') emailVal = 'ppa45929@gmail.com';
             const isPrimaryAdmin = emailVal === 'ppa45929@gmail.com';
             const selectedRole = isPrimaryAdmin ? 'Admin' : 'User3';
-            const passVal = document.getElementById('signup-password').value;
-            const confirmVal = document.getElementById('signup-password-confirm').value;
+            const passVal = (document.getElementById('signup-password')?.value || '').trim();
+            const confirmVal = (document.getElementById('signup-password-confirm')?.value || '').trim();
 
             if (passVal !== confirmVal) {
                 showToast('စကားဝှက် နှစ်ခု တူညီမှု မရှိပါ', 'error');
                 return;
             }
-            if (userData.some(u => u.username.toLowerCase() === emailVal)) {
+
+            const existingIdx = userData.findIndex(u => (u.username || '').trim().toLowerCase() === emailVal);
+            const existingUser = existingIdx >= 0 ? userData[existingIdx] : null;
+            const canClaimOrSetPassword = existingUser && (
+                existingUser.authProvider === 'google' ||
+                !(existingUser.password || '').trim() ||
+                (isPrimaryAdmin && !existingUser.isCustomized)
+            );
+
+            if (existingUser && !canClaimOrSetPassword) {
                 showToast('ဤအီးမေးလ်ဖြင့် အကောင့်ရှိပြီးသားဖြစ်ပါသည် — Log In ဝင်ပါ', 'error');
                 return;
             }
@@ -1893,14 +1951,19 @@
                 rankFull: rankFullVal,
                 deptAbbr: deptAbbrVal,
                 deptFull: deptFullVal,
-                role: selectedRole,
+                role: existingUser ? existingUser.role : selectedRole,
                 status: 'Active',
-                regDate: todayStr,
+                regDate: existingUser?.regDate || todayStr,
                 password: passVal,
-                authProvider: 'signup'
+                authProvider: 'signup',
+                isCustomized: true
             };
 
-            userData.push(newUserRecord);
+            if (existingIdx >= 0) {
+                userData[existingIdx] = newUserRecord;
+            } else {
+                userData.push(newUserRecord);
+            }
             saveSystemState();
             syncToFirebaseFirestore(`new_user_signup:${emailVal}`);
             applyUserSession(newUserRecord, true);
@@ -1943,11 +2006,11 @@
             if (normalizedEmail === 'ppa45929@gmailcom') normalizedEmail = 'ppa45929@gmail.com';
             const isPrimaryAdmin = normalizedEmail === 'ppa45929@gmail.com';
 
-            let existing = userData.find(u => u.username.toLowerCase() === normalizedEmail);
+            let existing = userData.find(u => (u.username || '').trim().toLowerCase() === normalizedEmail);
             if (!existing) {
                 const todayStr = new Date().toISOString().split('T')[0];
                 existing = {
-                    name: isPrimaryAdmin ? 'Admin (ppa45929)' : displayName,
+                    name: isPrimaryAdmin ? 'Admin' : displayName,
                     username: normalizedEmail,
                     deptAbbr: 'ဌနခ',
                     deptFull: 'စက်ရုံဌာနချုပ်',
@@ -1981,6 +2044,10 @@
             document.body.classList.remove('role-view-only');
             const authScreen = document.getElementById('auth-gateway-screen');
             if (authScreen) authScreen.classList.remove('hidden');
+            const emailInput = document.getElementById('login-email');
+            const passInput = document.getElementById('login-password');
+            if (emailInput) emailInput.value = '';
+            if (passInput) passInput.value = '';
             switchAuthMode('login');
             showToast('စနစ်မှ အကောင့်ထွက်ခွာပြီးပါပြီ (Logged Out)', 'info');
         }
@@ -2201,14 +2268,14 @@
             userRoles: ["Admin", "User1", "User2", "User3"],
             userData: [
                 {
-                    name: "Admin (ppa45929)",
+                    name: "Admin",
                     username: "ppa45929@gmail.com",
                     deptAbbr: "ဌနခ",
                     deptFull: "စက်ရုံဌာနချုပ်",
                     role: "Admin",
                     status: "Active",
                     regDate: "2026-11-13",
-                    password: "password123",
+                    password: "",
                     authProvider: "google"
                 }
             ]
@@ -2844,8 +2911,8 @@
 
             const presBadge = document.getElementById('dash-present-badge');
             const absBadge = document.getElementById('dash-absent-badge');
-            if (presBadge) presBadge.textContent = `တန်းစီ: ${toMyanmarNumerals(presentCount)} ဦး`;
-            if (absBadge) absBadge.textContent = `ပျက်ကွက်: ${toMyanmarNumerals(absentCount)} ဦး`;
+            if (presBadge) presBadge.textContent = `တန်းစီ: ${toMyanmarNumerals(presentCount)}`;
+            if (absBadge) absBadge.textContent = `ပျက်ကွက်: ${toMyanmarNumerals(absentCount)}`;
 
             // 1. Department Breakdown Chart Bars
             const deptChartContainer = document.getElementById('dashboard-dept-chart');
@@ -3481,16 +3548,16 @@
         const ABSENT_DEPT_COLUMNS = [
             { key: 'ဌနခ', label: 'ဌနခ', aliases: ['ဌနခ', 'စက်ရုံဌာနချုပ်'] },
             { key: 'စမရ', label: 'စမရ', aliases: ['စမရ', 'စီမံရေးဌာန'] },
-            { key: 'ထလရ-၁', label: 'ထလရ(၁)', aliases: ['ထလရ-၁', 'ထလရ(၁)', 'ထုတ်လုပ်ရေးဌာန-၁'] },
-            { key: 'ထလရ-၂', label: 'ထလရ(၂)', aliases: ['ထလရ-၂', 'ထလရ(၂)', 'ထုတ်လုပ်ရေးဌာန-၂'] },
+            { key: 'ထလရ-၁', label: 'ထလရ-၁', aliases: ['ထလရ-၁', 'ထလရ(၁)', 'ထုတ်လုပ်ရေးဌာန-၁'] },
+            { key: 'ထလရ-၂', label: 'ထလရ-၂', aliases: ['ထလရ-၂', 'ထလရ(၂)', 'ထုတ်လုပ်ရေးဌာန-၂'] },
             { key: 'စဆရ', label: 'စဆရ', aliases: ['စဆရ', 'စစ်ဆေးရေးဌာန'] }
         ];
 
         function resolveAbsentDeptColumnKey(person) {
-            const rawAbbr = (person.deptAbbr || '').trim();
-            const rawFull = (person.deptFull || '').trim();
+            const abbr = String(person.deptAbbr || '').trim();
+            const full = String(person.deptFull || '').trim();
             for (const col of ABSENT_DEPT_COLUMNS) {
-                if (col.aliases.includes(rawAbbr) || col.aliases.includes(rawFull)) {
+                if (col.aliases.includes(abbr) || col.aliases.includes(full)) {
                     return col.key;
                 }
             }
@@ -3502,27 +3569,27 @@
             const input = document.getElementById('new-absent-reason-input');
             const val = (input?.value || '').trim();
             if (!val) {
-                showToast('ပျက်ကွက်အမျိုးအစား အမည် ရိုက်ထည့်ပေးပါ', 'error');
+                showToast('ပျက်ကွက်အကြောင်းအရင်း အမည် ထည့်သွင်းပေးပါ', 'error');
                 return;
             }
-            if (absentReasonRows.some(r => r.reason === val)) {
-                showToast(`"${val}" အမျိုးအစား ရှိပြီးသားဖြစ်ပါသည်`, 'error');
-                return;
+            if (!absentReasonCategories.includes(val)) {
+                absentReasonCategories.push(val);
             }
-            absentReasonCategories.push(val);
-            absentReasonRows.push({
-                reason: val,
-                "ဌနခ": 0,
-                "စမရ": 0,
-                "ထလရ-၁": 0,
-                "ထလရ-၂": 0,
-                "စဆရ": 0
-            });
-            editingAbsentReasonIndex = absentReasonRows.length - 1;
+            const existsRow = absentReasonRows.some(r => (r.reason || '').trim() === val);
+            if (!existsRow) {
+                absentReasonRows.push({
+                    reason: val,
+                    'ဌနခ': 0,
+                    'စမရ': 0,
+                    'ထလရ-၁': 0,
+                    'ထလရ-၂': 0,
+                    'စဆရ': 0
+                });
+            }
+            input.value = '';
             saveSystemState();
-            if (input) input.value = '';
             renderAbsentSummary();
-            showToast(`ပျက်ကွက်အမျိုးအစား "${val}" ထည့်သွင်းပြီးပါပြီ — ဌာနအလိုက် အရေအတွက် ဖြည့်သွင်းနိုင်ပါသည်`, 'success');
+            showToast(`ပျက်ကွက်အကြောင်းအရင်း "${val}" ထည့်သွင်းပြီးပါပြီ`, 'success');
         }
 
         function editAbsentReasonRow(idx) {
@@ -3539,54 +3606,49 @@
         function saveAbsentReasonRow(idx) {
             if (!guardWritePermission()) return;
             if (!absentReasonRows[idx]) return;
-            const reasonInput = document.getElementById(`edit-ab-reason-${idx}`);
-            const newReason = (reasonInput?.value || '').trim() || absentReasonRows[idx].reason;
-
-            const d1 = Math.max(0, parseInt(document.getElementById(`edit-ab-d1-${idx}`)?.value) || 0);
-            const d2 = Math.max(0, parseInt(document.getElementById(`edit-ab-d2-${idx}`)?.value) || 0);
-            const d3 = Math.max(0, parseInt(document.getElementById(`edit-ab-d3-${idx}`)?.value) || 0);
-            const d4 = Math.max(0, parseInt(document.getElementById(`edit-ab-d4-${idx}`)?.value) || 0);
-            const d5 = Math.max(0, parseInt(document.getElementById(`edit-ab-d5-${idx}`)?.value) || 0);
+            const newReason = (document.getElementById(`edit-ab-reason-${idx}`)?.value || '').trim() || absentReasonRows[idx].reason;
+            const c1 = Math.max(0, parseInt(document.getElementById(`edit-ab-d1-${idx}`)?.value || '0', 10) || 0);
+            const c2 = Math.max(0, parseInt(document.getElementById(`edit-ab-d2-${idx}`)?.value || '0', 10) || 0);
+            const c3 = Math.max(0, parseInt(document.getElementById(`edit-ab-d3-${idx}`)?.value || '0', 10) || 0);
+            const c4 = Math.max(0, parseInt(document.getElementById(`edit-ab-d4-${idx}`)?.value || '0', 10) || 0);
+            const c5 = Math.max(0, parseInt(document.getElementById(`edit-ab-d5-${idx}`)?.value || '0', 10) || 0);
 
             absentReasonRows[idx] = {
                 reason: newReason,
-                "ဌနခ": d1,
-                "စမရ": d2,
-                "ထလရ-၁": d3,
-                "ထလရ-၂": d4,
-                "စဆရ": d5
+                'ဌနခ': c1,
+                'စမရ': c2,
+                'ထလရ-၁': c3,
+                'ထလရ-၂': c4,
+                'စဆရ': c5
             };
-            absentReasonCategories = absentReasonRows.map(r => r.reason);
             editingAbsentReasonIndex = -1;
             saveSystemState();
             renderAbsentSummary();
-            showToast(`"${newReason}" အချက်အလက်အား သိမ်းဆည်းပြီး ပျက်ကွက်/တန်းစီ အင်အားသို့ ချိတ်ဆက်တွက်ချက်ပြီးပါပြီ`, 'success');
+            showToast('ပျက်ကွက်အကြောင်းအရင်း စာရင်းအား ပြင်ဆင်သိမ်းဆည်းပြီးပါပြီ', 'success');
         }
 
         function deleteAbsentReasonRow(idx) {
             if (!guardWritePermission()) return;
             const target = absentReasonRows[idx];
             if (!target) return;
-            openConfirmModal(`ပျက်ကွက်အမျိုးအစား "${target.reason}" အား ဇယားစာရင်းမှ ဖျက်မည်။ သေချာပါသလား?`, () => {
+            openConfirmModal(`ပျက်ကွက်အကြောင်းအရင်း "${target.reason}" အား ဖျက်မည်။ သေချာပါသလား?`, () => {
                 absentReasonRows.splice(idx, 1);
-                absentReasonCategories = absentReasonRows.map(r => r.reason);
                 editingAbsentReasonIndex = -1;
                 saveSystemState();
                 renderAbsentSummary();
-                showToast(`"${target.reason}" အား ဖျက်ကွက်ပြီးပါပြီ`, 'error');
+                showToast('ပျက်ကွက်အကြောင်းအရင်း စာရင်းအား ဖျက်ကွက်ပြီးပါပြီ', 'error');
             });
         }
 
         function renderAbsentSummary() {
+            const filterSel = document.getElementById('absent-filter-stafftype');
             const strengthTbody = document.getElementById('absent-strength-tbody');
             const reasonsTbody = document.getElementById('absent-reasons-tbody');
             const reasonsTfoot = document.getElementById('absent-reasons-tfoot');
             const detailTbody = document.getElementById('absent-personnel-detail-tbody');
             const detailCountBadge = document.getElementById('absent-detail-count-badge');
-            const filterSel = document.getElementById('absent-filter-stafftype');
             if (!strengthTbody || !reasonsTbody) return;
 
-            // Populate Horizontal Filter Dropdowns (ဌာနအလိုက်၊ ဝန်ထမ်းအမျိုးအစားအလိုက်၊ ပျက်ကွက်အကြောင်းအရာအလိုက်)
             const deptFilterSel = document.getElementById('absent-filter-dept');
             const typeFilterSel = document.getElementById('absent-filter-type');
             const reasonFilterSel = document.getElementById('absent-filter-reason');
@@ -3594,7 +3656,7 @@
             if (deptFilterSel) {
                 const curDept = deptFilterSel.value || 'ALL';
                 deptFilterSel.innerHTML = `<option value="ALL">ဌာနအလိုက် (အားလုံး)</option>` +
-                    DEPT_MAPPING.map(d => `<option value="${d.abbr}">${d.abbr}</option>`).join('');
+                    ABSENT_DEPT_COLUMNS.map(c => `<option value="${c.key}">${c.label}</option>`).join('');
                 deptFilterSel.value = curDept;
             }
             if (typeFilterSel) {
@@ -3605,12 +3667,13 @@
             }
             if (reasonFilterSel) {
                 const curReason = reasonFilterSel.value || 'ALL';
-                const uniqueReasons = [...new Set([
-                    ...absentReasonRows.map(r => r.reason).filter(Boolean),
-                    ...personnelData.filter(p => p.status === 'ပျက်ကွက်' && p.absentReason).map(p => p.absentReason)
+                const allReasons = [...new Set([
+                    ...absentReasonCategories,
+                    ...absentReasonRows.map(r => (r.reason || '').trim()).filter(Boolean),
+                    ...personnelData.filter(p => p.status === 'ပျက်ကွက်').map(p => (p.absentReason || 'မဖော်ပြ').trim())
                 ])];
                 reasonFilterSel.innerHTML = `<option value="ALL">ပျက်ကွက်အကြောင်းအရာအလိုက် (အားလုံး)</option>` +
-                    uniqueReasons.map(rs => `<option value="${rs}">${rs}</option>`).join('');
+                    allReasons.map(r => `<option value="${r}">${r}</option>`).join('');
                 reasonFilterSel.value = curReason;
             }
 
@@ -3622,11 +3685,61 @@
             const staffTypeFilter = filterSel?.value || 'ALL';
             const filteredPersonnel = personnelData.filter(p => staffTypeFilter === 'ALL' || p.staffType === staffTypeFilter);
 
+            // Sync & Link counts directly from "ပျက်ကွက်အမည်စာရင်း" (personnelData with status === 'ပျက်ကွက်')
+            const linkedAbsentMap = {};
+            filteredPersonnel.forEach(p => {
+                if (p.status !== 'ပျက်ကွက်') return;
+                const reasonKey = (p.absentReason || 'မဖော်ပြ').trim() || 'မဖော်ပြ';
+                const colKey = resolveAbsentDeptColumnKey(p);
+                if (!linkedAbsentMap[reasonKey]) {
+                    linkedAbsentMap[reasonKey] = { 'ဌနခ': 0, 'စမရ': 0, 'ထလရ-၁': 0, 'ထလရ-၂': 0, 'စဆရ': 0 };
+                }
+                if (colKey) {
+                    linkedAbsentMap[reasonKey][colKey]++;
+                }
+            });
+
+            // Combine predefined/custom rows with auto-linked reasons from ပျက်ကွက်အမည်စာရင်း
+            const displayReasonRows = [];
+            const handledReasonNames = new Set();
+
+            absentReasonRows.forEach((rowObj, origIdx) => {
+                const rName = (rowObj.reason || '').trim();
+                handledReasonNames.add(rName);
+                const linkedCounts = linkedAbsentMap[rName];
+                displayReasonRows.push({
+                    reason: rName,
+                    origIdx,
+                    'ဌနခ': linkedCounts ? linkedCounts['ဌနခ'] : (Number(rowObj['ဌနခ']) || 0),
+                    'စမရ': linkedCounts ? linkedCounts['စမရ'] : (Number(rowObj['စမရ']) || 0),
+                    'ထလရ-၁': linkedCounts ? linkedCounts['ထလရ-၁'] : (Number(rowObj['ထလရ-၁']) || 0),
+                    'ထလရ-၂': linkedCounts ? linkedCounts['ထလရ-၂'] : (Number(rowObj['ထလရ-၂']) || 0),
+                    'စဆရ': linkedCounts ? linkedCounts['စဆရ'] : (Number(rowObj['စဆရ']) || 0),
+                    isAutoLinked: Boolean(linkedCounts)
+                });
+            });
+
+            Object.keys(linkedAbsentMap).forEach(rName => {
+                if (!handledReasonNames.has(rName)) {
+                    const counts = linkedAbsentMap[rName];
+                    displayReasonRows.push({
+                        reason: rName,
+                        origIdx: -1,
+                        'ဌနခ': counts['ဌနခ'],
+                        'စမရ': counts['စမရ'],
+                        'ထလရ-၁': counts['ထလရ-၁'],
+                        'ထလရ-၂': counts['ထလရ-၂'],
+                        'စဆရ': counts['စဆရ'],
+                        isAutoLinked: true
+                    });
+                }
+            });
+
             // Step 1: Compute Table 2 ("ပျက်ကွက်အကြောင်းအရင်း") totals per department
             const makeDeptCounter = () => ({ 'ဌနခ': 0, 'စမရ': 0, 'ထလရ-၁': 0, 'ထလရ-၂': 0, 'စဆရ': 0, total: 0 });
             const reasonGrandTotals = makeDeptCounter();
 
-            const filteredReasonRows = absentReasonRows.filter(rowObj => {
+            const filteredReasonRows = displayReasonRows.filter(rowObj => {
                 const matchesSearch = !searchQuery || (rowObj.reason || '').toLowerCase().includes(searchQuery);
                 const matchesReason = reasonFilter === 'ALL' || rowObj.reason === reasonFilter;
                 return matchesSearch && matchesReason;
@@ -3635,8 +3748,8 @@
             if (filteredReasonRows.length === 0) {
                 reasonsTbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-slate-400">ပျက်ကွက်အကြောင်းအရင်း စာရင်း မရှိသေးပါ</td></tr>`;
             } else {
-                reasonsTbody.innerHTML = filteredReasonRows.map((rowObj) => {
-                const idx = absentReasonRows.indexOf(rowObj);
+                reasonsTbody.innerHTML = filteredReasonRows.map((rowObj, displayIdx) => {
+                const idx = rowObj.origIdx;
                 const c1 = Number(rowObj['ဌနခ']) || 0;
                 const c2 = Number(rowObj['စမရ']) || 0;
                 const c3 = Number(rowObj['ထလရ-၁']) || 0;
@@ -3651,7 +3764,7 @@
                 reasonGrandTotals['စဆရ'] += c5;
                 reasonGrandTotals.total += rowSum;
 
-                if (editingAbsentReasonIndex === idx) {
+                if (idx >= 0 && editingAbsentReasonIndex === idx) {
                     return `
                         <tr class="bg-blue-50/70 dark:bg-slate-700/80 text-slate-800 dark:text-slate-100">
                             <td class="p-2.5 text-left">
@@ -3677,25 +3790,27 @@
                             </td>
                             <td class="p-2 text-center space-x-1">
                                 <button onclick="saveAbsentReasonRow(${idx})" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-[11px] transition">Save</button>
-                                <button onclick="cancelEditAbsentReasonRow()" class="px-2 py-1 bg-slate-500 hover:bg-slate-600 text-white rounded-lg font-bold text-[11px] transition">Cancel</button>
+                                <button onclick="cancelEditAbsentReasonRow()" class="px-2.5 py-1 bg-slate-500 hover:bg-slate-600 text-white rounded-lg font-bold text-[11px] transition">Cancel</button>
                             </td>
                         </tr>
                     `;
                 }
 
+                const actionButtonsHtml = idx >= 0
+                    ? `<button onclick="editAbsentReasonRow(${idx})" class="role-write-action px-2 py-1 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold text-[11px] transition" title="ပြင်ဆင်မည်">✏️ Edit</button>
+                       <button onclick="deleteAbsentReasonRow(${idx})" class="role-write-action px-2 py-1 bg-rose-50 hover:bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-lg font-bold text-[11px] transition" title="ဖျက်မည်">🗑️ Delete</button>`
+                    : `<span class="px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-semibold text-[10px]">Auto-Linked</span>`;
+
                 return `
                     <tr class="hover:bg-rose-50/40 dark:hover:bg-slate-700/40 transition text-slate-800 dark:text-slate-200">
-                        <td class="p-3 text-left font-semibold">${toMyanmarNumerals(idx + 1)}။ ${rowObj.reason}</td>
+                        <td class="p-3 text-left font-semibold">${toMyanmarNumerals(displayIdx + 1)}။ ${rowObj.reason}</td>
                         <td class="p-3 text-center ${c1 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c1)}</td>
                         <td class="p-3 text-center ${c2 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c2)}</td>
                         <td class="p-3 text-center ${c3 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c3)}</td>
                         <td class="p-3 text-center ${c4 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c4)}</td>
                         <td class="p-3 text-center ${c5 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c5)}</td>
                         <td class="p-3 text-center font-bold bg-rose-50/50 dark:bg-rose-900/20 ${rowSum > 0 ? 'text-rose-700 dark:text-rose-200' : 'text-slate-400'}">${toMyanmarNumerals(rowSum)}</td>
-                        <td class="p-3 text-center space-x-1">
-                            <button onclick="editAbsentReasonRow(${idx})" class="role-write-action px-2 py-1 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold text-[11px] transition" title="ပြင်ဆင်မည်">✏️ Edit</button>
-                            <button onclick="deleteAbsentReasonRow(${idx})" class="role-write-action px-2 py-1 bg-rose-50 hover:bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-lg font-bold text-[11px] transition" title="ဖျက်မည်">🗑️ Delete</button>
-                        </td>
+                        <td class="p-3 text-center space-x-1">${actionButtonsHtml}</td>
                     </tr>
                 `;
             }).join('');
@@ -3816,7 +3931,7 @@
                     detailTbody.innerHTML = absentStaffList.map((p, idx) => {
                         const realIndex = personnelData.indexOf(p);
                         const deptDisplay = getDeptAbbr(p.deptAbbr || p.deptFull);
-                        const normalizedDept = deptDisplay === 'ထလရ-၁' ? 'ထလရ(၁)' : deptDisplay === 'ထလရ-၂' ? 'ထလရ(၂)' : deptDisplay;
+                        const normalizedDept = deptDisplay === 'ထလရ(၁)' ? 'ထလရ-၁' : deptDisplay === 'ထလရ(၂)' ? 'ထလရ-၂' : deptDisplay;
                         const rankAbbrOnly = getRankAbbr(p.rankAbbr || p.rankFull);
                         return `
                             <tr onclick="openPersonnelDetail(${realIndex})" class="hover:bg-rose-50/50 dark:hover:bg-slate-700/50 transition cursor-pointer text-slate-800 dark:text-slate-200">
@@ -3853,8 +3968,40 @@
                 }
             });
 
-            const reasonGrandTotals = makeDeptCounter();
+            const linkedAbsentMap = {};
+            filteredPersonnel.forEach(p => {
+                if (p.status !== 'ပျက်ကွက်') return;
+                const reasonKey = (p.absentReason || 'မဖော်ပြ').trim() || 'မဖော်ပြ';
+                const colKey = resolveAbsentDeptColumnKey(p);
+                if (!linkedAbsentMap[reasonKey]) {
+                    linkedAbsentMap[reasonKey] = { 'ဌနခ': 0, 'စမရ': 0, 'ထလရ-၁': 0, 'ထလရ-၂': 0, 'စဆရ': 0 };
+                }
+                if (colKey) linkedAbsentMap[reasonKey][colKey]++;
+            });
+
+            const mergedReasonList = [];
+            const seenReasons = new Set();
             absentReasonRows.forEach(r => {
+                const rName = (r.reason || '').trim();
+                seenReasons.add(rName);
+                const linked = linkedAbsentMap[rName];
+                mergedReasonList.push({
+                    reason: rName,
+                    'ဌနခ': linked ? linked['ဌနခ'] : (Number(r['ဌနခ']) || 0),
+                    'စမရ': linked ? linked['စမရ'] : (Number(r['စမရ']) || 0),
+                    'ထလရ-၁': linked ? linked['ထလရ-၁'] : (Number(r['ထလရ-၁']) || 0),
+                    'ထလရ-၂': linked ? linked['ထလရ-၂'] : (Number(r['ထလရ-၂']) || 0),
+                    'စဆရ': linked ? linked['စဆရ'] : (Number(r['စဆရ']) || 0)
+                });
+            });
+            Object.keys(linkedAbsentMap).forEach(rName => {
+                if (!seenReasons.has(rName)) {
+                    mergedReasonList.push({ reason: rName, ...linkedAbsentMap[rName] });
+                }
+            });
+
+            const reasonGrandTotals = makeDeptCounter();
+            mergedReasonList.forEach(r => {
                 reasonGrandTotals['ဌနခ'] += Number(r['ဌနခ']) || 0;
                 reasonGrandTotals['စမရ'] += Number(r['စမရ']) || 0;
                 reasonGrandTotals['ထလရ-၁'] += Number(r['ထလရ-၁']) || 0;
@@ -3877,8 +4024,8 @@
                     'အကြောင်းအရာ': 'ရှိရင်း',
                     'ဌနခ': totalCounts['ဌနခ'],
                     'စမရ': totalCounts['စမရ'],
-                    'ထလရ(၁)': totalCounts['ထလရ-၁'],
-                    'ထလရ(၂)': totalCounts['ထလရ-၂'],
+                    'ထလရ-၁': totalCounts['ထလရ-၁'],
+                    'ထလရ-၂': totalCounts['ထလရ-၂'],
                     'စဆရ': totalCounts['စဆရ'],
                     'စုစုပေါင်း': totalCounts.total
                 },
@@ -3886,8 +4033,8 @@
                     'အကြောင်းအရာ': 'တန်းစီ',
                     'ဌနခ': presentCounts['ဌနခ'],
                     'စမရ': presentCounts['စမရ'],
-                    'ထလရ(၁)': presentCounts['ထလရ-၁'],
-                    'ထလရ(၂)': presentCounts['ထလရ-၂'],
+                    'ထလရ-၁': presentCounts['ထလရ-၁'],
+                    'ထလရ-၂': presentCounts['ထလရ-၂'],
                     'စဆရ': presentCounts['စဆရ'],
                     'စုစုပေါင်း': presentCounts.total
                 },
@@ -3895,8 +4042,8 @@
                     'အကြောင်းအရာ': 'ပျက်ကွက်',
                     'ဌနခ': reasonGrandTotals['ဌနခ'],
                     'စမရ': reasonGrandTotals['စမရ'],
-                    'ထလရ(၁)': reasonGrandTotals['ထလရ-၁'],
-                    'ထလရ(၂)': reasonGrandTotals['ထလရ-၂'],
+                    'ထလရ-၁': reasonGrandTotals['ထလရ-၁'],
+                    'ထလရ-၂': reasonGrandTotals['ထလရ-၂'],
                     'စဆရ': reasonGrandTotals['စဆရ'],
                     'စုစုပေါင်း': reasonGrandTotals.total
                 },
@@ -3904,7 +4051,7 @@
                 { 'အကြောင်းအရာ': 'ပျက်ကွက်အကြောင်းအရင်း' }
             ];
 
-            absentReasonRows.forEach(r => {
+            mergedReasonList.forEach(r => {
                 const c1 = Number(r['ဌနခ']) || 0;
                 const c2 = Number(r['စမရ']) || 0;
                 const c3 = Number(r['ထလရ-၁']) || 0;
@@ -3914,8 +4061,8 @@
                     'အကြောင်းအရာ': r.reason,
                     'ဌနခ': c1,
                     'စမရ': c2,
-                    'ထလရ(၁)': c3,
-                    'ထလရ(၂)': c4,
+                    'ထလရ-၁': c3,
+                    'ထလရ-၂': c4,
                     'စဆရ': c5,
                     'စုစုပေါင်း': c1 + c2 + c3 + c4 + c5
                 });
@@ -3924,23 +4071,375 @@
             const ws = XLSX.utils.json_to_sheet(sheetRows);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Absent_Strength');
-            XLSX.writeFile(wb, 'Absent_Strength_Report.xlsx');
-            showToast('ပျက်ကွက်အင်အားစာရင်း Excel ဖိုင် ထုတ်ယူပြီးပါပြီ', 'success');
+            saveWorkbookToLocal(wb, 'Absent_Strength_Report.xlsx', 'ပျက်ကွက်အင်အားစာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
+        }
+        // --- EXCEL IMPORT / EXPORT (Local File System & SheetJS) ---
+        async function saveWorkbookToLocal(wb, defaultFileName, successMsg) {
+            try {
+                const wbOut = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+                const blob = new Blob([wbOut], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+                if (window.showSaveFilePicker) {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: defaultFileName,
+                        types: [{
+                            description: 'Excel Spreadsheet (*.xlsx)',
+                            accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] }
+                        }]
+                    });
+                    const writable = await handle.createWritable();
+                    await writable.write(blob);
+                    await writable.close();
+                    showToast(successMsg, 'success');
+                    return;
+                }
+
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = defaultFileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                showToast(successMsg, 'success');
+            } catch (err) {
+                if (err && err.name === 'AbortError') return;
+                XLSX.writeFile(wb, defaultFileName);
+                showToast(successMsg, 'success');
+            }
         }
 
-        // --- SECURITY DUTY INLINE CONTROLS & GROUPED TABLE ---
-        function updateDutySummaryBoxes(filteredList = securityDutyData) {
-            const insideCount = filteredList.filter(d => d.dutyType === 'တပ်တွင်း').length;
-            const outsideCount = filteredList.filter(d => d.dutyType === 'တပ်ပြင်').length;
-            const totalCount = filteredList.length;
+        function processImportedRowsForTarget(rows, target, fileName = 'Local File') {
+            if (!rows || rows.length === 0) {
+                showToast('ဖိုင်အတွင်း အချက်အလက် မတွေ့ပါ', 'error');
+                return;
+            }
 
-            const elIn = document.getElementById('d-sub-inside');
-            const elOut = document.getElementById('d-sub-outside');
-            const elTot = document.getElementById('d-sub-total');
+            if (target === 'absent') {
+                let importedCount = 0;
+                rows.forEach(r => {
+                    const rawName = String(r['အမည်'] || r['Name'] || '').trim().replace(/^(ဦး|ဒေါ်)\s*/g, '');
+                    if (!rawName) return;
+                    const rawId = String(r['ကိုယ်ပိုင်အမှတ်'] || r['ID'] || '').trim();
+                    const rawRank = String(r['အဆင့်'] || r['Rank'] || 'တပ်သား').trim();
+                    const rawDept = String(r['ဌာန'] || r['ဌာနအမည်'] || r['Department'] || 'ဌနခ').trim();
+                    const rawType = String(r['ဝန်ထမ်းအမျိုးအစား'] || r['Type'] || 'စစ်သည်').trim();
+                    const rawReason = String(r['ပျက်ကွက်အကြောင်းအရင်း'] || r['ပျက်ကွက်အကြောင်းအရာ'] || r['Reason'] || 'ရှောင်တခင်ခွင့်').trim();
 
-            if (elIn) elIn.textContent = toMyanmarNumerals(insideCount);
-            if (elOut) elOut.textContent = toMyanmarNumerals(outsideCount);
-            if (elTot) elTot.textContent = toMyanmarNumerals(totalCount);
+                    if (rawReason && !absentReasonCategories.includes(rawReason)) {
+                        absentReasonCategories.push(rawReason);
+                    }
+
+                    const existingIdx = rawId ? personnelData.findIndex(p => p.id === rawId) : -1;
+                    if (existingIdx >= 0) {
+                        personnelData[existingIdx] = {
+                            ...personnelData[existingIdx],
+                            status: 'ပျက်ကွက်',
+                            absentReason: rawReason
+                        };
+                    } else {
+                        personnelData.unshift({
+                            id: rawId || `ကြေး-${Math.floor(10000 + Math.random() * 90000)}`,
+                            rankFull: getRankFull(rawRank),
+                            rankAbbr: getRankAbbr(rawRank),
+                            name: rawName,
+                            deptFull: getDeptFull(rawDept),
+                            deptAbbr: getDeptAbbr(rawDept),
+                            staffType: rawType,
+                            status: 'ပျက်ကွက်',
+                            absentReason: rawReason,
+                            phone: String(r['ဖုန်း'] || ''),
+                            address: String(r['နေရပ်လိပ်စာ'] || ''),
+                            remarks: String(r['မှတ်ချက်'] || ''),
+                            photo: ''
+                        });
+                    }
+                    importedCount++;
+                });
+                saveSystemState();
+                renderAbsentSummary();
+                renderPersonnelDirectory();
+                renderDashboardView();
+                updateHeaderBadge();
+                showToast(`Local ဖိုင်မှ ပျက်ကွက်ဝန်ထမ်း ${toMyanmarNumerals(importedCount)} ဦး ထည့်သွင်းပြီးပါပြီ`, 'success');
+                syncToFirebaseFirestore(`absent_local_import:${fileName}`);
+            } else if (target === 'personnel') {
+                rows.forEach(r => {
+                    const rawName = String(r['အမည်'] || r['Name'] || '').trim().replace(/^(ဦး|ဒေါ်)\s*/g, '');
+                    if (!rawName) return;
+                    const rawRank = String(r['အဆင့်'] || r['Rank'] || 'တပ်သား').trim();
+                    const rawDept = String(r['ဌာနအမည်'] || r['Department'] || 'ဌနခ').trim();
+                    personnelData.unshift({
+                        id: String(r['ကိုယ်ပိုင်အမှတ်'] || r['ID'] || 'ကြေး-၀၀၀၀၀'),
+                        rankFull: getRankFull(rawRank),
+                        rankAbbr: getRankAbbr(rawRank),
+                        name: rawName,
+                        deptFull: getDeptFull(rawDept),
+                        deptAbbr: getDeptAbbr(rawDept),
+                        staffType: String(r['ဝန်ထမ်းအမျိုးအစား'] || r['Type'] || 'စစ်သည်'),
+                        status: String(r['အခြေအနေ'] || r['Status'] || 'တန်းစီ'),
+                        absentReason: String(r['ပျက်ကွက်အကြောင်းအရာ'] || ''),
+                        phone: String(r['ဖုန်း'] || ''),
+                        address: String(r['နေရပ်လိပ်စာ'] || ''),
+                        remarks: String(r['မှတ်ချက်'] || r['Remarks'] || ''),
+                        photo: ''
+                    });
+                });
+                saveSystemState();
+                renderPersonnelDirectory();
+                renderDashboardView();
+                renderAbsentSummary();
+                updateHeaderBadge();
+                showToast(`Local ဖိုင်မှ ဝန်ထမ်း ${toMyanmarNumerals(rows.length)} ဦး ထည့်သွင်းပြီးပါပြီ`, 'success');
+                syncToFirebaseFirestore(`personnel_local_import:${fileName}`);
+            } else if (target === 'duty') {
+                rows.forEach(r => {
+                    const rawName = String(r['အမည်'] || r['Name'] || '').trim().replace(/^(ဦး|ဒေါ်)\s*/g, '');
+                    if (!rawName) return;
+                    const rawRank = String(r['အဆင့်'] || r['Rank'] || 'တပ်သား').trim();
+                    const rawDept = String(r['ဌာနအမည်'] || r['Department'] || 'ဌနခ').trim();
+                    securityDutyData.unshift({
+                        id: String(r['ကိုယ်ပိုင်အမှတ်'] || r['ID'] || 'ကြေး-၀၀၀၀၀'),
+                        rankAbbr: getRankAbbr(rawRank),
+                        name: rawName,
+                        deptAbbr: getDeptAbbr(rawDept),
+                        staffType: String(r['ဝန်ထမ်းအမျိုးအစား'] || 'စစ်သည်'),
+                        status: String(r['အခြေအနေ'] || 'ပျက်ကွက်'),
+                        absentReason: String(r['ပျက်ကွက်အကြောင်းအရာ'] || 'လုံခြုံရေးတာဝန်'),
+                        remarks: String(r['မှတ်ချက်'] || ''),
+                        dutyType: String(r['လုံခြုံရေးအမျိုးအစား'] || 'တပ်တွင်း'),
+                        location: String(r['လုံခြုံရေးတည်နေရာ'] || 'ဂိတ် (၁) - ပင်မဝင်ပေါက်'),
+                        weaponType: String(r['လက်နက်အမျိုးအစား'] || '-'),
+                        ammoCount: String(r['ခဲယမ်းအရေအတွက်'] || '-'),
+                        startDate: String(r['စတင်သည့်ရက်စွဲ'] || '-')
+                    });
+                });
+                saveSystemState();
+                renderSecurityDuty();
+                renderDashboardView();
+                showToast(`Local ဖိုင်မှ တာဝန်စာရင်း ${toMyanmarNumerals(rows.length)} ခု ထည့်သွင်းပြီးပါပြီ`, 'success');
+                syncToFirebaseFirestore(`duty_local_import:${fileName}`);
+            } else if (target === 'armory') {
+                rows.forEach(r => {
+                    const wName = String(r['လက်နက် / ခဲယမ်း အမည်'] || r['လက်နက်အမျိုးအစား'] || r['Name'] || '').trim();
+                    if (!wName) return;
+                    const rawPurpose = String(r['မည်သည့်ကိစ္စအတွက်'] || r['မည့်သည့်ကိစ္စအတွက်'] || r['ထုတ်ပေး ဌာန'] || r['Department'] || 'တပ်တွင်းလခရ').trim();
+                    const rawLocation = String(r['တည်နေရာ'] || r['Location'] || '').trim();
+                    armoryData.unshift({
+                        category: String(r['အမျိုးအစား'] || 'လက်နက်'),
+                        weaponType: wName,
+                        model: String(r['မော်ဒယ် (Model)'] || r['Model'] || '-'),
+                        code: String(r['ကုတ်နံပါတ်'] || r['Code'] || '-'),
+                        serial: String(r['လက်နက်နံပါတ် / အရေအတွက်'] || r['စက်နံပါတ် / အရေအတွက်'] || r['Serial'] || '-'),
+                        dept: rawPurpose,
+                        location: rawLocation,
+                        status: String(r['ဖြန့်ခွဲ /ထုတ်ပေး / စတိုကျန်'] || r['အခြေအနေ'] || r['Status'] || 'စတိုကျန်'),
+                        remarks: String(r['မှတ်ချက်'] || '')
+                    });
+                });
+                saveSystemState();
+                populateArmoryNameFilter();
+                renderArmory();
+                renderDashboardView();
+                showToast(`Local ဖိုင်မှ လက်နက်/ခဲယမ်း ${toMyanmarNumerals(rows.length)} ခု ထည့်သွင်းပြီးပါပြီ`, 'success');
+                syncToFirebaseFirestore(`armory_local_import:${fileName}`);
+            } else if (target === 'prod') {
+                const debtYrInput = document.getElementById('pr-in-debt-year')?.value.trim() || '';
+                const planYrInput = document.getElementById('pr-in-plan-year')?.value.trim() || '';
+                rows.forEach(r => {
+                    const nom = String(r['Nomenclature'] || r['nomenclature'] || '').trim();
+                    if (!nom) return;
+                    const debtKey = Object.keys(r).find(k => k.toLowerCase().includes('debt')) || '';
+                    const planKey = Object.keys(r).find(k => k.toLowerCase().includes('plan') && !k.toLowerCase().includes('total')) || '';
+                    const debt = parseFloat(debtKey ? r[debtKey] : 0) || 0;
+                    const plan = parseFloat(planKey ? r[planKey] : 0) || 0;
+                    const extractedDebtYr = String(r['Debt Years'] || r['Years'] || (debtKey ? debtKey.replace(/debt/i, '').trim() : '') || debtYrInput).trim();
+                    const extractedPlanYr = String(r['Plan Years'] || (planKey ? planKey.replace(/plan/i, '').trim() : '') || planYrInput).trim();
+                    const apr = parseFloat(r['Apr'] || 0) || 0;
+                    const may = parseFloat(r['May'] || 0) || 0;
+                    const jun = parseFloat(r['Jun'] || 0) || 0;
+                    const jul = parseFloat(r['Jul'] || 0) || 0;
+                    const aug = parseFloat(r['Aug'] || 0) || 0;
+                    const sep = parseFloat(r['Sep'] || 0) || 0;
+                    const oct = parseFloat(r['Oct'] || 0) || 0;
+                    const nov = parseFloat(r['Nov'] || 0) || 0;
+                    const dec = parseFloat(r['Dec'] || 0) || 0;
+                    const jan = parseFloat(r['Jan'] || 0) || 0;
+                    const feb = parseFloat(r['Feb'] || 0) || 0;
+                    const mar = parseFloat(r['Mar'] || 0) || 0;
+                    const sumMonths = apr + may + jun + jul + aug + sep + oct + nov + dec + jan + feb + mar;
+
+                    prodStatementData.push({
+                        nomenclature: nom,
+                        au: String(r['A/U'] || 'Nos').trim(),
+                        debtYear: extractedDebtYr,
+                        debt2526: debt,
+                        planYear: extractedPlanYr,
+                        plan2627: plan,
+                        totalPlan: parseFloat(r['Total Plan'] || r[' Total Plan '] || (debt + plan)) || (debt + plan),
+                        description: String(r['Description'] || r['Descri ption'] || 'Prod;').trim(),
+                        apr, may, jun, jul, aug, sep, oct, nov, dec, jan, feb, mar,
+                        total: parseFloat(r['Total'] || sumMonths) || sumMonths,
+                        remark: String(r['Remark'] || '').trim(),
+                        financialYears: String(r['Financial_Years'] || '2026-2027').trim()
+                    });
+                });
+                saveSystemState();
+                initInlineProdControls();
+                renderProdStatement();
+                showToast(`Local ဖိုင်မှ Prod; Statement ${toMyanmarNumerals(rows.length)} ခု ထည့်သွင်းပြီးပါပြီ`, 'success');
+                syncToFirebaseFirestore(`prod_local_import:${fileName}`);
+            } else if (target === 'users') {
+                let importedUsers = 0;
+                const todayStr = new Date().toISOString().split('T')[0];
+                rows.forEach(r => {
+                    const uName = String(r['အမည်'] || r['Name'] || '').trim();
+                    const uEmail = String(r['အသုံးပြုသူအမည်/အီးမေးလ်'] || r['Email'] || r['Username'] || '').trim().toLowerCase();
+                    if (!uName || !uEmail) return;
+                    const rawDept = String(r['ဌာန'] || r['Department'] || 'ဌနခ').trim();
+                    const deptAbbr = getDeptAbbr(rawDept);
+                    const deptFull = getDeptFull(rawDept);
+                    const roleVal = String(r['ရာထူးအခွင့်အာဏာ (Role)'] || r['Role'] || 'User3').trim();
+                    const statusVal = String(r['အခြေအနေ'] || r['Status'] || 'Active').trim();
+                    const regDateVal = String(r['စာရင်းသွင်းသည့်ရက်စွဲ'] || r['RegDate'] || todayStr).trim();
+
+                    const existingIdx = userData.findIndex(u => (u.username || '').toLowerCase() === uEmail);
+                    if (existingIdx >= 0) {
+                        userData[existingIdx] = { ...userData[existingIdx], name: uName, deptAbbr, deptFull, role: roleVal, status: statusVal };
+                    } else {
+                        userData.push({
+                            name: uName,
+                            username: uEmail,
+                            deptAbbr,
+                            deptFull,
+                            role: roleVal,
+                            status: statusVal,
+                            regDate: regDateVal,
+                            password: String(r['Password'] || 'password123')
+                        });
+                    }
+                    importedUsers++;
+                });
+                saveSystemState();
+                renderUserManagement();
+                showToast(`Local ဖိုင်မှ အသုံးပြုသူ ${toMyanmarNumerals(importedUsers)} ဦး ထည့်သွင်းပြီးပါပြီ`, 'success');
+                syncToFirebaseFirestore(`users_local_import:${fileName}`);
+            }
+        }
+
+        async function triggerExcelImport(target) {
+            if (!guardWritePermission()) return;
+            if (window.showOpenFilePicker) {
+                try {
+                    const [fileHandle] = await window.showOpenFilePicker({
+                        multiple: false,
+                        types: [{
+                            description: 'Excel, CSV & JSON Files',
+                            accept: {
+                                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
+                                'application/vnd.ms-excel': ['.xls'],
+                                'text/csv': ['.csv'],
+                                'application/json': ['.json']
+                            }
+                        }]
+                    });
+                    const file = await fileHandle.getFile();
+                    await importLocalFileObject(file, target);
+                    return;
+                } catch (err) {
+                    if (err && err.name === 'AbortError') return;
+                }
+            }
+
+            const inputId = target === 'personnel' ? 'p-excel-input'
+                          : target === 'absent' ? 'ab-excel-input'
+                          : target === 'duty' ? 'd-excel-input'
+                          : target === 'prod' ? 'pr-excel-input'
+                          : target === 'users' ? 'u-excel-input'
+                          : 'a-excel-input';
+            document.getElementById(inputId)?.click();
+        }
+
+        async function importLocalFileObject(file, target) {
+            if (!file) return;
+            const isJsonFile = file.name.toLowerCase().endsWith('.json');
+            try {
+                if (isJsonFile) {
+                    const text = await file.text();
+                    const parsedJson = JSON.parse(text);
+                    if (Array.isArray(parsedJson)) {
+                        processImportedRowsForTarget(parsedJson, target, file.name);
+                    } else if (parsedJson && Array.isArray(parsedJson.personnelData)) {
+                        personnelData = parsedJson.personnelData;
+                        if (Array.isArray(parsedJson.absentReasonCategories)) absentReasonCategories = parsedJson.absentReasonCategories;
+                        if (Array.isArray(parsedJson.securityDutyData)) securityDutyData = parsedJson.securityDutyData;
+                        if (Array.isArray(parsedJson.armoryData)) armoryData = parsedJson.armoryData;
+                        if (Array.isArray(parsedJson.prodStatementData)) prodStatementData = parsedJson.prodStatementData;
+                        saveSystemState();
+                        renderPersonnelDirectory();
+                        renderAbsentSummary();
+                        renderDashboardView();
+                        updateHeaderBadge();
+                        showToast(`Local JSON ဖိုင် "${file.name}" မှ အချက်အလက်များ ထည့်သွင်းပြီးပါပြီ`, 'success');
+                        syncToFirebaseFirestore(`local_json_import:${file.name}`);
+                    }
+                    return;
+                }
+
+                const arrayBuffer = await file.arrayBuffer();
+                const data = new Uint8Array(arrayBuffer);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                const rows = XLSX.utils.sheet_to_json(firstSheet);
+                processImportedRowsForTarget(rows, target, file.name);
+            } catch (err) {
+                showToast('Local ဖိုင် ဖတ်ရှုရာတွင် အမှားဖြစ်ပေါ်ပါသည်', 'error');
+            }
+        }
+
+        function handleExcelImport(event, target) {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            importLocalFileObject(file, target).finally(() => {
+                event.target.value = '';
+            });
+        }
+
+        function exportPersonnelExcel() {
+            const exportRows = [...personnelData].sort(compareByRankSeniority).map(p => ({
+                'ကိုယ်ပိုင်အမှတ်': p.id,
+                'အဆင့်': p.rankAbbr,
+                'အမည်': p.name,
+                'ဌာနအမည်': p.deptAbbr,
+                'ဝန်ထမ်းအမျိုးအစား': p.staffType,
+                'အခြေအနေ': p.status,
+                'ပျက်ကွက်အကြောင်းအရာ': p.absentReason || '',
+                'မှတ်ချက်': p.remarks || ''
+            }));
+            const ws = XLSX.utils.json_to_sheet(exportRows);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Personnel_List');
+            saveWorkbookToLocal(wb, 'Personnel_Directory.xlsx', 'ဝန်ထမ်းစာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
+        }
+
+        function exportDutyExcel() {
+            const exportRows = [...securityDutyData].sort(compareByRankSeniority).map(d => ({
+                'လုံခြုံရေးအမျိုးအစား': d.dutyType,
+                'လုံခြုံရေးတည်နေရာ': d.location,
+                'ကိုယ်ပိုင်အမှတ်': d.id,
+                'အဆင့်': d.rankAbbr,
+                'အမည်': d.name,
+                'ဌာနအမည်': d.deptAbbr,
+                'လက်နက်အမျိုးအစား': d.weaponType,
+                'ခဲယမ်းအရေအတွက်': d.ammoCount,
+                'စတင်သည့်ရက်စွဲ': d.startDate,
+                'မှတ်ချက်': d.remarks || ''
+            }));
+            const ws = XLSX.utils.json_to_sheet(exportRows);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Security_Duty');
+            saveWorkbookToLocal(wb, 'Security_Duty_Roster.xlsx', 'လုံခြုံရေးတာဝန် စာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
         }
 
         function initInlineDutyControls() {
@@ -5216,8 +5715,7 @@
             const ws = XLSX.utils.json_to_sheet(exportRows);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Armory_Inventory');
-            XLSX.writeFile(wb, 'Weapons_And_Ammunition_List.xlsx');
-            showToast('လက်နက် / ခဲယမ်း စာရင်း Excel ဖိုင် ထုတ်ယူပြီးပါပြီ', 'success');
+            saveWorkbookToLocal(wb, 'Weapons_And_Ammunition_List.xlsx', 'လက်နက် / ခဲယမ်း စာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
         }
 
         function renderArmory() {
@@ -5613,8 +6111,7 @@
             const ws = XLSX.utils.json_to_sheet(exportRows);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'User_Accounts');
-            XLSX.writeFile(wb, 'User_Management_List.xlsx');
-            showToast('အသုံးပြုသူစာရင်း Excel ဖိုင် ထုတ်ယူပြီးပါပြီ', 'success');
+            saveWorkbookToLocal(wb, 'User_Management_List.xlsx', 'အသုံးပြုသူစာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
         }
 
         function getUserStatusBadgeClass(status) {
@@ -6530,8 +7027,7 @@
             const ws = XLSX.utils.json_to_sheet(exportRows);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Prod_Statement');
-            XLSX.writeFile(wb, 'Prod_Statement.xlsx');
-            showToast('Prod; Statement Excel ဖိုင် ထုတ်ယူပြီးပါပြီ', 'success');
+            saveWorkbookToLocal(wb, 'Prod_Statement.xlsx', 'Prod; Statement Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
         }
 
         function renderProdStatement() {
@@ -6725,6 +7221,7 @@
             initFirebaseFirestore();
 
             // Restore active session if user previously logged in, otherwise show Auth Gateway
+            loadRememberedLoginCredentials();
             const savedSessionRaw = localStorage.getItem(ACTIVE_AUTH_SESSION_KEY);
             if (savedSessionRaw) {
                 try {

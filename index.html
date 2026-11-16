@@ -2615,6 +2615,40 @@
             return found ? found.full : val;
         }
 
+        // Helper: Rank Seniority Weight (ဗိုလ်ချုပ်မှူးကြီး -> ဒုတိယဗိုလ် -> အရခဗ -> တပ်သား -> အရာထမ်း -> လုပ်သား)
+        function getRankSortOrder(rankVal, staffType = '') {
+            const raw = String(rankVal || '').trim();
+            if (!raw || raw === '-') return 9999;
+
+            const categories = [
+                { key: 'officer', base: 0 },
+                { key: 'soldier', base: 100 },
+                { key: 'staff', base: 200 }
+            ];
+
+            for (const cat of categories) {
+                const list = RANK_DEFINITIONS[cat.key] || [];
+                const idx = list.findIndex(r => r.abbr === raw || r.full === raw);
+                if (idx !== -1) {
+                    return cat.base + idx;
+                }
+            }
+
+            if (staffType === 'အရာရှိ') return 90;
+            if (staffType === 'စစ်သည်') return 190;
+            if (staffType === 'အမြဲတမ်းဝန်ထမ်း') return 290;
+            return 999;
+        }
+
+        function compareByRankSeniority(a, b) {
+            const orderA = getRankSortOrder(a.rankAbbr || a.rankFull, a.staffType);
+            const orderB = getRankSortOrder(b.rankAbbr || b.rankFull, b.staffType);
+            if (orderA !== orderB) return orderA - orderB;
+            const idComp = String(a.id || '').localeCompare(String(b.id || ''), 'my');
+            if (idComp !== 0) return idComp;
+            return String(a.name || '').localeCompare(String(b.name || ''), 'my');
+        }
+
         // Helper: Toast Notifications
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
@@ -3270,7 +3304,7 @@
                 const matchesDept = deptFilter === 'ALL' || pDeptAbbr === deptFilter || p.deptAbbr === deptFilter;
                 const matchesType = typeFilter === 'ALL' || p.staffType === typeFilter;
                 return matchesQuery && matchesStatus && matchesRank && matchesDept && matchesType;
-            });
+            }).sort(compareByRankSeniority);
 
             if (filtered.length === 0) {
                 container.innerHTML = `<tr><td colspan="9" class="text-center py-8 text-slate-400">ရှာဖွေမှုနှင့် ကိုက်ညီသော ဝန်ထမ်းစာရင်း မရှိပါ</td></tr>`;
@@ -3681,7 +3715,7 @@
                 const matchesReason = reasonFilter === 'ALL' || (p.absentReason || '') === reasonFilter;
 
                 return matchesSearch && matchesDept && matchesType && matchesReason;
-            });
+            }).sort(compareByRankSeniority);
             if (detailCountBadge) {
                 detailCountBadge.textContent = `${toMyanmarNumerals(absentStaffList.length)} ဦး`;
             }
@@ -4075,7 +4109,7 @@
                 const matchesDutyType = dutyTypeFilter === 'ALL' || d.dutyType === dutyTypeFilter;
 
                 return matchesQuery && matchesDept && matchesType && matchesDutyType;
-            });
+            }).sort(compareByRankSeniority);
 
             updateDutySummaryBoxes(filtered);
 
@@ -4454,7 +4488,7 @@
         }
 
         function exportPersonnelExcel() {
-            const exportRows = personnelData.map(p => ({
+            const exportRows = [...personnelData].sort(compareByRankSeniority).map(p => ({
                 'ကိုယ်ပိုင်အမှတ်': p.id,
                 'အဆင့်': p.rankAbbr,
                 'အမည်': p.name,
@@ -4472,7 +4506,7 @@
         }
 
         function exportDutyExcel() {
-            const exportRows = securityDutyData.map(d => ({
+            const exportRows = [...securityDutyData].sort(compareByRankSeniority).map(d => ({
                 'လုံခြုံရေးအမျိုးအစား': d.dutyType,
                 'လုံခြုံရေးတည်နေရာ': d.location,
                 'ကိုယ်ပိုင်အမှတ်': d.id,

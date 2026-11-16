@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Information</title>
+    <title>လုံခြုံရေးနှင့် အင်အားစီမံခန့်ခွဲမှုစနစ် (Data Information)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- SheetJS for Excel Import / Export -->
@@ -316,9 +316,16 @@
             </nav>
         </div>
 
-        <!-- Bottom Logout Button (Desktop) -->
-        <div class="hidden md:block p-2.5 border-t border-slate-300 dark:border-slate-700">
-            <button onclick="handleUserLogout()" title="Logout" class="w-full py-2 px-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5">
+        <!-- Bottom User Info & Logout Button -->
+        <div class="p-2 md:p-2.5 border-t border-slate-300 dark:border-slate-700 flex md:flex-col items-center justify-between gap-2 bg-slate-200/80 dark:bg-slate-800/80">
+            <div id="sidebar-user-profile" class="w-full flex items-center md:justify-center md:group-hover/sidebar:justify-start gap-2 bg-white/80 dark:bg-slate-700/80 border border-slate-300 dark:border-slate-600 px-2.5 py-1.5 rounded-xl min-w-0">
+                <div id="header-user-avatar" class="w-6 h-6 rounded-full bg-blue-600 text-white font-extrabold text-[11px] flex items-center justify-center flex-shrink-0">G</div>
+                <div class="flex items-center justify-between gap-1.5 min-w-0 flex-1 md:hidden md:group-hover/sidebar:flex">
+                    <span id="header-user-name" class="font-bold text-slate-900 dark:text-white truncate text-xs">Guest</span>
+                    <span id="header-user-role-badge" class="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-slate-200 text-slate-900 flex-shrink-0">User</span>
+                </div>
+            </div>
+            <button onclick="handleUserLogout()" title="Logout" class="md:w-full py-2 px-3 md:px-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-sm transition flex items-center justify-center gap-1.5 flex-shrink-0">
                 <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
                 <span class="md:hidden md:group-hover/sidebar:inline">Logout</span>
             </button>
@@ -338,11 +345,6 @@
                     <span id="firebase-sync-dot" class="text-emerald-300">&bull;</span>
                     <span id="firebase-sync-text">Firestore Online</span>
                 </span>
-                <div class="flex items-center gap-1.5 bg-white/10 border border-white/20 px-2.5 py-1 rounded-xl">
-                    <span id="header-user-name" class="font-bold truncate max-w-[120px] sm:max-w-[180px]">Guest</span>
-                    <span id="header-user-role-badge" class="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-slate-200 text-slate-900">User</span>
-                </div>
-                <button onclick="handleUserLogout()" class="md:hidden px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-bold text-[11px]">Logout</button>
             </div>
         </header>
 
@@ -1750,11 +1752,14 @@
             if (authScreen) authScreen.classList.add('hidden');
 
             const nameEl = document.getElementById('header-user-name');
+            const avatarEl = document.getElementById('header-user-avatar');
             const roleBadge = document.getElementById('header-user-role-badge');
             const viewOnlyBanner = document.getElementById('view-only-banner');
             const navUsersBtn = document.getElementById('nav-users');
 
-            if (nameEl) nameEl.textContent = userObj.name || userObj.username;
+            const displayName = userObj.name || userObj.username;
+            if (nameEl) nameEl.textContent = displayName;
+            if (avatarEl) avatarEl.textContent = (displayName || 'G').charAt(0).toUpperCase();
 
             const isViewOnly = userObj.role === 'User3';
             const isAdmin = userObj.role === 'Admin';

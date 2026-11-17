@@ -493,10 +493,6 @@
                                 <input type="text" id="p-in-id" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-500">
                             </div>
                             <div>
-                                <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ဝန်ထမ်းအမျိုးအစား</label>
-                                <select id="p-in-type" onchange="syncInlinePersonnelRanks()" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-500"></select>
-                            </div>
-                            <div>
                                 <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ရာထူး/အဆင့်</label>
                                 <select id="p-in-rank" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-500"></select>
                             </div>
@@ -507,6 +503,10 @@
                             <div>
                                 <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ဌာနအမည်</label>
                                 <select id="p-in-dept" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-500"></select>
+                            </div>
+                            <div>
+                                <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ဝန်ထမ်းအမျိုးအစား</label>
+                                <select id="p-in-type" onchange="syncInlinePersonnelRanks()" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-500"></select>
                             </div>
                             <div>
                                 <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">လက်ရှိအခြေအနေ</label>
@@ -1749,8 +1749,12 @@ var db = admin.firestore();</pre>
             staff: [
                 { full: 'အရာထမ်း', abbr: 'အရာထမ်း' },
                 { full: 'အမှုထမ်း', abbr: 'အမှုထမ်း' },
-                { full: 'ကျွမ်းကျင်လုပ်သား', abbr: 'ကျွမ်းကျင်' },
-                { full: 'လုပ်သား', abbr: 'လုပ်သား' }
+                { full: 'ကျွမ်းကျင်အဆင့်-၁', abbr: 'ကျွမ်း-၁' },
+                { full: 'ကျွမ်းကျင်အဆင့်-၂', abbr: 'ကျွမ်း-၂' },
+                { full: 'ကျွမ်းကျင်အဆင့်-၃', abbr: 'ကျွမ်း-၃' },
+                { full: 'ကျွမ်းကျင်အဆင့်-၄', abbr: 'ကျွမ်း-၄' },
+                { full: 'ကျွမ်းကျင်အဆင့်-၅', abbr: 'ကျွမ်း-၅' },
+                { full: 'လုပ်သား', abbr: 'လသ' }
             ]
         };
 
@@ -1917,7 +1921,15 @@ var db = admin.firestore();</pre>
                 if (Array.isArray(parsed.absentReasonCategories) && parsed.absentReasonCategories.length) absentReasonCategories = parsed.absentReasonCategories;
                 if (Array.isArray(parsed.absentReasonRows)) absentReasonRows = parsed.absentReasonRows;
                 if (Array.isArray(parsed.DEPT_MAPPING) && parsed.DEPT_MAPPING.length) DEPT_MAPPING = parsed.DEPT_MAPPING;
-                if (parsed.RANK_DEFINITIONS && typeof parsed.RANK_DEFINITIONS === 'object') RANK_DEFINITIONS = parsed.RANK_DEFINITIONS;
+                if (parsed.RANK_DEFINITIONS && typeof parsed.RANK_DEFINITIONS === 'object') {
+                    RANK_DEFINITIONS = parsed.RANK_DEFINITIONS;
+                    const legacyStaffRanks = ['အရာထမ်း', 'အမှုထမ်း', 'ကျွမ်းကျင်လုပ်သား', 'လုပ်သား'];
+                    if (Array.isArray(RANK_DEFINITIONS.staff) &&
+                        RANK_DEFINITIONS.staff.length === 4 &&
+                        RANK_DEFINITIONS.staff.every((r, i) => r.full === legacyStaffRanks[i])) {
+                        RANK_DEFINITIONS.staff = JSON.parse(JSON.stringify(DEFAULT_RANK_DEFINITIONS.staff));
+                    }
+                }
                 if (Array.isArray(parsed.personnelData)) personnelData = parsed.personnelData;
                 if (Array.isArray(parsed.securityDutyData)) securityDutyData = parsed.securityDutyData;
                 if (Array.isArray(parsed.armoryData)) armoryData = parsed.armoryData;

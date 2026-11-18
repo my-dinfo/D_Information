@@ -548,10 +548,10 @@
                         <input type="text" id="personnel-search" oninput="renderPersonnelDirectory()" placeholder="ကိုယ်ပိုင်အမှတ်၊ အမည်၊ အဆင့်၊ ဌာန ရှာဖွေရန်..." class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg pl-9 pr-3 py-2 text-xs outline-none focus:border-blue-500">
                     </div>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full lg:w-auto">
-                        <select id="personnel-filter-rank" onchange="renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
-                        <select id="personnel-filter-dept" onchange="renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
-                        <select id="personnel-filter-type" onchange="renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
-                        <select id="personnel-filter-status" onchange="renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
+                        <select id="personnel-filter-rank" onchange="resetTablePage('personnel'); renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
+                        <select id="personnel-filter-dept" onchange="resetTablePage('personnel'); renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
+                        <select id="personnel-filter-type" onchange="resetTablePage('personnel'); renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
+                        <select id="personnel-filter-status" onchange="resetTablePage('personnel'); renderPersonnelDirectory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500"></select>
                     </div>
                 </div>
 
@@ -578,6 +578,9 @@
                         <tbody id="personnel-list-container" class="divide-y divide-slate-200 dark:divide-slate-700 align-middle"></tbody>
                     </table>
                 </div>
+
+                <!-- Personnel Pagination Bar -->
+                <div id="personnel-pagination-bar"></div>
             </section>
 
             <!-- ABSENT STRENGTH & PARADE TAB (တန်းစီအင်အားစာရင်းနှင့် ပျက်ကွက်အမည်စာရင်း) -->
@@ -659,10 +662,10 @@
                             <span id="absent-detail-count-badge" class="px-2 py-0.5 rounded-full bg-rose-600 text-white font-bold text-[11px]">၀ ဦး</span>
                         </div>
                         <div class="flex flex-wrap gap-2 w-full lg:w-auto">
-                            <input type="text" id="absent-search" oninput="renderAbsentSummary()" placeholder="ပျက်ကွက်အမည်စာရင်း ရှာဖွေရန်..." class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1 text-xs outline-none">
-                            <select id="absent-filter-dept" onchange="renderAbsentSummary()" class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2 py-1 text-xs outline-none"></select>
-                            <select id="absent-filter-type" onchange="renderAbsentSummary()" class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2 py-1 text-xs outline-none"></select>
-                            <select id="absent-filter-reason" onchange="renderAbsentSummary()" class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2 py-1 text-xs outline-none"></select>
+                            <input type="text" id="absent-search" oninput="resetTablePage('absent'); renderAbsentSummary()" placeholder="ပျက်ကွက်အမည်စာရင်း ရှာဖွေရန်..." class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1 text-xs outline-none">
+                            <select id="absent-filter-dept" onchange="resetTablePage('absent'); renderAbsentSummary()" class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2 py-1 text-xs outline-none"></select>
+                            <select id="absent-filter-type" onchange="resetTablePage('absent'); renderAbsentSummary()" class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2 py-1 text-xs outline-none"></select>
+                            <select id="absent-filter-reason" onchange="resetTablePage('absent'); renderAbsentSummary()" class="bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2 py-1 text-xs outline-none"></select>
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -683,6 +686,8 @@
                             <tbody id="absent-personnel-detail-tbody" class="divide-y divide-slate-200 dark:divide-slate-700"></tbody>
                         </table>
                     </div>
+                    <!-- Absent Detail Pagination Bar -->
+                    <div id="absent-pagination-bar" class="px-3 pb-3"></div>
                 </div>
             </section>
 
@@ -794,11 +799,11 @@
 
                 <!-- Duty Search & Filter -->
                 <div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col lg:flex-row gap-2.5 justify-between items-stretch lg:items-center">
-                    <input type="text" id="duty-search" oninput="renderSecurityDuty()" placeholder="လုံခြုံရေးတာဝန် ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none focus:border-blue-500">
+                    <input type="text" id="duty-search" oninput="resetTablePage('duty'); renderSecurityDuty()" placeholder="လုံခြုံရေးတာဝန် ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none focus:border-blue-500">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full lg:w-auto">
-                        <select id="duty-filter-dutytype" onchange="renderSecurityDuty()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
-                        <select id="duty-filter-dept" onchange="renderSecurityDuty()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
-                        <select id="duty-filter-type" onchange="renderSecurityDuty()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="duty-filter-dutytype" onchange="resetTablePage('duty'); renderSecurityDuty()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="duty-filter-dept" onchange="resetTablePage('duty'); renderSecurityDuty()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="duty-filter-type" onchange="resetTablePage('duty'); renderSecurityDuty()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
                     </div>
                 </div>
 
@@ -825,6 +830,9 @@
                         <tbody id="duty-list-container" class="divide-y divide-slate-200 dark:divide-slate-700"></tbody>
                     </table>
                 </div>
+
+                <!-- Duty Pagination Bar -->
+                <div id="duty-pagination-bar"></div>
             </section>
 
             <!-- ARMORY & AMMUNITION TAB (လက်နက် / ခဲယမ်းစာရင်း) -->
@@ -919,15 +927,15 @@
                 </div>
 
                 <div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col lg:flex-row gap-2.5 justify-between items-stretch lg:items-center">
-                    <input type="text" id="armory-search" oninput="renderArmory()" placeholder="လက်နက် / ခဲယမ်း ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none">
+                    <input type="text" id="armory-search" oninput="resetTablePage('armory'); renderArmory()" placeholder="လက်နက် / ခဲယမ်း ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full lg:w-auto">
-                        <select id="armory-filter-cat" onchange="renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none">
+                        <select id="armory-filter-cat" onchange="resetTablePage('armory'); renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none">
                             <option value="ALL">အမျိုးအစားအားလုံး</option>
                             <option value="လက်နက်">လက်နက်</option>
                             <option value="ခဲယမ်း">ခဲယမ်း</option>
                         </select>
-                        <select id="armory-filter-name" onchange="renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
-                        <select id="armory-filter-status" onchange="renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="armory-filter-name" onchange="resetTablePage('armory'); renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="armory-filter-status" onchange="resetTablePage('armory'); renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
                     </div>
                 </div>
 
@@ -939,6 +947,9 @@
                         <tbody id="armory-list-container" class="divide-y divide-slate-200 dark:divide-slate-700"></tbody>
                     </table>
                 </div>
+
+                <!-- Armory Pagination Bar -->
+                <div id="armory-pagination-bar"></div>
             </section>
 
             <!-- PROD; STATEMENT TAB -->
@@ -1057,11 +1068,11 @@
                 </div>
 
                 <div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col lg:flex-row gap-2.5 justify-between items-stretch lg:items-center">
-                    <input type="text" id="prod-search" oninput="renderProdStatement()" placeholder="Prod; Statement ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none">
+                    <input type="text" id="prod-search" oninput="resetTablePage('prod'); renderProdStatement()" placeholder="Prod; Statement ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full lg:w-auto">
-                        <select id="prod-filter-fy" onchange="renderProdStatement()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
-                        <select id="prod-filter-desc" onchange="renderProdStatement()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
-                        <select id="prod-filter-nom" onchange="renderProdStatement()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="prod-filter-fy" onchange="resetTablePage('prod'); renderProdStatement()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="prod-filter-desc" onchange="resetTablePage('prod'); renderProdStatement()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
+                        <select id="prod-filter-nom" onchange="resetTablePage('prod'); renderProdStatement()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
                     </div>
                 </div>
 
@@ -1094,6 +1105,9 @@
                         <tfoot id="prod-table-footer" class="bg-slate-100 dark:bg-slate-700 font-bold border-t border-slate-300 dark:border-slate-600"></tfoot>
                     </table>
                 </div>
+
+                <!-- Prod; Statement Pagination Bar -->
+                <div id="prod-pagination-bar"></div>
             </section>
 
             <!-- USER MANAGEMENT TAB -->
@@ -1739,96 +1753,77 @@ var db = admin.firestore();</pre>
         let DEPT_MAPPING = JSON.parse(JSON.stringify(DEFAULT_DEPT_MAPPING));
         let RANK_DEFINITIONS = JSON.parse(JSON.stringify(DEFAULT_RANK_DEFINITIONS));
         let personnelData = [
-            {
-                id: 'ကြည်း-၄၅၆၇၈',
-                rankFull: 'ဗိုလ်မှူး',
-                rankAbbr: 'ဗိုလ်မှူး',
-                name: 'အောင်ကျော်မိုး (နမူနာ)',
-                deptFull: 'စက်ရုံဌာနချုပ်',
-                deptAbbr: 'ဌနခ',
-                staffType: 'သန္ဓေ',
-                status: 'တန်းစီ',
-                absentReason: '',
-                phone: '၀၉-၇၉၁၂၃၄၅၆၇',
-                address: 'ရန်ကုန်မြို့',
-                remarks: 'နမူနာ စမ်းသပ်ဝန်ထမ်း (၁)',
-                photo: ''
-            },
-            {
-                id: 'တ-၅၄၃၂၁၀',
-                rankFull: 'တပ်ကြပ်ကြီး',
-                rankAbbr: 'တကက',
-                name: 'ကျော်ဇင်လတ် (နမူနာ)',
-                deptFull: 'စီမံရေးဌာန',
-                deptAbbr: 'စမရ',
-                staffType: 'သန္ဓေ',
-                status: 'ပျက်ကွက်',
-                absentReason: 'ခွင့်',
-                phone: '၀၉-၄၂၁၂၃၄၅၆၇',
-                address: 'မန္တလေးမြို့',
-                remarks: 'ပျက်ကွက်စာရင်း နမူနာ စမ်းသပ်စစ်သည်',
-                photo: ''
-            }
+            // ၁။ အရာရှိအမည်စာရင်း (၁၀ ဦး)
+            { id: 'ကြည်း-၃၁၀၀၁', rankFull: 'ဗိုလ်မှူးကြီး', rankAbbr: 'ဗိုလ်မှူးကြီး', name: 'သီဟအောင်', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၇၉၁၀၀၁၀၀၁', address: 'ရန်ကုန်မြို့', remarks: 'စက်ရုံမှူး', photo: '' },
+            { id: 'ကြည်း-၃၂၀၀၂', rankFull: 'ဒုတိယဗိုလ်မှူးကြီး', rankAbbr: 'ဒုဗိုလ်မှူးကြီး', name: 'ကျော်စွာဝင်း', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၇၉၁၀၀၁၀၀၂', address: 'ရန်ကုန်မြို့', remarks: 'ဒုတိယစက်ရုံမှူး', photo: '' },
+            { id: 'ကြည်း-၃၄၀၀၃', rankFull: 'ဗိုလ်မှူး', rankAbbr: 'ဗိုလ်မှူး', name: 'အောင်ကျော်မိုး', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၇၉၁၀၀၁၀၀၃', address: 'မန္တလေးမြို့', remarks: 'စီမံရေးဌာနမှူး', photo: '' },
+            { id: 'ကြည်း-၃၅၀၀၄', rankFull: 'ဗိုလ်မှူး', rankAbbr: 'ဗိုလ်မှူး', name: 'မင်းသိန်းထွန်း', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'တာဝန်ခရီး', phone: '၀၉-၇၉၁၀၀၁၀၀၄', address: 'နေပြည်တော်', remarks: 'ရုံးချုပ်အစည်းအဝေး', photo: '' },
+            { id: 'ကြည်း-၃၆၀၀၅', rankFull: 'ဗိုလ်မှူး', rankAbbr: 'ဗိုလ်မှူး', name: 'ဇော်မင်းဦး', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၇၉၁၀၀၁၀၀၅', address: 'ပဲခူးမြို့', remarks: 'ထလရ-၂ ဌာနမှူး', photo: '' },
+            { id: 'ကြည်း-၃၇၀၀၆', rankFull: 'ဗိုလ်ကြီး', rankAbbr: 'ဗိုလ်ကြီး', name: 'ရဲရင့်နိုင်', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၇၉၁၀၀၁၀၀၆', address: 'ရန်ကုန်မြို့', remarks: 'အရည်အသွေးစစ်ဆေးရေး', photo: '' },
+            { id: 'ကြည်း-၃၈၀၀၇', rankFull: 'ဗိုလ်ကြီး', rankAbbr: 'ဗိုလ်ကြီး', name: 'ထက်အောင်လင်း', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', staffType: 'တွဲဖက်', status: 'ပျက်ကွက်', absentReason: 'သင်တန်း', phone: '၀၉-၇၉၁၀၀၁၀၀၇', address: 'ပြင်ဦးလွင်', remarks: 'မွမ်းမံသင်တန်း', photo: '' },
+            { id: 'ကြည်း-၃၉၀၀၈', rankFull: 'ဗိုလ်ကြီး', rankAbbr: 'ဗိုလ်ကြီး', name: 'စိုးမိုးအောင်', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၇၉၁၀၀၁၀၀၈', address: 'တောင်ကြီးမြို့', remarks: 'အလုပ်ရုံမှူး', photo: '' },
+            { id: 'ကြည်း-၄၁၀၀၉', rankFull: 'ဗိုလ်', rankAbbr: 'ဗိုလ်', name: 'ဖြိုးဝေကျော်', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', phone: '၀၉-၇၉၁၀၀၁၀၀၉', address: 'မော်လမြိုင်မြို့', remarks: 'တပ်တွင်းလုံခြုံရေးမှူး', photo: '' },
+            { id: 'ကြည်း-၄၂၀၁၀', rankFull: 'ဒုတိယဗိုလ်', rankAbbr: 'ဒုဗိုလ်', name: 'ကောင်းမြတ်သူ', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', staffType: 'ယာယီတာဝန်', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၇၉၁၀၀၁၀၁၀', address: 'ပုသိမ်မြို့', remarks: 'လက်ထောက်စစ်ဆေးရေးမှူး', photo: '' },
+
+            // ၂။ စစ်သည်အမည်စာရင်း (၁၀ ဦး)
+            { id: 'တ-၅၁၀၀၀၁', rankFull: 'အရာခံဗိုလ်', rankAbbr: 'အရခဗ', name: 'ဦးမြင့်သိန်း', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၄၂၁၀၀၂၀၀၁', address: 'ရန်ကုန်မြို့', remarks: 'ရုံးအုပ်ကြီး', photo: '' },
+            { id: 'တ-၅၁၀၀၀၂', rankFull: 'ဒုတိယအရာခံဗိုလ်', rankAbbr: 'ဒုအရခဗ', name: 'တင်မောင်ဝင်း', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၄၂၁၀၀၂၀၀၂', address: 'ပဲခူးမြို့', remarks: 'စာရင်းကိုင်', photo: '' },
+            { id: 'တ-၅၁၀၀၀၃', rankFull: 'တပ်ခွဲတပ်ကြပ်ကြီး', rankAbbr: 'ခွဲတကက', name: 'လှမျိုးအောင်', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'ခွင့်', phone: '၀၉-၄၂၁၀၀၂၀၀၃', address: 'မကွေးမြို့', remarks: 'လုပ်သက်ခွင့်', photo: '' },
+            { id: 'တ-၅၁၀၀၀၄', rankFull: 'တပ်ကြပ်ကြီး', rankAbbr: 'တကက', name: 'ကျော်ဇင်လတ်', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'ဆေးရုံတက်', phone: '၀၉-၄၂၁၀၀၂၀၀၄', address: 'မန္တလေးမြို့', remarks: 'တပ်မတော်ဆေးရုံ', photo: '' },
+            { id: 'တ-၅၁၀၀၀၅', rankFull: 'တပ်ကြပ်ကြီး', rankAbbr: 'တကက', name: 'ဝင်းနိုင်ဦး', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၄၂၁၀၀၂၀၀၅', address: 'စစ်ကိုင်းမြို့', remarks: 'စက်ကိုင်ကြီးကြပ်', photo: '' },
+            { id: 'တ-၅၁၀၀၀၆', rankFull: 'တပ်ကြပ်', rankAbbr: 'တက', name: 'မင်းမင်းစိုး', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', phone: '၀၉-၄၂၁၀၀၂၀၀၆', address: 'ရန်ကုန်မြို့', remarks: 'ဂိတ် (၁) တာဝန်ကျ', photo: '' },
+            { id: 'တ-၅၁၀၀၀၇', rankFull: 'တပ်ကြပ်', rankAbbr: 'တက', name: 'သန်းထိုက်အောင်', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', staffType: 'တွဲဖက်', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၄၂၁၀၀၂၀၀၇', address: 'မုံရွာမြို့', remarks: 'စစ်ဆေးရေးအဖွဲ့', photo: '' },
+            { id: 'တ-၅၁၀၀၀၈', rankFull: 'ဒုတိယတပ်ကြပ်', rankAbbr: 'ဒုတက', name: 'အောင်ကိုလတ်', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', phone: '၀၉-၄၂၁၀၀၂၀၀၈', address: 'ပြည်မြို့', remarks: 'ကင်းစခန်းတာဝန်', photo: '' },
+            { id: 'တ-၅၁၀၀၀၉', rankFull: 'တပ်သား', rankAbbr: 'တသ', name: 'ဇေယျာဖြိုး', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၄၂၁၀၀၂၀၀၉', address: 'မိတ္ထီလာမြို့', remarks: 'ရုံးအကူ', photo: '' },
+            { id: 'တ-၅၁၀၀၁၀', rankFull: 'တပ်သား', rankAbbr: 'တသ', name: 'ဟိန်းထက်ဇော်', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', staffType: 'ယာယီတာဝန်', status: 'ပျက်ကွက်', absentReason: 'တာဝန်ခရီး', phone: '၀၉-၄၂၁၀၀၂၀၁၀', address: 'တောင်ငူမြို့', remarks: 'ပစ္စည်းသယ်ယူပို့ဆောင်ရေး', photo: '' },
+
+            // ၃။ အမြဲတမ်းဝန်ထမ်းအမည်စာရင်း (၁၀ ဦး)
+            { id: 'ဝ-၆၁၀၀၀၁', rankFull: 'အရာထမ်း', rankAbbr: 'အရာထမ်း', name: 'ဒေါ်ခင်မာလာ', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၂၅၁၀၀၃၀၀၁', address: 'ရန်ကုန်မြို့', remarks: 'ဦးစီးအရာရှိ (စီမံ)', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၂', rankFull: 'အမှုထမ်း', rankAbbr: 'အမှုထမ်း', name: 'ဒေါ်သီတာအေး', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၂၅၁၀၀၃၀၀၂', address: 'ရန်ကုန်မြို့', remarks: 'အကြီးတန်းစာရေး', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၃', rankFull: 'ကျွမ်းကျင်အဆင့်-၁', rankAbbr: 'ကျွမ်း-၁', name: 'ဦးသိန်းဇော်', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၂၅၁၀၀၃၀၀၃', address: 'အင်းစိန်မြို့နယ်', remarks: 'ပုံစံထုတ်ကျွမ်းကျင်', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၄', rankFull: 'ကျွမ်းကျင်အဆင့်-၂', rankAbbr: 'ကျွမ်း-၂', name: 'ဦးမျိုးမင်းသန့်', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'ခွင့်', phone: '၀၉-၂၅၁၀၀၃၀၀၄', address: 'လှိုင်သာယာ', remarks: 'ရှောင်တခင်ခွင့်', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၅', rankFull: 'ကျွမ်းကျင်အဆင့်-၃', rankAbbr: 'ကျွမ်း-၃', name: 'ဦးစိုးလွင်', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၂၅၁၀၀၃၀၀၅', address: 'မင်္ဂလာဒုံ', remarks: 'ဓာတ်ခွဲစစ်ဆေးရေး', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၆', rankFull: 'ကျွမ်းကျင်အဆင့်-၄', rankAbbr: 'ကျွမ်း-၄', name: 'ဒေါ်နွယ်နွယ်ဝင်း', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', staffType: 'တွဲဖက်', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၂၅၁၀၀၃၀၀၆', address: 'မြောက်ဥက္ကလာ', remarks: 'တပ်ဆင်ရေးဌာနစိတ်', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၇', rankFull: 'ကျွမ်းကျင်အဆင့်-၅', rankAbbr: 'ကျွမ်း-၅', name: 'ဦးကျော်သူရ', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'ဆေးရုံတက်', phone: '၀၉-၂၅၁၀၀၃၀၀၇', address: 'သန်လျင်မြို့', remarks: 'ပြင်ပလူနာကုသမှု', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၈', rankFull: 'အမှုထမ်း', rankAbbr: 'အမှုထမ်း', name: 'ဒေါ်အေးမြတ်မွန်', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', staffType: 'သန္ဓေ', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၂၅၁၀၀၃၀၀၈', address: 'တာမွေမြို့နယ်', remarks: 'ငွေစာရင်းဌာနစိတ်', photo: '' },
+            { id: 'ဝ-၆၁၀၀၀၉', rankFull: 'လုပ်သား', rankAbbr: 'လသ', name: 'ဦးမောင်မောင်လတ်', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', staffType: 'ယာယီတာဝန်', status: 'တန်းစီ', absentReason: '', phone: '၀၉-၂၅၁၀၀၃၀၀၉', address: 'မှော်ဘီမြို့', remarks: 'သန့်ရှင်းရေးနှင့် ပြုပြင်ရေး', photo: '' },
+            { id: 'ဝ-၆၁၀၀၁၀', rankFull: 'လုပ်သား', rankAbbr: 'လသ', name: 'ဒေါ်စန်းစန်းဌေး', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'အခြား', phone: '၀၉-၂၅၁၀၀၃၀၁၀', address: 'ရွှေပြည်သာ', remarks: 'မိသားစုကိစ္စခွင့်ပြု', photo: '' }
         ];
         let securityDutyData = [
-            {
-                id: 'တ-၆၇၈၉၀၁',
-                rankAbbr: 'တက',
-                name: 'မင်းမင်းစိုး (နမူနာ)',
-                deptAbbr: 'ထလရ-၁',
-                staffType: 'သန္ဓေ',
-                status: 'ပျက်ကွက်',
-                absentReason: 'လုံခြုံရေးတာဝန်',
-                remarks: 'နမူနာ လုံခြုံရေးတာဝန်',
-                dutyType: 'တပ်တွင်း',
-                location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်',
-                weaponType: 'MA-1',
-                weaponModel: 'MK-II',
-                weaponCode: 'WPN-001',
-                weaponSerial: 'SN-2026001',
-                ammoCount: 'ကျည် ၁၂၀ တောင့်',
-                startDate: '2026-11-17'
-            }
+            { id: 'ကြည်း-၄၁၀၀၉', rankAbbr: 'ဗိုလ်', name: 'ဖြိုးဝေကျော်', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'တပ်တွင်းလုံခြုံရေးအဖွဲ့ခေါင်းဆောင်', dutyType: 'တပ်တွင်း', location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်', weaponType: 'MA-5 MK-II', weaponModel: '9mm Pistol', weaponCode: 'WPN-101', weaponSerial: 'SN-2026101', ammoCount: 'ကျည် ၃၀ တောင့်', startDate: '2026-11-15' },
+            { id: 'တ-၅၁၀၀၀၆', rankAbbr: 'တက', name: 'မင်းမင်းစိုး', deptAbbr: 'ထလရ-၁', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'ဂိတ် (၁) တာဝန်မှူး', dutyType: 'တပ်တွင်း', location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်', weaponType: 'MA-1 MK-II', weaponModel: '5.56mm', weaponCode: 'WPN-102', weaponSerial: 'SN-2026102', ammoCount: 'ကျည် ၁၂၀ တောင့်', startDate: '2026-11-15' },
+            { id: 'တ-၅၁၀၀၀၉', rankAbbr: 'တသ', name: 'ဇေယျာဖြိုး', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'ဂိတ် (၁) ကင်းစောင့်', dutyType: 'တပ်တွင်း', location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်', weaponType: 'MA-1 MK-II', weaponModel: '5.56mm', weaponCode: 'WPN-103', weaponSerial: 'SN-2026103', ammoCount: 'ကျည် ၁၂၀ တောင့်', startDate: '2026-11-15' },
+            { id: 'တ-၅၁၀၀၀၅', rankAbbr: 'တကက', name: 'ဝင်းနိုင်ဦး', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'လက်နက်တိုက်လုံခြုံရေး', dutyType: 'တပ်တွင်း', location: 'ဗဟိုလက်နက်တိုက်', weaponType: 'MA-3 MK-II', weaponModel: '5.56mm Carbine', weaponCode: 'WPN-104', weaponSerial: 'SN-2026104', ammoCount: 'ကျည် ၁၅၀ တောင့်', startDate: '2026-11-16' },
+            { id: 'တ-၅၁၀၀၀၂', rankAbbr: 'ဒုအရခဗ', name: 'တင်မောင်ဝင်း', deptAbbr: 'စမရ', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'ရုံးချုပ်အဆောက်အဦကင်း', dutyType: 'တပ်တွင်း', location: 'ဗဟိုလက်နက်တိုက်', weaponType: 'MA-1 MK-II', weaponModel: '5.56mm', weaponCode: 'WPN-105', weaponSerial: 'SN-2026105', ammoCount: 'ကျည် ၁၂၀ တောင့်', startDate: '2026-11-16' },
+            { id: 'ကြည်း-၃၇၀၀၆', rankAbbr: 'ဗိုလ်ကြီး', name: 'ရဲရင့်နိုင်', deptAbbr: 'စဆရ', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'တပ်ပြင်လှည့်ကင်းမှူး', dutyType: 'တပ်ပြင်', location: 'တောင်ဘက်မျှော်စင်ကင်းစခန်း', weaponType: 'MA-5 MK-II', weaponModel: '9mm Pistol', weaponCode: 'WPN-106', weaponSerial: 'SN-2026106', ammoCount: 'ကျည် ၃၀ တောင့်', startDate: '2026-11-17' },
+            { id: 'တ-၅၁၀၀၀၈', rankAbbr: 'ဒုတက', name: 'အောင်ကိုလတ်', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'တောင်ဘက်မျှော်စင်ကင်း', dutyType: 'တပ်ပြင်', location: 'တောင်ဘက်မျှော်စင်ကင်းစခန်း', weaponType: 'MA-2 MK-II', weaponModel: '5.56mm LMG', weaponCode: 'WPN-107', weaponSerial: 'SN-2026107', ammoCount: 'ကျည် ၃၀၀ တောင့်', startDate: '2026-11-17' },
+            { id: 'တ-၅၁၀၀၀၇', rankAbbr: 'တက', name: 'သန်းထိုက်အောင်', deptAbbr: 'စဆရ', staffType: 'တွဲဖက်', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'အနောက်ဘက်ခြံစည်းရိုးကင်း', dutyType: 'တပ်ပြင်', location: 'အနောက်ဘက်စစ်ဆေးရေးဂိတ်', weaponType: 'MA-1 MK-II', weaponModel: '5.56mm', weaponCode: 'WPN-108', weaponSerial: 'SN-2026108', ammoCount: 'ကျည် ၁၂၀ တောင့်', startDate: '2026-11-17' },
+            { id: 'တ-၅၁၀၀၁၀', rankAbbr: 'တသ', name: 'ဟိန်းထက်ဇော်', deptAbbr: 'ထလရ-၁', staffType: 'ယာယီတာဝန်', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'ယာဉ်ဝင်ထွက်စစ်ဆေးရေး', dutyType: 'တပ်ပြင်', location: 'အနောက်ဘက်စစ်ဆေးရေးဂိတ်', weaponType: 'MA-3 MK-II', weaponModel: '5.56mm Carbine', weaponCode: 'WPN-109', weaponSerial: 'SN-2026109', ammoCount: 'ကျည် ၁၂၀ တောင့်', startDate: '2026-11-18' },
+            { id: 'တ-၅၁၀၀၀၁', rankAbbr: 'အရခဗ', name: 'ဦးမြင့်သိန်း', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'ညပိုင်းလှည့်ကင်းကြီးကြပ်', dutyType: 'တပ်ပြင်', location: 'အရှေ့ဘက်ကင်းစခန်း', weaponType: 'MA-4 MK-II', weaponModel: '5.56mm + 40mm', weaponCode: 'WPN-110', weaponSerial: 'SN-2026110', ammoCount: 'ကျည် ၁၅၀ + ဗုံးသီး ၆ လုံး', startDate: '2026-11-18' }
         ];
         let armoryData = [
-            {
-                category: 'လက်နက်',
-                weaponType: 'MA-1 (နမူနာ)',
-                model: 'MK-II',
-                code: 'WPN-001',
-                serial: 'SN-2026001',
-                dept: 'တပ်တွင်းလခရ',
-                location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်',
-                status: 'ထုတ်ပေး',
-                remarks: 'နမူနာ စမ်းသပ်လက်နက်'
-            }
+            { category: 'လက်နက်', weaponType: 'MA-1 MK-II', model: '5.56mm Assault Rifle', code: 'WPN-101', serial: 'SN-2026101', dept: 'တပ်တွင်းလခရ', location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်', status: 'ထုတ်ပေး', remarks: 'တပ်တွင်းလုံခြုံရေးတာဝန်' },
+            { category: 'လက်နက်', weaponType: 'MA-1 MK-II', model: '5.56mm Assault Rifle', code: 'WPN-102', serial: 'SN-2026102', dept: 'တပ်ပြင်လခရ', location: 'အနောက်ဘက်စစ်ဆေးရေးဂိတ်', status: 'ထုတ်ပေး', remarks: 'တပ်ပြင်လုံခြုံရေးတာဝန်' },
+            { category: 'လက်နက်', weaponType: 'MA-2 MK-II', model: '5.56mm Light Machine Gun', code: 'WPN-103', serial: 'SN-2026103', dept: 'တပ်ပြင်လခရ', location: 'တောင်ဘက်မျှော်စင်ကင်းစခန်း', status: 'ထုတ်ပေး', remarks: 'မျှော်စင်ကင်းစခန်းသုံး' },
+            { category: 'လက်နက်', weaponType: 'MA-3 MK-II', model: '5.56mm Carbine', code: 'WPN-104', serial: 'SN-2026104', dept: 'ယာယီတာဝန်', location: 'ယာဉ်တန်းလုံခြုံရေးအဖွဲ့', status: 'ထုတ်ပေး', remarks: 'ယာယီတာဝန်ခရီးထုတ်ပေး' },
+            { category: 'လက်နက်', weaponType: 'MA-4 MK-II', model: '5.56mm Rifle + Grenade Launcher', code: 'WPN-105', serial: 'SN-2026105', dept: 'သင်တန်း', location: 'လေ့ကျင့်ရေးကွင်း', status: 'ထုတ်ပေး', remarks: 'မွမ်းမံသင်တန်းအတွက်' },
+            { category: 'လက်နက်', weaponType: 'MA-5 MK-II', model: '9mm Semi-Auto Pistol', code: 'WPN-106', serial: 'SN-2026106', dept: 'တပ်တွင်းလခရ', location: 'စက်ရုံဌာနချုပ်', status: 'ထုတ်ပေး', remarks: 'အရာရှိတာဝန်ခံကိုင်ဆောင်' },
+            { category: 'လက်နက်', weaponType: 'MA-1 MK-III', model: '5.56mm Standard Rifle', code: 'WPN-107', serial: 'SN-2026107', dept: '-', location: 'ဗဟိုလက်နက်တိုက်', status: 'စတိုကျန်', remarks: 'အရန်သင့်အခြေအနေ' },
+            { category: 'လက်နက်', weaponType: 'MA-2 MK-III', model: '5.56mm Squad Automatic', code: 'WPN-108', serial: 'SN-2026108', dept: '-', location: 'လက်နက်ပြင်အလုပ်ရုံ', status: 'ပြင်ဆင်ဆဲ', remarks: 'မောင်းတုံးစပရိန်လဲလှယ်ဆဲ' },
+            { category: 'ခဲယမ်း', weaponType: '5.56mm Ball Cartridge', model: 'M193 Standard', code: 'AMO-201', serial: 'ကျည် ၁၂,၀၀၀ တောင့်', dept: '-', location: 'ခဲယမ်းသိုလှောင်ရုံ (၁)', status: 'စတိုကျန်', remarks: 'သေတ္တာ ၁၂ လုံး' },
+            { category: 'ခဲယမ်း', weaponType: '9mm Parabellum', model: 'FMJ 115gr', code: 'AMO-202', serial: 'ကျည် ၂,၅၀၀ တောင့်', dept: 'တပ်တွင်းလခရ', location: 'ဗဟိုလက်နက်တိုက်', status: 'ထုတ်ပေး', remarks: 'လုံခြုံရေးအရာရှိများသို့ ထုတ်ပေး' }
         ];
         let prodStatementData = [
-            {
-                nomenclature: 'Sample Product Item (နမူနာ)',
-                au: 'Nos',
-                debtYear: '25-26',
-                debt2526: 100,
-                planYear: '26-27',
-                plan2627: 500,
-                totalPlan: 600,
-                description: 'Prod;',
-                apr: 50,
-                may: 60,
-                jun: 40,
-                jul: 50,
-                aug: 0,
-                sep: 0,
-                oct: 0,
-                nov: 0,
-                dec: 0,
-                jan: 0,
-                feb: 0,
-                mar: 0,
-                total: 200,
-                remark: 'နမူနာ ထုတ်လုပ်မှုစာရင်း',
-                financialYears: '2026-2027'
-            }
+            { nomenclature: '5.56mm Rifle Barrel Assembly', au: 'Nos', debtYear: '25-26', debt2526: 120, planYear: '26-27', plan2627: 600, totalPlan: 720, description: 'Prod;', apr: 60, may: 65, jun: 70, jul: 60, aug: 55, sep: 60, oct: 50, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 420, remark: 'ထလရ-၁ ပုံမှန်ထုတ်လုပ်မှု', financialYears: '2026-2027' },
+            { nomenclature: '5.56mm Magazine Box (30 Rds)', au: 'Nos', debtYear: '25-26', debt2526: 250, planYear: '26-27', plan2627: 1500, totalPlan: 1750, description: 'Prod;', apr: 150, may: 160, jun: 140, jul: 155, aug: 170, sep: 165, oct: 145, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 1085, remark: 'သံပြားဖိစက်ဌာနစိတ်', financialYears: '2026-2027' },
+            { nomenclature: '9mm Pistol Slide Housing', au: 'Nos', debtYear: '25-26', debt2526: 40, planYear: '26-27', plan2627: 300, totalPlan: 340, description: 'Prod;', apr: 30, may: 25, jun: 35, jul: 30, aug: 28, sep: 32, oct: 30, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 210, remark: 'CNC စက်ရုံစိတ်', financialYears: '2026-2027' },
+            { nomenclature: 'Bolt Carrier Group (MK-II)', au: 'Sets', debtYear: '25-26', debt2526: 80, planYear: '26-27', plan2627: 480, totalPlan: 560, description: 'Issue', apr: 45, may: 50, jun: 45, jul: 50, aug: 40, sep: 55, oct: 45, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 330, remark: 'စဆရ စစ်ဆေးပြီးပေးသွင်း', financialYears: '2026-2027' },
+            { nomenclature: 'Polymer Handguard Set', au: 'Pairs', debtYear: '25-26', debt2526: 100, planYear: '26-27', plan2627: 800, totalPlan: 900, description: 'GSD', apr: 80, may: 85, jun: 75, jul: 90, aug: 80, sep: 85, oct: 75, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 570, remark: 'ပလတ်စတစ်ပုံသွင်းဌာန', financialYears: '2026-2027' },
+            { nomenclature: 'Buttstock Folding Mechanism', au: 'Nos', debtYear: '25-26', debt2526: 60, planYear: '26-27', plan2627: 420, totalPlan: 480, description: 'Prod;', apr: 40, may: 40, jun: 35, jul: 45, aug: 40, sep: 40, oct: 35, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 275, remark: 'ထလရ-၂ တပ်ဆင်ရေး', financialYears: '2026-2027' },
+            { nomenclature: 'Trigger & Sear Assembly', au: 'Sets', debtYear: '25-26', debt2526: 90, planYear: '26-27', plan2627: 650, totalPlan: 740, description: 'Issue', apr: 65, may: 60, jun: 70, jul: 65, aug: 60, sep: 70, oct: 60, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 450, remark: 'အပူပေးပြုပြင်ပြီး', financialYears: '2026-2027' },
+            { nomenclature: 'Gas Piston & Cylinder Tube', au: 'Nos', debtYear: '25-26', debt2526: 50, planYear: '26-27', plan2627: 500, totalPlan: 550, description: 'Prod;', apr: 50, may: 45, jun: 50, jul: 45, aug: 55, sep: 50, oct: 45, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 340, remark: 'စက်မှုပိုင်းဆိုင်ရာစစ်ဆေးပြီး', financialYears: '2026-2027' },
+            { nomenclature: 'Recoil Spring Guide Rod', au: 'Nos', debtYear: '25-26', debt2526: 110, planYear: '26-27', plan2627: 900, totalPlan: 1010, description: 'GSD', apr: 90, may: 95, jun: 85, jul: 90, aug: 95, sep: 90, oct: 85, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 630, remark: 'ဗဟိုစတိုသို့ အပ်နှံပြီး', financialYears: '2026-2027' },
+            { nomenclature: 'Muzzle Brake & Flash Hider', au: 'Nos', debtYear: '25-26', debt2526: 75, planYear: '26-27', plan2627: 550, totalPlan: 625, description: 'Prod;', apr: 55, may: 50, jun: 60, jul: 55, aug: 50, sep: 60, oct: 55, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 385, remark: 'မျက်နှာပြင်ဆေးသုတ်ပြီး', financialYears: '2026-2027' }
         ];
         let userRoles = ['Admin', 'User1', 'User2', 'User3'];
         const ROLE_DESCRIPTIONS = {
@@ -1860,6 +1855,93 @@ var db = admin.firestore();</pre>
         let editingArmoryStatusIndex = -1;
         let editingAbsentReasonIndex = -1;
         let activePersonnelCategoryTab = 'ALL';
+
+        // Pagination State (15 rows per page across tables)
+        const ITEMS_PER_PAGE = 15;
+        const tablePageState = {
+            officer: 1,
+            soldier: 1,
+            staff: 1,
+            ALL: 1,
+            absent: 1,
+            duty: 1,
+            armory: 1,
+            prod: 1
+        };
+
+        function getActivePersonnelPageKey() {
+            if (activePersonnelCategoryTab === 'အရာရှိ') return 'officer';
+            if (activePersonnelCategoryTab === 'စစ်သည်') return 'soldier';
+            if (activePersonnelCategoryTab === 'အမြဲတမ်းဝန်ထမ်း') return 'staff';
+            return 'ALL';
+        }
+
+        function resetTablePage(key) {
+            if (key === 'personnel') {
+                tablePageState[getActivePersonnelPageKey()] = 1;
+            } else if (key in tablePageState) {
+                tablePageState[key] = 1;
+            }
+        }
+
+        function changeTablePage(key, newPage) {
+            const targetKey = key === 'personnel' ? getActivePersonnelPageKey() : key;
+            tablePageState[targetKey] = Math.max(1, newPage);
+            if (key === 'personnel') renderPersonnelDirectory();
+            else if (key === 'absent') renderAbsentSummary();
+            else if (key === 'duty') renderSecurityDuty();
+            else if (key === 'armory') renderArmory();
+            else if (key === 'prod') renderProdStatement();
+            document.getElementById('main-workspace')?.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderPaginationControls(containerId, key, currentPage, totalItems, unitLabel = 'ခု') {
+            const el = document.getElementById(containerId);
+            if (!el) return;
+            const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+            if (totalItems === 0) {
+                el.innerHTML = '';
+                return;
+            }
+            const safePage = Math.min(Math.max(1, currentPage), totalPages);
+            const startItem = (safePage - 1) * ITEMS_PER_PAGE + 1;
+            const endItem = Math.min(totalItems, safePage * ITEMS_PER_PAGE);
+
+            let pageButtons = '';
+            const maxVisible = 5;
+            let startP = Math.max(1, safePage - Math.floor(maxVisible / 2));
+            let endP = Math.min(totalPages, startP + maxVisible - 1);
+            if (endP - startP + 1 < maxVisible) {
+                startP = Math.max(1, endP - maxVisible + 1);
+            }
+            for (let p = startP; p <= endP; p++) {
+                const isActive = p === safePage;
+                pageButtons += `
+                    <button type="button" onclick="changeTablePage('${key}', ${p})" class="px-2.5 py-1 rounded-lg font-bold text-xs transition ${isActive ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600'}">
+                        ${toMyanmarNumerals(p)}
+                    </button>
+                `;
+            }
+
+            el.innerHTML = `
+                <div class="bg-white dark:bg-slate-800 px-3.5 py-2.5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+                    <div class="text-slate-600 dark:text-slate-300 font-semibold">
+                        စုစုပေါင်း <strong class="text-slate-900 dark:text-white">${toMyanmarNumerals(totalItems)}</strong> ${unitLabel} အနက်
+                        <strong class="text-blue-600 dark:text-blue-400">${toMyanmarNumerals(startItem)} - ${toMyanmarNumerals(endItem)}</strong> ကို ဖော်ပြထားပါသည်
+                        (စာမျက်နှာ ${toMyanmarNumerals(safePage)} / ${toMyanmarNumerals(totalPages)})
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="changeTablePage('${key}', ${safePage - 1})" ${safePage <= 1 ? 'disabled' : ''} class="px-3 py-1 rounded-lg font-bold text-xs border border-slate-300 dark:border-slate-600 transition ${safePage <= 1 ? 'opacity-40 cursor-not-allowed bg-slate-100 dark:bg-slate-800 text-slate-400' : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-600'}">
+                            &lsaquo; Prev Page
+                        </button>
+                        <div class="hidden sm:flex items-center gap-1">${pageButtons}</div>
+                        <button type="button" onclick="changeTablePage('${key}', ${safePage + 1})" ${safePage >= totalPages ? 'disabled' : ''} class="px-3 py-1 rounded-lg font-bold text-xs border border-slate-300 dark:border-slate-600 transition ${safePage >= totalPages ? 'opacity-40 cursor-not-allowed bg-slate-100 dark:bg-slate-800 text-slate-400' : 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600 shadow-sm'}">
+                            Next Page &rsaquo;
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
 
         function resolvePersonnelRoleGroup(person) {
             const rankStr = String(person.rankAbbr || person.rankFull || '').trim();
@@ -3526,11 +3608,19 @@ var db = admin.firestore();</pre>
                 if (mobileContainer) {
                     mobileContainer.innerHTML = `<div class="col-span-full bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">ရှာဖွေမှုနှင့် ကိုက်ညီသော ဝန်ထမ်းစာရင်း မရှိပါ</div>`;
                 }
+                renderPaginationControls('personnel-pagination-bar', 'personnel', 1, 0, 'ဦး');
                 return;
             }
 
+            const pPageKey = getActivePersonnelPageKey();
+            const pTotalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+            if (tablePageState[pPageKey] > pTotalPages) tablePageState[pPageKey] = pTotalPages;
+            const pCurrentPage = tablePageState[pPageKey] || 1;
+            const pStartIdx = (pCurrentPage - 1) * ITEMS_PER_PAGE;
+            const paginatedPersonnel = filtered.slice(pStartIdx, pStartIdx + ITEMS_PER_PAGE);
+
             // Desktop Table Rows
-            container.innerHTML = filtered.map((person) => {
+            container.innerHTML = paginatedPersonnel.map((person) => {
                 const realIndex = personnelData.indexOf(person);
                 const firstChar = person.name ? person.name.charAt(0) : '👤';
                 const rankAbbrDisplay = getRankAbbr(person.rankAbbr || person.rankFull);
@@ -3565,7 +3655,7 @@ var db = admin.firestore();</pre>
 
             // Mobile Card List
             if (mobileContainer) {
-                mobileContainer.innerHTML = filtered.map((person) => {
+                mobileContainer.innerHTML = paginatedPersonnel.map((person) => {
                     const realIndex = personnelData.indexOf(person);
                     const firstChar = person.name ? person.name.charAt(0) : '👤';
                     const rankAbbrDisplay = getRankAbbr(person.rankAbbr || person.rankFull);
@@ -3601,6 +3691,8 @@ var db = admin.firestore();</pre>
                     `;
                 }).join('');
             }
+
+            renderPaginationControls('personnel-pagination-bar', 'personnel', pCurrentPage, filtered.length, 'ဦး');
         }
 
         // --- ABSENT STRENGTH & REASONS SUMMARY (ပျက်ကွက်အင်အားစာရင်း) ---
@@ -3986,15 +4078,22 @@ var db = admin.firestore();</pre>
             if (detailTbody) {
                 if (absentStaffList.length === 0) {
                     detailTbody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-slate-400">လက်ရှိ ပျက်ကွက်ဝန်ထမ်း မရှိပါ</td></tr>`;
+                    renderPaginationControls('absent-pagination-bar', 'absent', 1, 0, 'ဦး');
                 } else {
-                    detailTbody.innerHTML = absentStaffList.map((p, idx) => {
+                    const abTotalPages = Math.max(1, Math.ceil(absentStaffList.length / ITEMS_PER_PAGE));
+                    if (tablePageState.absent > abTotalPages) tablePageState.absent = abTotalPages;
+                    const abCurrentPage = tablePageState.absent || 1;
+                    const abStartIdx = (abCurrentPage - 1) * ITEMS_PER_PAGE;
+                    const paginatedAbsentList = absentStaffList.slice(abStartIdx, abStartIdx + ITEMS_PER_PAGE);
+
+                    detailTbody.innerHTML = paginatedAbsentList.map((p, idx) => {
                         const realIndex = personnelData.indexOf(p);
                         const deptDisplay = getDeptAbbr(p.deptAbbr || p.deptFull);
                         const normalizedDept = deptDisplay === 'ထလရ(၁)' ? 'ထလရ-၁' : deptDisplay === 'ထလရ(၂)' ? 'ထလရ-၂' : deptDisplay;
                         const rankAbbrOnly = getRankAbbr(p.rankAbbr || p.rankFull);
                         return `
                             <tr onclick="openPersonnelDetail(${realIndex})" class="hover:bg-rose-50/50 dark:hover:bg-slate-700/50 transition cursor-pointer text-slate-800 dark:text-slate-200">
-                                <td class="p-3 text-center font-bold text-slate-500">${toMyanmarNumerals(idx + 1)}</td>
+                                <td class="p-3 text-center font-bold text-slate-500">${toMyanmarNumerals(abStartIdx + idx + 1)}</td>
                                 <td class="p-3 font-semibold">${p.id}</td>
                                 <td class="p-3 text-blue-600 dark:text-blue-400 font-semibold">${rankAbbrOnly}</td>
                                 <td class="p-3 font-bold text-slate-900 dark:text-white">${p.name}</td>
@@ -4009,6 +4108,7 @@ var db = admin.firestore();</pre>
                             </tr>
                         `;
                     }).join('');
+                    renderPaginationControls('absent-pagination-bar', 'absent', abCurrentPage, absentStaffList.length, 'ဦး');
                 }
             }
         }
@@ -4945,119 +5045,156 @@ var db = admin.firestore();</pre>
                 if (mobileContainer) {
                     mobileContainer.innerHTML = `<div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">တာဝန်ကျမှု စာရင်း မရှိသေးပါ</div>`;
                 }
+                renderPaginationControls('duty-pagination-bar', 'duty', 1, 0, 'ဦး');
                 return;
             }
 
+            // Build ordered list grouped by dutyType and location so pagination strictly limits to 15 personnel per page
             const dutyCategories = [...new Set([...securityDutyTypeList, ...filtered.map(item => item.dutyType).filter(Boolean)])];
-            let htmlRows = '';
-            let mobileHtml = '';
-            let serialCounter = 1;
-
+            const orderedDutyRecords = [];
             dutyCategories.forEach(cat => {
                 const catItems = filtered.filter(item => item.dutyType === cat);
                 if (catItems.length === 0) return;
-
-                const badgeStyle = cat === 'တပ်တွင်း'
-                    ? 'bg-blue-900 text-white'
-                    : cat === 'တပ်ပြင်'
-                    ? 'bg-emerald-800 text-white'
-                    : 'bg-indigo-800 text-white';
-
-                htmlRows += `
-                    <tr class="${badgeStyle}">
-                        <td colspan="12" class="px-3 py-2 font-bold text-xs tracking-wide">
-                            🛡️ ${cat} လုံခြုံရေးအဖွဲ့ (${toMyanmarNumerals(catItems.length)} ဦး)
-                        </td>
-                    </tr>
-                `;
-
-                mobileHtml += `
-                    <div class="${badgeStyle} px-3.5 py-2 rounded-xl font-bold text-xs shadow-sm">
-                        🛡️ ${cat} လုံခြုံရေးအဖွဲ့ (${toMyanmarNumerals(catItems.length)} ဦး)
-                    </div>
-                `;
-
                 const locationGroups = {};
                 catItems.forEach(item => {
                     const loc = item.location || 'အထွေထွေတည်နေရာ';
                     if (!locationGroups[loc]) locationGroups[loc] = [];
                     locationGroups[loc].push(item);
                 });
-
                 Object.keys(locationGroups).forEach(loc => {
-                    const groupMembers = locationGroups[loc];
+                    locationGroups[loc].forEach(d => {
+                        orderedDutyRecords.push({
+                            record: d,
+                            cat,
+                            catCount: catItems.length,
+                            loc,
+                            locCount: locationGroups[loc].length
+                        });
+                    });
+                });
+            });
+
+            const dTotalPages = Math.max(1, Math.ceil(orderedDutyRecords.length / ITEMS_PER_PAGE));
+            if (tablePageState.duty > dTotalPages) tablePageState.duty = dTotalPages;
+            const dCurrentPage = tablePageState.duty || 1;
+            const dStartIdx = (dCurrentPage - 1) * ITEMS_PER_PAGE;
+            const paginatedDutyRecords = orderedDutyRecords.slice(dStartIdx, dStartIdx + ITEMS_PER_PAGE);
+
+            let htmlRows = '';
+            let mobileHtml = '';
+            let serialCounter = dStartIdx + 1;
+            let lastRenderedCat = null;
+            let lastRenderedLocKey = null;
+            let mobileLocGridOpen = false;
+
+            paginatedDutyRecords.forEach(({ record: d, cat, catCount, loc, locCount }) => {
+                if (cat !== lastRenderedCat) {
+                    if (mobileLocGridOpen) {
+                        mobileHtml += `</div>`;
+                        mobileLocGridOpen = false;
+                    }
+                    lastRenderedCat = cat;
+                    lastRenderedLocKey = null;
+
+                    const badgeStyle = cat === 'တပ်တွင်း'
+                        ? 'bg-blue-900 text-white'
+                        : cat === 'တပ်ပြင်'
+                        ? 'bg-emerald-800 text-white'
+                        : 'bg-indigo-800 text-white';
+
                     htmlRows += `
-                        <tr class="bg-slate-200/80 dark:bg-slate-700/90 text-slate-800 dark:text-slate-100">
-                            <td colspan="12" class="px-4 py-1.5 font-bold text-xs border-l-4 border-blue-600">
-                                📍 လုံခြုံရေးတည်နေရာ : <span class="text-blue-700 dark:text-blue-300">${loc}</span> (${toMyanmarNumerals(groupMembers.length)} ဦး)
+                        <tr class="${badgeStyle}">
+                            <td colspan="12" class="px-3 py-2 font-bold text-xs tracking-wide">
+                                🛡️ ${cat} လုံခြုံရေးအဖွဲ့ (${toMyanmarNumerals(catCount)} ဦး)
                             </td>
                         </tr>
                     `;
 
                     mobileHtml += `
+                        <div class="${badgeStyle} px-3.5 py-2 rounded-xl font-bold text-xs shadow-sm">
+                            🛡️ ${cat} လုံခြုံရေးအဖွဲ့ (${toMyanmarNumerals(catCount)} ဦး)
+                        </div>
+                    `;
+                }
+
+                const locKey = `${cat}::${loc}`;
+                if (locKey !== lastRenderedLocKey) {
+                    if (mobileLocGridOpen) {
+                        mobileHtml += `</div>`;
+                    }
+                    lastRenderedLocKey = locKey;
+                    htmlRows += `
+                        <tr class="bg-slate-200/80 dark:bg-slate-700/90 text-slate-800 dark:text-slate-100">
+                            <td colspan="12" class="px-4 py-1.5 font-bold text-xs border-l-4 border-blue-600">
+                                📍 လုံခြုံရေးတည်နေရာ : <span class="text-blue-700 dark:text-blue-300">${loc}</span> (${toMyanmarNumerals(locCount)} ဦး)
+                            </td>
+                        </tr>
+                    `;
+                    mobileHtml += `
                         <div class="bg-slate-200/90 dark:bg-slate-700/90 text-slate-800 dark:text-slate-100 px-3 py-1.5 rounded-lg font-bold text-xs border-l-4 border-blue-600">
-                            📍 ${loc} (${toMyanmarNumerals(groupMembers.length)} ဦး)
+                            📍 ${loc} (${toMyanmarNumerals(locCount)} ဦး)
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     `;
+                    mobileLocGridOpen = true;
+                }
 
-                    groupMembers.forEach(d => {
-                        const realIndex = securityDutyData.indexOf(d);
-                        const currentSerial = serialCounter++;
-                        const rankAbbrDisplay = getRankAbbr(d.rankAbbr || d.rankFull);
-                        const deptAbbrDisplay = getDeptAbbr(d.deptAbbr || d.deptFull);
-                        htmlRows += `
-                            <tr onclick="selectDutyForInlineEdit(${realIndex})" class="hover:bg-blue-50/60 dark:hover:bg-slate-700/50 transition text-slate-800 dark:text-slate-200 cursor-pointer">
-                                <td class="p-3 text-center font-bold text-slate-600 dark:text-slate-300">${toMyanmarNumerals(currentSerial)}</td>
-                                <td class="p-3 font-semibold text-slate-900 dark:text-white">${d.id || '-'}</td>
-                                <td class="p-3 text-blue-600 dark:text-blue-400 font-semibold">${rankAbbrDisplay}</td>
-                                <td class="p-3 font-bold text-slate-900 dark:text-white">${d.name || '-'}</td>
-                                <td class="p-3">${deptAbbrDisplay}</td>
-                                <td class="p-3 font-medium text-amber-700 dark:text-amber-300">${d.weaponType || '-'}</td>
-                                <td class="p-3 font-medium text-slate-700 dark:text-slate-300">${d.weaponModel || '-'}</td>
-                                <td class="p-3 font-semibold text-blue-600 dark:text-blue-400">${d.weaponCode || '-'}</td>
-                                <td class="p-3 font-semibold">${d.weaponSerial || '-'}</td>
-                                <td class="p-3 font-semibold">${d.ammoCount || '-'}</td>
-                                <td class="p-3">${formatDisplayDate(d.startDate)}</td>
-                                <td class="p-3 text-center space-x-1" onclick="event.stopPropagation()">
-                                    <button onclick="selectDutyForInlineEdit(${realIndex})" class="role-write-action p-1.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold transition" title="ပြင်ဆင်မည်">✏️</button>
-                                    <button onclick="confirmDeleteDuty(${realIndex})" class="role-write-action p-1.5 text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-700 rounded-lg transition" title="ဖျက်မည်">🗑️</button>
-                                </td>
-                            </tr>
-                        `;
+                const realIndex = securityDutyData.indexOf(d);
+                const currentSerial = serialCounter++;
+                const rankAbbrDisplay = getRankAbbr(d.rankAbbr || d.rankFull);
+                const deptAbbrDisplay = getDeptAbbr(d.deptAbbr || d.deptFull);
+                htmlRows += `
+                    <tr onclick="selectDutyForInlineEdit(${realIndex})" class="hover:bg-blue-50/60 dark:hover:bg-slate-700/50 transition text-slate-800 dark:text-slate-200 cursor-pointer">
+                        <td class="p-3 text-center font-bold text-slate-600 dark:text-slate-300">${toMyanmarNumerals(currentSerial)}</td>
+                        <td class="p-3 font-semibold text-slate-900 dark:text-white">${d.id || '-'}</td>
+                        <td class="p-3 text-blue-600 dark:text-blue-400 font-semibold">${rankAbbrDisplay}</td>
+                        <td class="p-3 font-bold text-slate-900 dark:text-white">${d.name || '-'}</td>
+                        <td class="p-3">${deptAbbrDisplay}</td>
+                        <td class="p-3 font-medium text-amber-700 dark:text-amber-300">${d.weaponType || '-'}</td>
+                        <td class="p-3 font-medium text-slate-700 dark:text-slate-300">${d.weaponModel || '-'}</td>
+                        <td class="p-3 font-semibold text-blue-600 dark:text-blue-400">${d.weaponCode || '-'}</td>
+                        <td class="p-3 font-semibold">${d.weaponSerial || '-'}</td>
+                        <td class="p-3 font-semibold">${d.ammoCount || '-'}</td>
+                        <td class="p-3">${formatDisplayDate(d.startDate)}</td>
+                        <td class="p-3 text-center space-x-1" onclick="event.stopPropagation()">
+                            <button onclick="selectDutyForInlineEdit(${realIndex})" class="role-write-action p-1.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold transition" title="ပြင်ဆင်မည်">✏️</button>
+                            <button onclick="confirmDeleteDuty(${realIndex})" class="role-write-action p-1.5 text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-700 rounded-lg transition" title="ဖျက်မည်">🗑️</button>
+                        </td>
+                    </tr>
+                `;
 
-                        mobileHtml += `
-                            <div onclick="selectDutyForInlineEdit(${realIndex})" class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2 cursor-pointer">
-                                <div class="flex justify-between items-start gap-2">
-                                    <div>
-                                        <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">${rankAbbrDisplay}</span>
-                                        <span class="font-bold text-slate-900 dark:text-white text-sm ml-1">${d.name || '-'}</span>
-                                        <div class="text-[11px] text-slate-500 dark:text-slate-400">${d.id || '-'} &bull; ဌာန: <strong>${deptAbbrDisplay}</strong></div>
-                                    </div>
-                                    <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-bold text-[10px]">#${toMyanmarNumerals(currentSerial)}</span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-1.5 text-[11px] bg-slate-50 dark:bg-slate-700/50 p-2 rounded-lg">
-                                    <span class="text-amber-700 dark:text-amber-300 font-semibold">🔫 ${d.weaponType || '-'} (${d.weaponModel || '-'})</span>
-                                    <span class="text-blue-600 dark:text-blue-400 font-semibold">ကုတ်: ${d.weaponCode || '-'} | No: ${d.weaponSerial || '-'}</span>
-                                    <span class="text-slate-700 dark:text-slate-300 font-semibold">ခဲယမ်း: ${d.ammoCount || '-'}</span>
-                                    <span class="text-slate-600 dark:text-slate-300">📅 ${formatDisplayDate(d.startDate)}</span>
-                                </div>
-                                <div class="role-write-action flex justify-end gap-1.5 pt-1 border-t dark:border-slate-700" onclick="event.stopPropagation()">
-                                    <button onclick="selectDutyForInlineEdit(${realIndex})" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold text-[11px]">✏️ Edit</button>
-                                    <button onclick="confirmDeleteDuty(${realIndex})" class="px-2.5 py-1 bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-lg font-bold text-[11px]">🗑️ ဖျက်မည်</button>
-                                </div>
+                mobileHtml += `
+                    <div onclick="selectDutyForInlineEdit(${realIndex})" class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2 cursor-pointer">
+                        <div class="flex justify-between items-start gap-2">
+                            <div>
+                                <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">${rankAbbrDisplay}</span>
+                                <span class="font-bold text-slate-900 dark:text-white text-sm ml-1">${d.name || '-'}</span>
+                                <div class="text-[11px] text-slate-500 dark:text-slate-400">${d.id || '-'} &bull; ဌာန: <strong>${deptAbbrDisplay}</strong></div>
                             </div>
-                        `;
-                    });
-
-                    mobileHtml += `</div>`;
-                });
+                            <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-bold text-[10px]">#${toMyanmarNumerals(currentSerial)}</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5 text-[11px] bg-slate-50 dark:bg-slate-700/50 p-2 rounded-lg">
+                            <span class="text-amber-700 dark:text-amber-300 font-semibold">🔫 ${d.weaponType || '-'} (${d.weaponModel || '-'})</span>
+                            <span class="text-blue-600 dark:text-blue-400 font-semibold">ကုတ်: ${d.weaponCode || '-'} | No: ${d.weaponSerial || '-'}</span>
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">ခဲယမ်း: ${d.ammoCount || '-'}</span>
+                            <span class="text-slate-600 dark:text-slate-300">📅 ${formatDisplayDate(d.startDate)}</span>
+                        </div>
+                        <div class="role-write-action flex justify-end gap-1.5 pt-1 border-t dark:border-slate-700" onclick="event.stopPropagation()">
+                            <button onclick="selectDutyForInlineEdit(${realIndex})" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold text-[11px]">✏️ Edit</button>
+                            <button onclick="confirmDeleteDuty(${realIndex})" class="px-2.5 py-1 bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-lg font-bold text-[11px]">🗑️ ဖျက်မည်</button>
+                        </div>
+                    </div>
+                `;
             });
+            if (mobileLocGridOpen) {
+                mobileHtml += `</div>`;
+            }
 
             container.innerHTML = htmlRows;
             if (mobileContainer) {
                 mobileContainer.innerHTML = mobileHtml;
             }
+            renderPaginationControls('duty-pagination-bar', 'duty', dCurrentPage, orderedDutyRecords.length, 'ဦး');
         }
 
         // --- EXCEL IMPORT / EXPORT (SheetJS) ---
@@ -6031,11 +6168,18 @@ var db = admin.firestore();</pre>
                 if (mobileContainer) {
                     mobileContainer.innerHTML = `<div class="col-span-full bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">လက်နက် / ခဲယမ်း စာရင်း မရှိသေးပါ</div>`;
                 }
+                renderPaginationControls('armory-pagination-bar', 'armory', 1, 0, 'လက်');
                 return;
             }
 
+            const aTotalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+            if (tablePageState.armory > aTotalPages) tablePageState.armory = aTotalPages;
+            const aCurrentPage = tablePageState.armory || 1;
+            const aStartIdx = (aCurrentPage - 1) * ITEMS_PER_PAGE;
+            const paginatedArmory = filtered.slice(aStartIdx, aStartIdx + ITEMS_PER_PAGE);
+
             // Desktop Rows
-            container.innerHTML = filtered.map((w, idx) => {
+            container.innerHTML = paginatedArmory.map((w, idx) => {
                 const realIndex = armoryData.indexOf(w);
                 const isWeapon = (w.category || 'လက်နက်') === 'လက်နက်';
                 const purposeDisplay = w.dept || '-';
@@ -6057,7 +6201,7 @@ var db = admin.firestore();</pre>
 
                 return `
                     <tr onclick="selectArmoryForInlineEdit(${realIndex})" class="hover:bg-blue-50/60 dark:hover:bg-slate-700/50 transition text-slate-800 dark:text-slate-200 cursor-pointer">
-                        <td class="p-3 text-center font-bold text-slate-600 dark:text-slate-300">${toMyanmarNumerals(idx + 1)}</td>
+                        <td class="p-3 text-center font-bold text-slate-600 dark:text-slate-300">${toMyanmarNumerals(aStartIdx + idx + 1)}</td>
                         <td class="p-3 text-center">${iconThumbnail}</td>
                         <td class="p-3 font-bold text-slate-900 dark:text-white">${w.weaponType}</td>
                         <td class="p-3 font-medium text-slate-700 dark:text-slate-300">${w.model || '-'}</td>
@@ -6077,7 +6221,7 @@ var db = admin.firestore();</pre>
 
             // Mobile Cards
             if (mobileContainer) {
-                mobileContainer.innerHTML = filtered.map((w) => {
+                mobileContainer.innerHTML = paginatedArmory.map((w) => {
                     const realIndex = armoryData.indexOf(w);
                     const isWeapon = (w.category || 'လက်နက်') === 'လက်နက်';
                     const purposeDisplay = w.dept || '-';
@@ -6106,6 +6250,8 @@ var db = admin.firestore();</pre>
                     `;
                 }).join('');
             }
+
+            renderPaginationControls('armory-pagination-bar', 'armory', aCurrentPage, filtered.length, 'လက်');
         }
 
         // --- USER MANAGEMENT CONTROLS & TABLE FUNCTIONS ---
@@ -7350,26 +7496,34 @@ var db = admin.firestore();</pre>
                 if (mobileContainer) {
                     mobileContainer.innerHTML = `<div class="col-span-full bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">Prod; Statement စာရင်း မရှိသေးပါ</div>`;
                 }
+                renderPaginationControls('prod-pagination-bar', 'prod', 1, 0, 'မျိုး');
                 return;
             }
 
-            // Totals accumulator for Table Footer
+            // Grand Totals across all filtered records
             const totals = {
                 debt2526: 0, plan2627: 0, totalPlan: 0,
                 apr: 0, may: 0, jun: 0, jul: 0, aug: 0, sep: 0,
                 oct: 0, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0,
                 total: 0
             };
-
-            // Desktop Rows
-            container.innerHTML = filtered.map((item, idx) => {
-                const realIndex = prodStatementData.indexOf(item);
+            filtered.forEach(item => {
                 totals.debt2526 += Number(item.debt2526) || 0;
                 totals.plan2627 += Number(item.plan2627) || 0;
                 totals.totalPlan += Number(item.totalPlan) || 0;
                 PROD_MONTH_KEYS.forEach(m => { totals[m] += Number(item[m]) || 0; });
                 totals.total += Number(item.total) || 0;
+            });
 
+            const prTotalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+            if (tablePageState.prod > prTotalPages) tablePageState.prod = prTotalPages;
+            const prCurrentPage = tablePageState.prod || 1;
+            const prStartIdx = (prCurrentPage - 1) * ITEMS_PER_PAGE;
+            const paginatedProd = filtered.slice(prStartIdx, prStartIdx + ITEMS_PER_PAGE);
+
+            // Desktop Rows
+            container.innerHTML = paginatedProd.map((item, idx) => {
+                const realIndex = prodStatementData.indexOf(item);
                 const pct = item.totalPlan > 0 ? Math.min(100, Math.round((item.total / item.totalPlan) * 100)) : 0;
                 const isLatest = Boolean(item._isLatestAdded);
                 const rowHighlightClass = isLatest
@@ -7381,7 +7535,7 @@ var db = admin.firestore();</pre>
 
                 return `
                     <tr onclick="selectProdForInlineEdit(${realIndex})" class="${rowHighlightClass} transition text-slate-800 dark:text-slate-200 cursor-pointer">
-                        <td class="p-2.5 text-center font-bold sticky left-0 ${stickyBgClass} z-10">${idx + 1}</td>
+                        <td class="p-2.5 text-center font-bold sticky left-0 ${stickyBgClass} z-10">${prStartIdx + idx + 1}</td>
                         <td class="p-2.5 font-bold text-slate-900 dark:text-white sticky left-12 ${stickyBgClass} z-10 pr-nom-cell">${item.nomenclature}${isLatest ? ' <span class="ml-1 px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-bold">New</span>' : ''}</td>
                         <td class="p-2.5 text-center font-semibold text-slate-600 dark:text-slate-300">${item.au}</td>
                         <td class="p-2.5 text-center font-mono text-amber-700 dark:text-amber-300">${item.debtYear || '-'}</td>
@@ -7457,7 +7611,7 @@ var db = admin.firestore();</pre>
 
             // Mobile Cards
             if (mobileContainer) {
-                mobileContainer.innerHTML = filtered.map((item, idx) => {
+                mobileContainer.innerHTML = paginatedProd.map((item, idx) => {
                     const realIndex = prodStatementData.indexOf(item);
                     const pct = item.totalPlan > 0 ? Math.min(100, Math.round((item.total / item.totalPlan) * 100)) : 0;
                     const debtYr = item.debtYear || '';
@@ -7466,7 +7620,7 @@ var db = admin.firestore();</pre>
                         <div onclick="selectProdForInlineEdit(${realIndex})" class="bg-white dark:bg-slate-800 p-3.5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2.5 cursor-pointer">
                             <div class="flex justify-between items-start gap-2">
                                 <div>
-                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">${idx + 1} &bull; ${item.financialYears}</span>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">${prStartIdx + idx + 1} &bull; ${item.financialYears}</span>
                                     <div class="font-bold text-slate-900 dark:text-white text-sm mt-1">${item.nomenclature} <span class="text-slate-400 font-normal text-xs">(${item.au})</span></div>
                                 </div>
                                 <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-bold text-[11px]">${item.description}</span>
@@ -7503,6 +7657,8 @@ var db = admin.firestore();</pre>
                     `;
                 }).join('');
             }
+
+            renderPaginationControls('prod-pagination-bar', 'prod', prCurrentPage, filtered.length, 'မျိုး');
         }
 
         // Initialization

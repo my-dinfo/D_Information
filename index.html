@@ -3231,6 +3231,102 @@ var db = admin.firestore();</pre>
             }
         }
 
+        function togglePersonnelFormPanel(forceOpen) {
+            const body = document.getElementById('p-collapsible-form-body');
+            const arrow = document.getElementById('p-form-toggle-arrow');
+            if (!body) return;
+            const willOpen = typeof forceOpen === 'boolean' ? forceOpen : body.classList.contains('hidden');
+            body.classList.toggle('hidden', !willOpen);
+            if (arrow) {
+                arrow.style.transform = willOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+        }
+
+        function getStatusBadgeClass(status) {
+            if (status === 'တန်းစီ') return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800';
+            if (status === 'ပျက်ကွက်') return 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:border-rose-800';
+            return 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800';
+        }
+
+        function getArmoryBadgeClass(status) {
+            if (status === 'စတိုကျန်') return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800';
+            if (status === 'ထုတ်ပေး') return 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800';
+            return 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:border-rose-800';
+        }
+
+        function updatePersonnelSummaryBoxes() {
+            const officers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရာရှိ').length;
+            const soldiers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'စစ်သည်').length;
+            const staff = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အမြဲတမ်းဝန်ထမ်း').length;
+            const total = personnelData.length;
+
+            const elOff = document.getElementById('p-sub-officer');
+            const elSol = document.getElementById('p-sub-soldier');
+            const elStf = document.getElementById('p-sub-staff');
+            const elTot = document.getElementById('p-sub-total');
+
+            if (elOff) elOff.textContent = toMyanmarNumerals(officers);
+            if (elSol) elSol.textContent = toMyanmarNumerals(soldiers);
+            if (elStf) elStf.textContent = toMyanmarNumerals(staff);
+            if (elTot) elTot.textContent = toMyanmarNumerals(total);
+        }
+
+        function initInlinePersonnelControls() {
+            const typeSel = document.getElementById('p-in-type');
+            const deptSel = document.getElementById('p-in-dept');
+            const statusSel = document.getElementById('p-in-status');
+            const filterRankSel = document.getElementById('personnel-filter-rank');
+            const filterDeptSel = document.getElementById('personnel-filter-dept');
+            const filterTypeSel = document.getElementById('personnel-filter-type');
+            const filterStatusSel = document.getElementById('personnel-filter-status');
+
+            if (typeSel) {
+                const curType = typeSel.value || (staffTypeList[0] || 'သန္ဓေ');
+                typeSel.innerHTML = staffTypeList.map(t => `<option value="${t}">${t}</option>`).join('');
+                if (staffTypeList.includes(curType)) typeSel.value = curType;
+            }
+            if (deptSel) {
+                const curDept = deptSel.value || (DEPT_MAPPING[0]?.abbr || 'ဌနခ');
+                deptSel.innerHTML = DEPT_MAPPING.map(d => `<option value="${d.abbr}">${d.full} (${d.abbr})</option>`).join('');
+                if (DEPT_MAPPING.some(d => d.abbr === curDept)) deptSel.value = curDept;
+            }
+            if (statusSel) {
+                const curSt = statusSel.value || (statusList[0] || 'တန်းစီ');
+                statusSel.innerHTML = statusList.map(s => `<option value="${s}">${s}</option>`).join('');
+                if (statusList.includes(curSt)) statusSel.value = curSt;
+            }
+            if (filterRankSel) {
+                const curRank = filterRankSel.value || 'ALL';
+                let targetCats = ['officer', 'soldier', 'staff'];
+                if (activePersonnelCategoryTab === 'အရာရှိ') targetCats = ['officer'];
+                else if (activePersonnelCategoryTab === 'စစ်သည်') targetCats = ['soldier'];
+                else if (activePersonnelCategoryTab === 'အမြဲတမ်းဝန်ထမ်း') targetCats = ['staff'];
+                const ranks = [];
+                targetCats.forEach(c => (RANK_DEFINITIONS[c] || []).forEach(r => ranks.push(r)));
+                filterRankSel.innerHTML = `<option value="ALL">အဆင့်အားလုံး</option>` + ranks.map(r => `<option value="${r.abbr}">${r.abbr}</option>`).join('');
+                filterRankSel.value = curRank;
+            }
+            if (filterDeptSel) {
+                const curD = filterDeptSel.value || 'ALL';
+                filterDeptSel.innerHTML = `<option value="ALL">ဌာနအားလုံး</option>` + DEPT_MAPPING.map(d => `<option value="${d.abbr}">${d.abbr}</option>`).join('');
+                filterDeptSel.value = curD;
+            }
+            if (filterTypeSel) {
+                const curT = filterTypeSel.value || 'ALL';
+                filterTypeSel.innerHTML = `<option value="ALL">ဝန်ထမ်းအမျိုးအစားအားလုံး</option>` + staffTypeList.map(t => `<option value="${t}">${t}</option>`).join('');
+                filterTypeSel.value = curT;
+            }
+            if (filterStatusSel) {
+                const curS = filterStatusSel.value || 'ALL';
+                filterStatusSel.innerHTML = `<option value="ALL">အခြေအနေအားလုံး</option>` + statusList.map(s => `<option value="${s}">${s}</option>`).join('');
+                filterStatusSel.value = curS;
+            }
+
+            syncInlinePersonnelRanks();
+            toggleInlinePersonnelAbsent();
+            updatePersonnelSummaryBoxes();
+        }
+
         function selectPersonnelForInlineEdit(index) {
             const p = personnelData[index];
             if (!p) return;

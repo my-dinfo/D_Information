@@ -71,25 +71,43 @@
         /* Smooth modal animation */
         @keyframes fadeScaleIn {
             from { opacity: 0; transform: scale(0.96); }
-        /* Auto-Fit Table Columns & Compact Row Height across all screens */
+            to { opacity: 1; transform: scale(1); }
+        }
+        /* Auto-Fit Table Columns & Ultra-Compact Row Height across all screens */
         table {
             table-layout: auto !important;
             width: max-content !important;
             min-width: 100% !important;
+            border-collapse: collapse !important;
         }
         table th,
         table td {
             width: auto !important;
             white-space: nowrap !important;
-            padding-top: 0.35rem !important;
-            padding-bottom: 0.35rem !important;
-            padding-left: 0.65rem !important;
-            padding-right: 0.65rem !important;
-            line-height: 1.25rem !important;
+            padding-top: 0.2rem !important;
+            padding-bottom: 0.2rem !important;
+            padding-left: 0.55rem !important;
+            padding-right: 0.55rem !important;
+            line-height: 1.15rem !important;
+            height: 1.75rem !important;
         }
         table thead th {
-            padding-top: 0.45rem !important;
-            padding-bottom: 0.45rem !important;
+            padding-top: 0.3rem !important;
+            padding-bottom: 0.3rem !important;
+            height: 1.9rem !important;
+        }
+        table td img,
+        table td > div.rounded-full {
+            width: 1.5rem !important;
+            height: 1.5rem !important;
+            font-size: 11px !important;
+        }
+        table td button {
+            padding-top: 0.15rem !important;
+            padding-bottom: 0.15rem !important;
+            padding-left: 0.35rem !important;
+            padding-right: 0.35rem !important;
+            line-height: 1rem !important;
         }
     </style>
 </head>
@@ -143,7 +161,7 @@
                     </div>
                     <div id="saved-google-accounts-list" class="space-y-1.5"></div>
                     <div class="flex gap-1.5">
-                        <input type="email" id="google-custom-email" onkeydown="if(event.key==='Enter'){event.preventDefault();submitCustomGoogleEmail();}" placeholder="သင်၏ Gmail လိပ်စာ (ဥပမာ- name@gmail.com)" class="flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500">
+                        <input type="email" id="google-custom-email" onkeydown="if(event.key==='Enter'){event.preventDefault();submitCustomGoogleEmail();}" class="flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none focus:border-blue-500">
                         <button type="button" onclick="submitCustomGoogleEmail()" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs whitespace-nowrap shadow-sm transition">Log In</button>
                     </div>
                 </div>
@@ -441,7 +459,8 @@
                         </h3>
                         <span id="dashboard-weapon-total-badge" class="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-bold text-[11px]">စုစုပေါင်းလက်နက်: ၀ လက်</span>
                     </div>
-                    <div id="dashboard-weapon-distribution-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs"></div>
+                    <div id="dashboard-weapon-distribution-linechart" class="overflow-x-auto pt-2 pb-1"></div>
+                    <div id="dashboard-weapon-distribution-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs pt-2 border-t border-slate-100 dark:border-slate-700"></div>
                 </div>
             </section>
 
@@ -1810,8 +1829,8 @@ var db = admin.firestore();</pre>
             { category: 'လက်နက်', weaponType: 'MA-5 MK-II', model: '9mm Semi-Auto Pistol', code: 'WPN-106', serial: 'SN-2026106', dept: 'တပ်တွင်းလခရ', location: 'စက်ရုံဌာနချုပ်', status: 'ထုတ်ပေး', remarks: 'အရာရှိတာဝန်ခံကိုင်ဆောင်' },
             { category: 'လက်နက်', weaponType: 'MA-1 MK-III', model: '5.56mm Standard Rifle', code: 'WPN-107', serial: 'SN-2026107', dept: '-', location: 'ဗဟိုလက်နက်တိုက်', status: 'စတိုကျန်', remarks: 'အရန်သင့်အခြေအနေ' },
             { category: 'လက်နက်', weaponType: 'MA-2 MK-III', model: '5.56mm Squad Automatic', code: 'WPN-108', serial: 'SN-2026108', dept: '-', location: 'လက်နက်ပြင်အလုပ်ရုံ', status: 'ပြင်ဆင်ဆဲ', remarks: 'မောင်းတုံးစပရိန်လဲလှယ်ဆဲ' },
-            { category: 'ခဲယမ်း', weaponType: '5.56mm Ball Cartridge', model: 'M193 Standard', code: 'AMO-201', serial: 'ကျည် ၁၂,၀၀၀ တောင့်', dept: '-', location: 'ခဲယမ်းသိုလှောင်ရုံ (၁)', status: 'စတိုကျန်', remarks: 'သေတ္တာ ၁၂ လုံး' },
-            { category: 'ခဲယမ်း', weaponType: '9mm Parabellum', model: 'FMJ 115gr', code: 'AMO-202', serial: 'ကျည် ၂,၅၀၀ တောင့်', dept: 'တပ်တွင်းလခရ', location: 'ဗဟိုလက်နက်တိုက်', status: 'ထုတ်ပေး', remarks: 'လုံခြုံရေးအရာရှိများသို့ ထုတ်ပေး' }
+            { category: 'ခဲယမ်း', weaponType: '5.56mm Ball Cartridge', model: 'M193 Standard', code: 'AMO-201', serial: '၁၂,၀၀၀', dept: '-', location: 'ခဲယမ်းသိုလှောင်ရုံ (၁)', status: 'စတိုကျန်', remarks: 'သေတ္တာ ၁၂ လုံး' },
+            { category: 'ခဲယမ်း', weaponType: '9mm Parabellum', model: 'FMJ 115gr', code: 'AMO-202', serial: '၂,၅၀၀', dept: 'တပ်တွင်းလခရ', location: 'ဗဟိုလက်နက်တိုက်', status: 'ထုတ်ပေး', remarks: 'လုံခြုံရေးအရာရှိများသို့ ထုတ်ပေး' }
         ];
         let prodStatementData = [
             { nomenclature: '5.56mm Rifle Barrel Assembly', au: 'Nos', debtYear: '25-26', debt2526: 120, planYear: '26-27', plan2627: 600, totalPlan: 720, description: 'Prod;', apr: 60, may: 65, jun: 70, jul: 60, aug: 55, sep: 60, oct: 50, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 420, remark: 'ထလရ-၁ ပုံမှန်ထုတ်လုပ်မှု', financialYears: '2026-2027' },
@@ -3936,32 +3955,30 @@ var db = admin.firestore();</pre>
                             <td class="px-2 py-1 text-center">
                                 <input type="number" min="0" id="edit-ab-d5-${idx}" value="${c5}" class="w-14 bg-white dark:bg-slate-800 border border-blue-400 rounded-md px-1.5 py-0.5 text-center text-xs font-bold outline-none">
                             </td>
-                            <td class="px-2.5 py-1 text-center font-bold bg-rose-50/60 dark:bg-rose-900/30 text-rose-700 dark:text-rose-200">
-                                ${toMyanmarNumerals(rowSum)}
-                            </td>
+                            <td class="px-2.5 py-1 text-center font-bold text-rose-600">${toMyanmarNumerals(rowSum)}</td>
                             <td class="px-2 py-1 text-center space-x-1">
-                                <button onclick="saveAbsentReasonRow(${idx})" class="px-2 py-0.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-bold text-[11px] transition">Save</button>
-                                <button onclick="cancelEditAbsentReasonRow()" class="px-2 py-0.5 bg-slate-500 hover:bg-slate-600 text-white rounded font-bold text-[11px] transition">Cancel</button>
+                                <button onclick="saveAbsentReasonRow(${idx})" class="px-2 py-0.5 bg-blue-600 text-white rounded font-bold text-[11px]">Save</button>
+                                <button onclick="cancelEditAbsentReasonRow()" class="px-2 py-0.5 bg-slate-500 text-white rounded font-bold text-[11px]">Cancel</button>
                             </td>
                         </tr>
                     `;
                 }
 
-                const actionButtonsHtml = idx >= 0
-                    ? `<button onclick="editAbsentReasonRow(${idx})" class="role-write-action p-1 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded font-bold transition leading-none" title="ပြင်ဆင်မည်">✏️</button>
-                       <button onclick="deleteAbsentReasonRow(${idx})" class="role-write-action p-1 bg-rose-50 hover:bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded font-bold transition leading-none" title="ဖျက်မည်">🗑️</button>`
-                    : `<span class="px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-semibold text-[10px]">Auto-Linked</span>`;
-
                 return `
-                    <tr class="hover:bg-rose-50/40 dark:hover:bg-slate-700/40 transition text-slate-800 dark:text-slate-200">
-                        <td class="px-3 py-1.5 text-left font-semibold">${toMyanmarNumerals(displayIdx + 1)}။ ${rowObj.reason}</td>
-                        <td class="px-2.5 py-1.5 text-center ${c1 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c1)}</td>
-                        <td class="px-2.5 py-1.5 text-center ${c2 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c2)}</td>
-                        <td class="px-2.5 py-1.5 text-center ${c3 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c3)}</td>
-                        <td class="px-2.5 py-1.5 text-center ${c4 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c4)}</td>
-                        <td class="px-2.5 py-1.5 text-center ${c5 > 0 ? 'font-bold text-rose-600 dark:text-rose-300' : 'text-slate-400'}">${toMyanmarNumerals(c5)}</td>
-                        <td class="px-2.5 py-1.5 text-center font-bold bg-rose-50/50 dark:bg-rose-900/20 ${rowSum > 0 ? 'text-rose-700 dark:text-rose-200' : 'text-slate-400'}">${toMyanmarNumerals(rowSum)}</td>
-                        <td class="px-2.5 py-1.5 text-center space-x-1">${actionButtonsHtml}</td>
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 text-slate-800 dark:text-slate-200">
+                        <td class="px-3 py-1.5 font-semibold">${rowObj.reason}</td>
+                        <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(c1)}</td>
+                        <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(c2)}</td>
+                        <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(c3)}</td>
+                        <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(c4)}</td>
+                        <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(c5)}</td>
+                        <td class="px-2.5 py-1.5 text-center font-bold text-rose-600 dark:text-rose-400">${toMyanmarNumerals(rowSum)}</td>
+                        <td class="px-2.5 py-1.5 text-center space-x-1">
+                            ${idx >= 0 ? `
+                                <button onclick="editAbsentReasonRow(${idx})" class="role-write-action p-1 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded font-bold" title="ပြင်ဆင်မည်">✏️</button>
+                                <button onclick="deleteAbsentReasonRow(${idx})" class="role-write-action p-1 text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-700 rounded" title="ဖျက်မည်">🗑️</button>
+                            ` : '<span class="text-[11px] text-slate-400">Auto</span>'}
+                        </td>
                     </tr>
                 `;
             }).join('');
@@ -3970,19 +3987,19 @@ var db = admin.firestore();</pre>
             if (reasonsTfoot) {
                 reasonsTfoot.innerHTML = `
                     <tr>
-                        <td class="px-3 py-1.5 text-left">ပျက်ကွက်စုစုပေါင်း</td>
+                        <td class="px-3 py-1.5 text-left">စုစုပေါင်း ပျက်ကွက်အင်အား</td>
                         <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['ဌနခ'])}</td>
                         <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['စမရ'])}</td>
                         <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['ထလရ-၁'])}</td>
                         <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['ထလရ-၂'])}</td>
                         <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['စဆရ'])}</td>
-                        <td class="px-2.5 py-1.5 text-center bg-rose-100/80 dark:bg-rose-900/40 text-rose-800 dark:text-rose-200">${toMyanmarNumerals(reasonGrandTotals.total)}</td>
+                        <td class="px-2.5 py-1.5 text-center text-rose-700 dark:text-rose-300">${toMyanmarNumerals(reasonGrandTotals.total)}</td>
                         <td class="px-2.5 py-1.5"></td>
                     </tr>
                 `;
             }
 
-            // Step 2: Table 1 ("ရှိရင်း" from ဝန်ထမ်းစာရင်း, "ပျက်ကွက်" from Table 2 totals, "တန်းစီ" = ရှိရင်း - ပျက်ကွက်)
+            // Table 1: Strength Summary
             const totalCounts = makeDeptCounter();
             filteredPersonnel.forEach(p => {
                 const colKey = resolveAbsentDeptColumnKey(p);
@@ -3992,126 +4009,284 @@ var db = admin.firestore();</pre>
                 }
             });
 
-            const absentCounts = {
-                'ဌနခ': reasonGrandTotals['ဌနခ'],
-                'စမရ': reasonGrandTotals['စမရ'],
-                'ထလရ-၁': reasonGrandTotals['ထလရ-၁'],
-                'ထလရ-၂': reasonGrandTotals['ထလရ-၂'],
-                'စဆရ': reasonGrandTotals['စဆရ'],
-                total: reasonGrandTotals.total
-            };
-
             const presentCounts = {
-                'ဌနခ': Math.max(0, totalCounts['ဌနခ'] - absentCounts['ဌနခ']),
-                'စမရ': Math.max(0, totalCounts['စမရ'] - absentCounts['စမရ']),
-                'ထလရ-၁': Math.max(0, totalCounts['ထလရ-၁'] - absentCounts['ထလရ-၁']),
-                'ထလရ-၂': Math.max(0, totalCounts['ထလရ-၂'] - absentCounts['ထလရ-၂']),
-                'စဆရ': Math.max(0, totalCounts['စဆရ'] - absentCounts['စဆရ']),
-                total: Math.max(0, totalCounts.total - absentCounts.total)
+                'ဌနခ': Math.max(0, totalCounts['ဌနခ'] - reasonGrandTotals['ဌနခ']),
+                'စမရ': Math.max(0, totalCounts['စမရ'] - reasonGrandTotals['စမရ']),
+                'ထလရ-၁': Math.max(0, totalCounts['ထလရ-၁'] - reasonGrandTotals['ထလရ-၁']),
+                'ထလရ-၂': Math.max(0, totalCounts['ထလရ-၂'] - reasonGrandTotals['ထလရ-၂']),
+                'စဆရ': Math.max(0, totalCounts['စဆရ'] - reasonGrandTotals['စဆရ']),
+                total: Math.max(0, totalCounts.total - reasonGrandTotals.total)
             };
 
-            const table1Rows = [
-                {
-                    label: 'ရှိရင်း',
-                    counts: totalCounts,
-                    rowClass: 'hover:bg-slate-50 dark:hover:bg-slate-700/40 font-bold text-slate-900 dark:text-white',
-                    totalClass: 'bg-blue-50/70 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 font-extrabold'
-                },
-                {
-                    label: 'တန်းစီ',
-                    counts: presentCounts,
-                    rowClass: 'hover:bg-emerald-50/40 dark:hover:bg-slate-700/40 text-emerald-700 dark:text-emerald-300 font-semibold',
-                    totalClass: 'bg-emerald-50/70 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-200 font-bold'
-                },
-                {
-                    label: 'ပျက်ကွက်',
-                    counts: absentCounts,
-                    rowClass: 'hover:bg-rose-50/40 dark:hover:bg-slate-700/40 text-rose-700 dark:text-rose-300 font-semibold',
-                    totalClass: 'bg-rose-50/70 dark:bg-rose-900/20 text-rose-800 dark:text-rose-200 font-bold'
-                }
-            ];
-
-            const formatStrengthCell = (val, baseVal) => {
-                const pct = baseVal > 0 ? Math.round((val / baseVal) * 100) : 0;
-                return `${toMyanmarNumerals(val)} <span class="text-[11px] opacity-85">(${toMyanmarNumerals(pct)}%)</span>`;
-            };
-
-            strengthTbody.innerHTML = table1Rows.map(r => `
-                <tr class="${r.rowClass} transition">
-                    <td class="px-3 py-1.5 text-left font-bold">${r.label}</td>
-                    <td class="px-2.5 py-1.5 text-center">${formatStrengthCell(r.counts['ဌနခ'], totalCounts['ဌနခ'])}</td>
-                    <td class="px-2.5 py-1.5 text-center">${formatStrengthCell(r.counts['စမရ'], totalCounts['စမရ'])}</td>
-                    <td class="px-2.5 py-1.5 text-center">${formatStrengthCell(r.counts['ထလရ-၁'], totalCounts['ထလရ-၁'])}</td>
-                    <td class="px-2.5 py-1.5 text-center">${formatStrengthCell(r.counts['ထလရ-၂'], totalCounts['ထလရ-၂'])}</td>
-                    <td class="px-2.5 py-1.5 text-center">${formatStrengthCell(r.counts['စဆရ'], totalCounts['စဆရ'])}</td>
-                    <td class="px-2.5 py-1.5 text-center ${r.totalClass}">${formatStrengthCell(r.counts.total, totalCounts.total)}</td>
+            strengthTbody.innerHTML = `
+                <tr class="font-bold text-slate-900 dark:text-white bg-blue-50/40 dark:bg-slate-700/30">
+                    <td class="px-3 py-1.5">ရှိရင်းအင်အား</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(totalCounts['ဌနခ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(totalCounts['စမရ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(totalCounts['ထလရ-၁'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(totalCounts['ထလရ-၂'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(totalCounts['စဆရ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center text-blue-700 dark:text-blue-300">${toMyanmarNumerals(totalCounts.total)}</td>
                 </tr>
-            `).join('');
+                <tr class="font-semibold text-emerald-700 dark:text-emerald-300">
+                    <td class="px-3 py-1.5">တန်းစီအင်အား</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(presentCounts['ဌနခ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(presentCounts['စမရ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(presentCounts['ထလရ-၁'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(presentCounts['ထလရ-၂'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(presentCounts['စဆရ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center font-bold">${toMyanmarNumerals(presentCounts.total)}</td>
+                </tr>
+                <tr class="font-semibold text-rose-700 dark:text-rose-300">
+                    <td class="px-3 py-1.5">ပျက်ကွက်အင်အား</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['ဌနခ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['စမရ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['ထလရ-၁'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['ထလရ-၂'])}</td>
+                    <td class="px-2.5 py-1.5 text-center">${toMyanmarNumerals(reasonGrandTotals['စဆရ'])}</td>
+                    <td class="px-2.5 py-1.5 text-center font-bold">${toMyanmarNumerals(reasonGrandTotals.total)}</td>
+                </tr>
+            `;
 
-            // Step 3: Automatically link & filter all "ပျက်ကွက်" status personnel from ဝန်ထမ်းစာရင်း
-            const absentStaffList = filteredPersonnel.filter(p => {
-                if (p.status !== 'ပျက်ကွက်') return false;
-                const pDeptAbbr = getDeptAbbr(p.deptAbbr || p.deptFull);
-                const pRankAbbr = getRankAbbr(p.rankAbbr || p.rankFull);
-
-                const matchesSearch = !searchQuery ||
-                    (p.id || '').toLowerCase().includes(searchQuery) ||
-                    (p.name || '').toLowerCase().includes(searchQuery) ||
-                    pRankAbbr.toLowerCase().includes(searchQuery) ||
-                    (p.rankFull || '').toLowerCase().includes(searchQuery) ||
-                    pDeptAbbr.toLowerCase().includes(searchQuery) ||
-                    (p.deptFull || '').toLowerCase().includes(searchQuery) ||
-                    (p.staffType || '').toLowerCase().includes(searchQuery) ||
-                    (p.absentReason || '').toLowerCase().includes(searchQuery) ||
-                    (p.phone || '').toLowerCase().includes(searchQuery) ||
-                    (p.remarks || '').toLowerCase().includes(searchQuery);
-
-                const matchesDept = deptFilter === 'ALL' || pDeptAbbr === deptFilter || p.deptAbbr === deptFilter;
-                const matchesType = typeFilter === 'ALL' || p.staffType === typeFilter;
-                const matchesReason = reasonFilter === 'ALL' || (p.absentReason || '') === reasonFilter;
-
-                return matchesSearch && matchesDept && matchesType && matchesReason;
-            }).sort(compareByRankSeniority);
-            if (detailCountBadge) {
-                detailCountBadge.textContent = `${toMyanmarNumerals(absentStaffList.length)} ဦး`;
-            }
+            // Table 3: Detailed Absent Personnel List
             if (detailTbody) {
-                if (absentStaffList.length === 0) {
-                    detailTbody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-slate-400">လက်ရှိ ပျက်ကွက်ဝန်ထမ်း မရှိပါ</td></tr>`;
+                const absentPeople = filteredPersonnel.filter(p => {
+                    if (p.status !== 'ပျက်ကွက်') return false;
+                    const colKey = resolveAbsentDeptColumnKey(p);
+                    const rText = (p.absentReason || 'မဖော်ပြ').trim() || 'မဖော်ပြ';
+                    const matchesSearch = !searchQuery ||
+                        (p.id || '').toLowerCase().includes(searchQuery) ||
+                        (p.name || '').toLowerCase().includes(searchQuery) ||
+                        (p.rankAbbr || '').toLowerCase().includes(searchQuery) ||
+                        rText.toLowerCase().includes(searchQuery) ||
+                        (p.remarks || '').toLowerCase().includes(searchQuery);
+                    const matchesDept = deptFilter === 'ALL' || colKey === deptFilter;
+                    const matchesType = typeFilter === 'ALL' || p.staffType === typeFilter;
+                    const matchesReason = reasonFilter === 'ALL' || rText === reasonFilter;
+                    return matchesSearch && matchesDept && matchesType && matchesReason;
+                }).sort(compareByRankSeniority);
+
+                if (detailCountBadge) {
+                    detailCountBadge.textContent = `${toMyanmarNumerals(absentPeople.length)} ဦး`;
+                }
+
+                if (absentPeople.length === 0) {
+                    detailTbody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-slate-400">ပျက်ကွက်အမည်စာရင်း မရှိပါ</td></tr>`;
                     renderPaginationControls('absent-pagination-bar', 'absent', 1, 0, 'ဦး');
                 } else {
-                    const abTotalPages = Math.max(1, Math.ceil(absentStaffList.length / ITEMS_PER_PAGE));
+                    const abTotalPages = Math.max(1, Math.ceil(absentPeople.length / ITEMS_PER_PAGE));
                     if (tablePageState.absent > abTotalPages) tablePageState.absent = abTotalPages;
                     const abCurrentPage = tablePageState.absent || 1;
                     const abStartIdx = (abCurrentPage - 1) * ITEMS_PER_PAGE;
-                    const paginatedAbsentList = absentStaffList.slice(abStartIdx, abStartIdx + ITEMS_PER_PAGE);
+                    const paginatedAbsent = absentPeople.slice(abStartIdx, abStartIdx + ITEMS_PER_PAGE);
 
-                    detailTbody.innerHTML = paginatedAbsentList.map((p, idx) => {
-                        const realIndex = personnelData.indexOf(p);
-                        const deptDisplay = getDeptAbbr(p.deptAbbr || p.deptFull);
-                        const normalizedDept = deptDisplay === 'ထလရ(၁)' ? 'ထလရ-၁' : deptDisplay === 'ထလရ(၂)' ? 'ထလရ-၂' : deptDisplay;
-                        const rankAbbrOnly = getRankAbbr(p.rankAbbr || p.rankFull);
+                    detailTbody.innerHTML = paginatedAbsent.map((p, idx) => {
+                        const realIdx = personnelData.indexOf(p);
                         return `
-                            <tr onclick="openPersonnelDetail(${realIndex})" class="hover:bg-rose-50/50 dark:hover:bg-slate-700/50 transition cursor-pointer text-slate-800 dark:text-slate-200">
-                                <td class="p-3 text-center font-bold text-slate-500">${toMyanmarNumerals(abStartIdx + idx + 1)}</td>
+                            <tr class="hover:bg-rose-50/50 dark:hover:bg-slate-700/50 text-slate-800 dark:text-slate-200">
+                                <td class="p-3 text-center font-bold">${toMyanmarNumerals(abStartIdx + idx + 1)}</td>
                                 <td class="p-3 font-semibold">${p.id}</td>
-                                <td class="p-3 text-blue-600 dark:text-blue-400 font-semibold">${rankAbbrOnly}</td>
-                                <td class="p-3 font-bold text-slate-900 dark:text-white">${p.name}</td>
-                                <td class="p-3 font-semibold">${normalizedDept}</td>
+                                <td class="p-3 text-blue-600 dark:text-blue-400 font-semibold">${getRankAbbr(p.rankAbbr || p.rankFull)}</td>
+                                <td class="p-3 font-bold">${p.name}</td>
+                                <td class="p-3">${getDeptAbbr(p.deptAbbr || p.deptFull)}</td>
                                 <td class="p-3 text-indigo-600 dark:text-indigo-400">${p.staffType}</td>
-                                <td class="p-3"><span class="px-2 py-0.5 rounded-md bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 font-bold text-[11px]">${p.absentReason || 'မဖော်ပြ'}</span></td>
+                                <td class="p-3"><span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 dark:bg-rose-900/40 dark:text-rose-300 font-bold text-[11px]">${p.absentReason || 'မဖော်ပြ'}</span></td>
                                 <td class="p-3 text-slate-600 dark:text-slate-300">${p.remarks || '-'}</td>
-                                <td class="p-3 text-center space-x-1" onclick="event.stopPropagation()">
-                                    <button onclick="openPersonnelForm(${realIndex})" class="role-write-action p-1.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold transition" title="ပြင်ဆင်မည်">✏️</button>
-                                    <button onclick="confirmDeletePersonnel(${realIndex})" class="role-write-action p-1.5 bg-rose-50 hover:bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-lg font-bold transition" title="ဖျက်မည်">🗑️</button>
+                                <td class="p-3 text-center">
+                                    <button onclick="openPersonnelForm(${realIdx})" class="role-write-action p-1 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded font-bold" title="ပြင်ဆင်မည်">✏️</button>
                                 </td>
                             </tr>
                         `;
                     }).join('');
-                    renderPaginationControls('absent-pagination-bar', 'absent', abCurrentPage, absentStaffList.length, 'ဦး');
+                    renderPaginationControls('absent-pagination-bar', 'absent', abCurrentPage, absentPeople.length, 'ဦး');
                 }
             }
         }
+
+        function updateDashboardWeaponLineChart() {
+            // Weapon Type & Issue Purpose Breakdown Card (Line Chart Style + Summary Legend)
+            const weaponLineChartEl = document.getElementById('dashboard-weapon-distribution-linechart');
+            const weaponDistGrid = document.getElementById('dashboard-weapon-distribution-grid');
+            const weaponTotalBadge = document.getElementById('dashboard-weapon-total-badge');
+            if (weaponLineChartEl || weaponDistGrid) {
+                const weaponsOnly = armoryData.filter(w => (w.category || 'လက်နက်') === 'လက်နက်');
+                const totalWeapons = weaponsOnly.length;
+                const uniqueWeaponTypes = new Set(weaponsOnly.map(w => (w.weaponType || '').trim()).filter(Boolean)).size;
+
+                const isIssuedStatus = (w) => ['ထုတ်ပေး', 'ဖြန့်ခွဲ', 'ဖြန့်ခွဲ/ထုတ်ပေး'].some(k => (w.status || '').includes(k));
+                const issuedWeapons = weaponsOnly.filter(isIssuedStatus);
+                const issuedCount = issuedWeapons.length;
+
+                const matchPurpose = (w, keywords) => {
+                    const text = `${w.dept || ''} ${w.location || ''} ${w.remarks || ''}`.toLowerCase();
+                    return keywords.some(kw => text.includes(kw));
+                };
+
+                const insideSecurityCount = issuedWeapons.filter(w => matchPurpose(w, ['တပ်တွင်းလခရ', 'တပ်တွင်း'])).length;
+                const outsideSecurityCount = issuedWeapons.filter(w => matchPurpose(w, ['တပ်ပြင်လခရ', 'တပ်ပြင်'])).length;
+                const tempDutyCount = issuedWeapons.filter(w => matchPurpose(w, ['ယာယီတာဝန်', 'ယာယီ'])).length;
+                const trainingCount = issuedWeapons.filter(w => matchPurpose(w, ['သင်တန်း'])).length;
+
+                if (weaponTotalBadge) {
+                    weaponTotalBadge.textContent = `စုစုပေါင်းလက်နက်: ${toMyanmarNumerals(totalWeapons)} လက်`;
+                }
+
+                const calcPct = (val, base) => base > 0 ? Math.round((val / base) * 100) : 0;
+
+                const items = [
+                    {
+                        label: 'လက်နက်အမျိုးအစား',
+                        shortLabel: 'အမျိုးအစား',
+                        count: uniqueWeaponTypes,
+                        unit: 'မျိုး',
+                        pct: calcPct(uniqueWeaponTypes, totalWeapons),
+                        pctNote: `${toMyanmarNumerals(calcPct(uniqueWeaponTypes, totalWeapons))}%`,
+                        pointColor: '#4f46e5',
+                        badgeClass: 'bg-indigo-50 text-indigo-800 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800'
+                    },
+                    {
+                        label: 'ဖြန့်ခွဲ-ထုတ်ပေး',
+                        shortLabel: 'ဖြန့်ခွဲ-ထုတ်ပေး',
+                        count: issuedCount,
+                        unit: 'လက်',
+                        pct: calcPct(issuedCount, totalWeapons),
+                        pctNote: `${toMyanmarNumerals(calcPct(issuedCount, totalWeapons))}%`,
+                        pointColor: '#f59e0b',
+                        badgeClass: 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800'
+                    },
+                    {
+                        label: 'တပ်တွင်းလခရ ထုတ်ပေး',
+                        shortLabel: 'တပ်တွင်းလခရ',
+                        count: insideSecurityCount,
+                        unit: 'လက်',
+                        pct: calcPct(insideSecurityCount, totalWeapons),
+                        pctNote: `${toMyanmarNumerals(calcPct(insideSecurityCount, totalWeapons))}%`,
+                        pointColor: '#2563eb',
+                        badgeClass: 'bg-blue-50 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800'
+                    },
+                    {
+                        label: 'တပ်ပြင်လခရ ထုတ်ပေး',
+                        shortLabel: 'တပ်ပြင်လခရ',
+                        count: outsideSecurityCount,
+                        unit: 'လက်',
+                        pct: calcPct(outsideSecurityCount, totalWeapons),
+                        pctNote: `${toMyanmarNumerals(calcPct(outsideSecurityCount, totalWeapons))}%`,
+                        pointColor: '#10b981',
+                        badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800'
+                    },
+                    {
+                        label: 'ယာယီတာဝန် ထုတ်ပေး',
+                        shortLabel: 'ယာယီတာဝန်',
+                        count: tempDutyCount,
+                        unit: 'လက်',
+                        pct: calcPct(tempDutyCount, totalWeapons),
+                        pctNote: `${toMyanmarNumerals(calcPct(tempDutyCount, totalWeapons))}%`,
+                        pointColor: '#9333ea',
+                        badgeClass: 'bg-purple-50 text-purple-800 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800'
+                    },
+                    {
+                        label: 'သင်တန်း ထုတ်ပေး',
+                        shortLabel: 'သင်တန်း',
+                        count: trainingCount,
+                        unit: 'လက်',
+                        pct: calcPct(trainingCount, totalWeapons),
+                        pctNote: `${toMyanmarNumerals(calcPct(trainingCount, totalWeapons))}%`,
+                        pointColor: '#e11d48',
+                        badgeClass: 'bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:border-rose-800'
+                    }
+                ];
+
+                if (weaponLineChartEl) {
+                    const svgW = 840;
+                    const svgH = 225;
+                    const padL = 46;
+                    const padR = 46;
+                    const padT = 36;
+                    const padB = 46;
+                    const plotW = svgW - padL - padR;
+                    const plotH = svgH - padT - padB;
+                    const stepX = items.length > 1 ? plotW / (items.length - 1) : plotW / 2;
+
+                    const points = items.map((item, idx) => {
+                        const clampedPct = Math.max(0, Math.min(100, item.pct));
+                        const x = padL + idx * stepX;
+                        const y = padT + plotH - (clampedPct / 100) * plotH;
+                        return { ...item, x, y };
+                    });
+
+                    const polylinePoints = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+                    const areaPoints = `${points[0].x.toFixed(1)},${(padT + plotH).toFixed(1)} ${polylinePoints} ${points[points.length - 1].x.toFixed(1)},${(padT + plotH).toFixed(1)}`;
+
+                    const yTicks = [0, 25, 50, 75, 100];
+                    const gridLinesHtml = yTicks.map(t => {
+                        const gy = padT + plotH - (t / 100) * plotH;
+                        return `
+                            <line x1="${padL}" y1="${gy.toFixed(1)}" x2="${svgW - padR}" y2="${gy.toFixed(1)}" stroke="currentColor" stroke-opacity="0.12" stroke-dasharray="4 4" />
+                            <text x="${padL - 8}" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" fill="currentColor" fill-opacity="0.6" style="font-size:10px !important;" font-weight="600">${toMyanmarNumerals(t)}%</text>
+                        `;
+                    }).join('');
+
+                    const verticalGuidesHtml = points.map(p => `
+                        <line x1="${p.x.toFixed(1)}" y1="${padT}" x2="${p.x.toFixed(1)}" y2="${padT + plotH}" stroke="currentColor" stroke-opacity="0.06" />
+                    `).join('');
+
+                    const nodesHtml = points.map(p => {
+                        const labelY = Math.max(15, p.y - 11);
+                        return `
+                            <g>
+                                <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="7" fill="${p.pointColor}" fill-opacity="0.18" />
+                                <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.2" fill="${p.pointColor}" stroke="#ffffff" stroke-width="1.8" />
+                                <text x="${p.x.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="middle" fill="${p.pointColor}" style="font-size:10.5px !important;" font-weight="700">
+                                    ${toMyanmarNumerals(p.count)} ${p.unit} (${p.pctNote})
+                                </text>
+                                <text x="${p.x.toFixed(1)}" y="${(padT + plotH + 18).toFixed(1)}" text-anchor="middle" fill="currentColor" style="font-size:10.5px !important;" font-weight="700">
+                                    ${p.shortLabel}
+                                </text>
+                            </g>
+                        `;
+                    }).join('');
+
+                    weaponLineChartEl.innerHTML = `
+                        <div class="min-w-[680px] text-slate-700 dark:text-slate-200">
+                            <svg viewBox="0 0 ${svgW} ${svgH}" class="w-full h-auto overflow-visible">
+                                <defs>
+                                    <linearGradient id="weaponLineAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#2563eb" stop-opacity="0.24" />
+                                        <stop offset="100%" stop-color="#2563eb" stop-opacity="0.02" />
+                                    </linearGradient>
+                                </defs>
+                                ${gridLinesHtml}
+                                ${verticalGuidesHtml}
+                                <polygon points="${areaPoints}" fill="url(#weaponLineAreaGrad)" />
+                                <polyline fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="${polylinePoints}" />
+                                ${nodesHtml}
+                            </svg>
+                        </div>
+                    `;
+                }
+
+                if (weaponDistGrid) {
+                    weaponDistGrid.innerHTML = items.map(item => `
+                        <div class="px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-center justify-between gap-2 whitespace-nowrap">
+                            <div class="flex items-center gap-1.5 min-w-0">
+                                <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background:${item.pointColor};"></span>
+                                <span class="font-semibold text-slate-700 dark:text-slate-200 truncate" title="${item.label}">${item.label}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 flex-shrink-0">
+                                <span class="font-black text-slate-900 dark:text-white">${toMyanmarNumerals(item.count)} <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">${item.unit}</span></span>
+                                <span class="px-1.5 py-0.5 rounded font-bold text-[10px] border ${item.badgeClass}">${item.pctNote}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        const origRenderDashboardView = renderDashboardView;
+        renderDashboardView = function() {
+            origRenderDashboardView();
+            updateDashboardWeaponLineChart();
+        };
 
         function exportAbsentExcel() {
             const filterSel = document.getElementById('absent-filter-stafftype');
@@ -5949,8 +6124,7 @@ var db = admin.firestore();</pre>
             }
 
             if (locInput) locInput.value = w.location || '';
-
-            document.getElementById('a-in-status').value = w.status || 'စတိုကျန်';
+            document.getElementById('a-in-status').value = w.status || 'ထုတ်ပေး';
             document.getElementById('a-in-remarks').value = w.remarks || '';
             document.getElementById('main-workspace')?.scrollTo({ top: 0, behavior: 'smooth' });
             showToast(`"${w.weaponType}" အား ပြင်ဆင်ရန် ရွေးချယ်ပြီးပါပြီ`, 'info');
@@ -5967,11 +6141,24 @@ var db = admin.firestore();</pre>
             }
         }
 
+        function formatArmorySerialDisplay(w) {
+            const raw = String(w?.serial ?? '-').trim();
+            if ((w?.category || 'လက်နက်') === 'ခဲယမ်း') {
+                const cleaned = raw.replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
+                return cleaned || '-';
+            }
+            return raw || '-';
+        }
+
         function inlineAddArmory() {
             if (!guardWritePermission()) return;
+            const categoryVal = document.getElementById('a-in-category').value;
             const weaponVal = document.getElementById('a-in-weapon').value.trim();
             const codeVal = document.getElementById('a-in-code').value.trim();
-            const serialVal = document.getElementById('a-in-serial').value.trim();
+            let serialVal = document.getElementById('a-in-serial').value.trim();
+            if (categoryVal === 'ခဲယမ်း') {
+                serialVal = serialVal.replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
+            }
             if (!weaponVal || !codeVal) {
                 showToast('လက်နက် / ခဲယမ်း အမည်နှင့် ကုတ်နံပါတ် ဖြည့်သွင်းပေးပါ', 'error');
                 return;
@@ -5983,7 +6170,7 @@ var db = admin.firestore();</pre>
             const locationVal = (document.getElementById('a-in-location')?.value || '').trim();
 
             armoryData.unshift({
-                category: document.getElementById('a-in-category').value,
+                category: categoryVal,
                 weaponType: weaponVal,
                 model: document.getElementById('a-in-model').value.trim() || '-',
                 code: codeVal,
@@ -6009,8 +6196,13 @@ var db = admin.firestore();</pre>
                 showToast('ပြင်ဆင်လိုသော စာရင်းအား ဇယားကွက်အတွင်းမှ Edit ခလုတ်နှိပ်၍ အရင်ရွေးချယ်ပါ', 'error');
                 return;
             }
+            const categoryVal = document.getElementById('a-in-category').value;
             const weaponVal = document.getElementById('a-in-weapon').value.trim();
             const codeVal = document.getElementById('a-in-code').value.trim();
+            let serialVal = document.getElementById('a-in-serial').value.trim();
+            if (categoryVal === 'ခဲယမ်း') {
+                serialVal = serialVal.replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
+            }
             if (!weaponVal || !codeVal) {
                 showToast('လက်နက် / ခဲယမ်း အမည်နှင့် ကုတ်နံပါတ် ဖြည့်သွင်းပေးပါ', 'error');
                 return;
@@ -6022,11 +6214,11 @@ var db = admin.firestore();</pre>
             const locationVal = (document.getElementById('a-in-location')?.value || '').trim();
 
             armoryData[idx] = {
-                category: document.getElementById('a-in-category').value,
+                category: categoryVal,
                 weaponType: weaponVal,
                 model: document.getElementById('a-in-model').value.trim() || '-',
                 code: codeVal,
-                serial: document.getElementById('a-in-serial').value.trim() || '-',
+                serial: serialVal || '-',
                 dept: finalPurpose,
                 location: locationVal,
                 status: document.getElementById('a-in-status').value,
@@ -6182,6 +6374,7 @@ var db = admin.firestore();</pre>
             container.innerHTML = paginatedArmory.map((w, idx) => {
                 const realIndex = armoryData.indexOf(w);
                 const isWeapon = (w.category || 'လက်နက်') === 'လက်နက်';
+                const serialDisplay = formatArmorySerialDisplay(w);
                 const purposeDisplay = w.dept || '-';
                 const locationCellHtml = showLocationCol
                     ? `<td class="p-3 font-medium text-slate-700 dark:text-slate-300">${(w.location || '').trim() || '-'}</td>`
@@ -6206,7 +6399,7 @@ var db = admin.firestore();</pre>
                         <td class="p-3 font-bold text-slate-900 dark:text-white">${w.weaponType}</td>
                         <td class="p-3 font-medium text-slate-700 dark:text-slate-300">${w.model || '-'}</td>
                         <td class="p-3 font-semibold text-blue-600 dark:text-blue-400">${w.code}</td>
-                        <td class="p-3 font-semibold">${w.serial}</td>
+                        <td class="p-3 font-semibold">${serialDisplay}</td>
                         <td class="p-3 font-semibold">${purposeDisplay}</td>
                         ${locationCellHtml}
                         <td class="p-3"><span class="px-2 py-0.5 rounded-md font-bold text-[11px] border ${getArmoryBadgeClass(w.status)}">${w.status}</span></td>
@@ -6224,6 +6417,7 @@ var db = admin.firestore();</pre>
                 mobileContainer.innerHTML = paginatedArmory.map((w) => {
                     const realIndex = armoryData.indexOf(w);
                     const isWeapon = (w.category || 'လက်နက်') === 'လက်နက်';
+                    const serialDisplay = formatArmorySerialDisplay(w);
                     const purposeDisplay = w.dept || '-';
                     const locText = (w.location || '').trim();
                     return `
@@ -6239,7 +6433,7 @@ var db = admin.firestore();</pre>
                                 <div>ကုတ်: <strong class="text-blue-600 dark:text-blue-400">${w.code}</strong></div>
                                 <div>ထုတ်ပေးအကြောင်းအရင်း: <strong>${purposeDisplay}</strong></div>
                                 ${locText ? `<div class="col-span-2">တည်နေရာ: <strong>${locText}</strong></div>` : ''}
-                                <div class="col-span-2">လက်နက်နံပါတ်/အရေအတွက်: <strong>${w.serial}</strong></div>
+                                <div class="col-span-2">လက်နက်နံပါတ်/အရေအတွက်: <strong>${serialDisplay}</strong></div>
                             </div>
                             ${w.remarks ? `<div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">မှတ်ချက်: ${w.remarks}</div>` : ''}
                             <div class="role-write-action flex justify-end gap-1.5 pt-1 border-t dark:border-slate-700" onclick="event.stopPropagation()">

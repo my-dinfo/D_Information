@@ -304,8 +304,11 @@
                 <button id="nav-soldier" onclick="switchTab('soldier')" title="စစ်သည်အမည်စာရင်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
                     <span class="font-bold">စစ်သည်အမည်စာရင်း</span>
                 </button>
-                <button id="nav-staff" onclick="switchTab('staff')" title="ဝန်ထမ်းအမည်စာရင်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
-                    <span class="font-bold">ဝန်ထမ်းအမည်စာရင်း</span>
+                <button id="nav-staff" onclick="switchTab('staff')" title="အမြဲတမ်းဝန်ထမ်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
+                    <span class="font-bold">အမြဲတမ်းဝန်ထမ်း</span>
+                </button>
+                <button id="nav-civilian" onclick="switchTab('civilian')" title="အရပ်သားဝန်ထမ်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
+                    <span class="font-bold">အရပ်သားဝန်ထမ်း</span>
                 </button>
                 <button id="nav-absent" onclick="switchTab('absent')" title="တန်းစီအင်အားစာရင်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
                     <span class="font-bold">တန်းစီအင်အားစာရင်း</span>
@@ -376,8 +379,8 @@
 
             <!-- DASHBOARD TAB -->
             <section id="dashboard-tab" class="tab-content space-y-5">
-                <!-- 4 Top Force Summary Cards -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <!-- 5 Top Force Summary Cards -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                     <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
                         <div>
                             <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အရာရှိအင်အား</span>
@@ -399,7 +402,14 @@
                         </div>
                         <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 flex items-center justify-center font-bold text-base">👷</div>
                     </div>
-                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                        <div>
+                            <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အရပ်သားဝန်ထမ်း</span>
+                            <span id="count-civilian" class="text-2xl font-black text-teal-600 dark:text-teal-400 mt-1 block">၀</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 flex items-center justify-center font-bold text-base">👔</div>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
                         <div class="flex items-center justify-between">
                             <div>
                                 <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">စုစုပေါင်းအင်အား</span>
@@ -467,15 +477,15 @@
                         <span id="dashboard-weapon-total-badge" class="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-bold text-[11px]">စုစုပေါင်းလက်နက်: ၀ လက်</span>
                     </div>
                     <div id="dashboard-weapon-distribution-linechart" class="overflow-x-auto pt-2 pb-1"></div>
-                    <div id="dashboard-weapon-distribution-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs pt-2 border-t border-slate-100 dark:border-slate-700"></div>
+                    <div id="dashboard-weapon-distribution-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-xs"></div>
                 </div>
             </section>
 
-            <!-- PERSONNEL DIRECTORY TAB (အရာရှိ / စစ်သည် / အမြဲတမ်းဝန်ထမ်း အမည်စာရင်း) -->
+            <!-- PERSONNEL DIRECTORY TAB (အရာရှိ / စစ်သည် / အမြဲတမ်းဝန်ထမ်း / အရပ်သားဝန်ထမ်း အမည်စာရင်း) -->
             <section id="personnel-tab" class="tab-content hidden space-y-4">
                 <div class="bg-white dark:bg-slate-800 p-3.5 sm:p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-3">
-                    <!-- 4 Summary Cards -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                    <!-- 5 Summary Cards -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-xs">
                         <div class="bg-amber-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-amber-200 dark:border-slate-600 flex justify-between items-center">
                             <span class="text-slate-600 dark:text-slate-300 font-semibold">အရာရှိ</span>
                             <span id="p-sub-officer" class="font-bold text-amber-700 dark:text-amber-300">၀</span>
@@ -485,10 +495,14 @@
                             <span id="p-sub-soldier" class="font-bold text-emerald-700 dark:text-emerald-300">၀</span>
                         </div>
                         <div class="bg-orange-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-orange-200 dark:border-slate-600 flex justify-between items-center">
-                            <span class="text-slate-600 dark:text-slate-300 font-semibold">ဝန်ထမ်း</span>
+                            <span class="text-slate-600 dark:text-slate-300 font-semibold">အမြဲတမ်းဝန်ထမ်း</span>
                             <span id="p-sub-staff" class="font-bold text-orange-700 dark:text-orange-300">၀</span>
                         </div>
-                        <div class="bg-blue-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-blue-200 dark:border-slate-600 flex justify-between items-center">
+                        <div class="bg-teal-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-teal-200 dark:border-slate-600 flex justify-between items-center">
+                            <span class="text-slate-600 dark:text-slate-300 font-semibold">အရပ်သားဝန်ထမ်း</span>
+                            <span id="p-sub-civilian" class="font-bold text-teal-700 dark:text-teal-300">၀</span>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 bg-blue-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-blue-200 dark:border-slate-600 flex justify-between items-center">
                             <span class="text-slate-600 dark:text-slate-300 font-semibold">စုစုပေါင်း</span>
                             <span id="p-sub-total" class="font-bold text-blue-700 dark:text-blue-300">၀</span>
                         </div>
@@ -1459,7 +1473,8 @@ var db = admin.firestore();</pre>
                         <div class="flex gap-1.5 border-b dark:border-slate-700 pb-2">
                             <button id="rank-tab-officer" onclick="showRankCategory('officer')" class="flex-1 bg-blue-900 text-white py-2 px-2 rounded-lg text-xs font-semibold">အရာရှိ</button>
                             <button id="rank-tab-soldier" onclick="showRankCategory('soldier')" class="flex-1 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 px-2 rounded-lg text-xs font-semibold">စစ်သည်</button>
-                            <button id="rank-tab-staff" onclick="showRankCategory('staff')" class="flex-1 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 px-2 rounded-lg text-xs font-semibold">ဝန်ထမ်း</button>
+                            <button id="rank-tab-staff" onclick="showRankCategory('staff')" class="flex-1 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 px-2 rounded-lg text-xs font-semibold">အမြဲတမ်း</button>
+                            <button id="rank-tab-civilian" onclick="showRankCategory('civilian')" class="flex-1 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 px-2 rounded-lg text-xs font-semibold">အရပ်သား</button>
                         </div>
                         <div id="rank-definitions-list" class="space-y-2 max-h-80 overflow-y-auto"></div>
                     </div>
@@ -1801,6 +1816,37 @@ var db = admin.firestore();</pre>
                             <span>လုံခြုံရေးတာဝန် (Security Duty)</span>
                         </label>
                         <div id="reset-duty-subtype-wrap" class="hidden pl-6 pt-0.5 pb-1">
+                            <div class="flex items-center gap-2 bg-white dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-blue-200 dark:border-slate-600">
+                                <label for="reset-duty-type" class="text-[11px] font-semibold text-slate-600 dark:text-slate-300 whitespace-nowrap">တာဝန်အမျိုးအစား:</label>
+                                <select id="reset-duty-type" class="flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded px-2 py-1 text-xs font-bold text-blue-800 dark:text-blue-300 outline-none"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="reset-target" value="armory" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
+                        <span>လက်နက် / ခဲယမ်းစာရင်း (Armory &amp; Ammunition)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="reset-target" value="prod" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
+                        <span>ထုတ်လုပ်မှုမှတ်တမ်း (Prod; Statement)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="reset-target" value="users" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
+                        <span>အသုံးပြုသူစာရင်း (User Management)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="reset-target" value="settings" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
+                        <span>စနစ်သတ်မှတ်ချက်များ (Settings)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="px-4 py-3 bg-slate-100 dark:bg-slate-700/40 flex justify-end gap-2 border-t dark:border-slate-700">
+                <button type="button" onclick="closeResetSelectionModal()" class="px-3.5 py-1.5 bg-slate-500 hover:bg-slate-600 text-white rounded-lg font-bold text-xs">မလုပ်တော့ပါ</button>
+                <button type="button" onclick="proceedSelectedResetConfirm()" class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg font-bold text-xs">ဆက်လက်လုပ်ဆောင်မည်</button>
+            </div>
+        </div>
+    </div>
+
     <!-- PROFILE PHOTO UPLOAD MODAL (အကောင့်ဝင်ရောက်သူများအတွက် Profile Photo ပြောင်းလဲရန်) -->
     <div id="profile-photo-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white dark:bg-slate-800 rounded-xl max-w-sm w-full shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden modal-animate">
@@ -1944,10 +1990,17 @@ var db = admin.firestore();</pre>
                 { full: 'ကျွမ်းကျင်အဆင့်-၅', abbr: 'ကျွမ်း-၅' },
                 { full: 'ထမင်းချက်', abbr: 'ထမင်းချက်' },
                 { full: 'လုပ်သား', abbr: 'လသ' }
+            ],
+            civilian: [
+                { full: 'နေ့စားဝန်ထမ်း', abbr: 'နေ့စား' },
+                { full: 'ပုတ်ပြတ်ဝန်ထမ်း', abbr: 'ပုတ်ပြတ်' },
+                { full: 'ယာယီအရပ်သားဝန်ထမ်း', abbr: 'ယာယီဝန်ထမ်း' },
+                { full: 'အရပ်သားကျွမ်းကျင်', abbr: 'အရပ်သားကျွမ်းကျင်' },
+                { full: 'အရပ်သားလုပ်သား', abbr: 'အရပ်သားလသ' }
             ]
         };
 
-        let staffTypeList = ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်'];
+        let staffTypeList = ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်', 'အရပ်သား'];
         let statusList = ['တန်းစီ', 'ပျက်ကွက်'];
         let securityDutyTypeList = ['တပ်တွင်း', 'တပ်ပြင်'];
         let armoryStatusList = ['ထုတ်ပေး', 'စတိုကျန်', 'ပြင်ဆင်ဆဲ'];
@@ -1992,7 +2045,14 @@ var db = admin.firestore();</pre>
             { id: 'ဝ-၆၁၀၀၀၇', rankFull: 'ကျွမ်းကျင်အဆင့်-၅', rankAbbr: 'ကျွမ်း-၅', name: 'ဦးကျော်သူရ', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', gender: 'ကျား', dob: '1993-05-19', nrc: '၁၂/သလန(နိုင်)၃၆၇၈၉၀', fatherName: 'ဦးသူရ', motherName: 'ဒေါ်နီနီ', occupation: 'ဂဟေဆက်', occupationType: 'စက်မှုကျွမ်းကျင်', position: 'ကျွမ်းကျင်အဆင့်-၅', staffType: 'သန္ဓေ', unitScope: 'တပ်ပြင်', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'အို', status: 'ပျက်ကွက်', absentReason: 'ဆေးရုံတက်', location: 'သန်လျင်ဆေးရုံ', phone: '၀၉-၂၅၁၀၀၃၀၀၇', address: 'သန်လျင်မြို့', remarks: 'ပြင်ပလူနာကုသမှု', photo: '' },
             { id: 'ဝ-၆၁၀၀၀၈', rankFull: 'အမှုထမ်း', rankAbbr: 'အမှုထမ်း', name: 'ဒေါ်အေးမြတ်မွန်', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', gender: 'မ', dob: '1994-09-23', nrc: '၁၂/တမန(နိုင်)၃၇၈၉၀၁', fatherName: 'ဦးမြတ်မွန်', motherName: 'ဒေါ်ခင်ဝင်း', occupation: 'ငွေစာရင်းစာရေး', occupationType: 'ငွေစာရင်း/စတို', position: 'အငယ်တန်းစာရေး', staffType: 'သန္ဓေ', unitScope: 'တပ်တွင်း', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'ပျို', status: 'တန်းစီ', absentReason: '', location: 'စီမံရေးဌာန', phone: '၀၉-၂၅၁၀၀၃၀၀၈', address: 'တာမွေမြို့နယ်', remarks: 'ငွေစာရင်းဌာနစိတ်', photo: '' },
             { id: 'ဝ-၆၁၀၀၀၉', rankFull: 'လုပ်သား', rankAbbr: 'လသ', name: 'ဦးမောင်မောင်လတ်', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', gender: 'ကျား', dob: '1990-01-11', nrc: '၁၂/မဘန(နိုင်)၃၈၉၀၁၂', fatherName: 'ဦးမောင်လတ်', motherName: 'ဒေါ်တင်အေး', occupation: 'အထွေထွေလုပ်သား', occupationType: 'အထွေထွေလုပ်ငန်း', position: 'လုပ်သား', staffType: 'ယာယီတာဝန်', unitScope: 'တပ်တွင်း', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'အို', status: 'တန်းစီ', absentReason: '', location: 'စက်ရုံဌာနချုပ်', phone: '၀၉-၂၅၁၀၀၃၀၀၉', address: 'မှော်ဘီမြို့', remarks: 'သန့်ရှင်းရေးနှင့် ပြုပြင်ရေး', photo: '' },
-            { id: 'ဝ-၆၁၀၀၁၀', rankFull: 'လုပ်သား', rankAbbr: 'လသ', name: 'ဒေါ်စန်းစန်းဌေး', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', gender: 'မ', dob: '1995-11-28', nrc: '၁၂/ရပသ(နိုင်)၃၉၀၁၂၃', fatherName: 'ဦးဌေးဝင်း', motherName: 'ဒေါ်စန်းမြင့်', occupation: 'ထုပ်ပိုးလုပ်သား', occupationType: 'အထွေထွေလုပ်ငန်း', position: 'လုပ်သား', staffType: 'သန္ဓေ', unitScope: 'တပ်ပြင်', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'ပျို', status: 'ပျက်ကွက်', absentReason: 'အခြား', location: 'ရွှေပြည်သာ', phone: '၀၉-၂၅၁၀၀၃၀၁၀', address: 'ရွှေပြည်သာ', remarks: 'မိသားစုကိစ္စခွင့်ပြု', photo: '' }
+            { id: 'ဝ-၆၁၀၀၁၀', rankFull: 'လုပ်သား', rankAbbr: 'လသ', name: 'ဒေါ်စန်းစန်းဌေး', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', gender: 'မ', dob: '1995-11-28', nrc: '၁၂/ရပသ(နိုင်)၃၉၀၁၂၃', fatherName: 'ဦးဌေးဝင်း', motherName: 'ဒေါ်စန်းမြင့်', occupation: 'ထုပ်ပိုးလုပ်သား', occupationType: 'အထွေထွေလုပ်ငန်း', position: 'လုပ်သား', staffType: 'သန္ဓေ', unitScope: 'တပ်ပြင်', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'ပျို', status: 'ပျက်ကွက်', absentReason: 'အခြား', location: 'ရွှေပြည်သာ', phone: '၀၉-၂၅၁၀၀၃၀၁၀', address: 'ရွှေပြည်သာ', remarks: 'မိသားစုကိစ္စခွင့်ပြု', photo: '' },
+
+            // ၄။ အရပ်သားဝန်ထမ်းအမည်စာရင်း (နမူနာ ၅ ဦး)
+            { id: 'အရပ်-၇၁၀၀၀၁', rankFull: 'နေ့စားဝန်ထမ်း', rankAbbr: 'နေ့စား', name: 'ဦးအောင်မျိုးဝင်း', roleGroup: 'အရပ်သားဝန်ထမ်း', deptFull: 'ထုတ်လုပ်ရေးဌာန-၁', deptAbbr: 'ထလရ-၁', gender: 'ကျား', dob: '1992-04-15', nrc: '၁၂/အစန(နိုင်)၄၀၁၂၃၄', fatherName: 'ဦးမျိုးဝင်း', motherName: 'ဒေါ်တင်လှ', occupation: 'အရပ်သားစက်အကူ', occupationType: 'စက်မှုအထောက်အကူ', position: 'နေ့စားဝန်ထမ်း', staffType: 'ယာယီတာဝန်', unitScope: 'တပ်တွင်း', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'အို', status: 'တန်းစီ', absentReason: '', location: 'ထုတ်လုပ်ရေးဌာန-၁', phone: '၀၉-၆၉၁၀၀၄၀၀၁', address: 'အင်းစိန်မြို့နယ်', remarks: 'နေ့စားအလုပ်သမား', photo: '' },
+            { id: 'အရပ်-၇၁၀၀၀၂', rankFull: 'ပုတ်ပြတ်ဝန်ထမ်း', rankAbbr: 'ပုတ်ပြတ်', name: 'ဒေါ်မေသဇင်', roleGroup: 'အရပ်သားဝန်ထမ်း', deptFull: 'စီမံရေးဌာန', deptAbbr: 'စမရ', gender: 'မ', dob: '1996-08-19', nrc: '၁၂/မဂဒ(နိုင်)၄၁၂၃၄၅', fatherName: 'ဦးသဇင်', motherName: 'ဒေါ်အေးမြင့်', occupation: 'စာဖိုဆောင်အကူ', occupationType: 'အထွေထွေလုပ်ငန်း', position: 'ပုတ်ပြတ်ဝန်ထမ်း', staffType: 'ယာယီတာဝန်', unitScope: 'တပ်တွင်း', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'ပျို', status: 'တန်းစီ', absentReason: '', location: 'စီမံရေးဌာန', phone: '၀၉-၆၉၁၀၀၄၀၀၂', address: 'မင်္ဂလာဒုံ', remarks: 'စားရိပ်သာအကူ', photo: '' },
+            { id: 'အရပ်-၇၁၀၀၀၃', rankFull: 'အရပ်သားကျွမ်းကျင်', rankAbbr: 'အရပ်သားကျွမ်းကျင်', name: 'ဦးဇော်လင်းထွန်း', roleGroup: 'အရပ်သားဝန်ထမ်း', deptFull: 'ထုတ်လုပ်ရေးဌာန-၂', deptAbbr: 'ထလရ-၂', gender: 'ကျား', dob: '1989-11-02', nrc: '၁၂/လသယ(နိုင်)၄၂၃၄၅၆', fatherName: 'ဦးလင်းထွန်း', motherName: 'ဒေါ်ခင်မာ', occupation: 'လျှပ်စစ်ပြင်ဆင်ရေး', occupationType: 'စက်မှုကျွမ်းကျင်', position: 'အရပ်သားကျွမ်းကျင်', staffType: 'ယာယီတာဝန်', unitScope: 'တပ်တွင်း', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'အို', status: 'တန်းစီ', absentReason: '', location: 'ထုတ်လုပ်ရေးဌာန-၂', phone: '၀၉-၆၉၁၀၀၄၀၀၃', address: 'လှိုင်သာယာ', remarks: 'လျှပ်စစ်ပိုင်းအကူ', photo: '' },
+            { id: 'အရပ်-၇၁၀၀၀၄', rankFull: 'ယာယီအရပ်သားဝန်ထမ်း', rankAbbr: 'ယာယီဝန်ထမ်း', name: 'ဒေါ်ဖြူဖြူသင်း', roleGroup: 'အရပ်သားဝန်ထမ်း', deptFull: 'စစ်ဆေးရေးဌာန', deptAbbr: 'စဆရ', gender: 'မ', dob: '1997-02-24', nrc: '၁၂/ရပသ(နိုင်)၄၃၄၅၆၇', fatherName: 'ဦးသင်းအောင်', motherName: 'ဒေါ်စန်းနွဲ့', occupation: 'ထုပ်ပိုးရေးအကူ', occupationType: 'အထွေထွေလုပ်ငန်း', position: 'ယာယီအရပ်သားဝန်ထမ်း', staffType: 'ယာယီတာဝန်', unitScope: 'တပ်ပြင်', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'ပျို', status: 'ပျက်ကွက်', absentReason: 'ခွင့်', location: 'ရွှေပြည်သာ', phone: '၀၉-၆၉၁၀၀၄၀၀၄', address: 'ရွှေပြည်သာ', remarks: 'ခွင့်တိုင်ကြားထား', photo: '' },
+            { id: 'အရပ်-၇၁၀၀၀၅', rankFull: 'အရပ်သားလုပ်သား', rankAbbr: 'အရပ်သားလသ', name: 'ဦးကျော်မင်းလတ်', roleGroup: 'အရပ်သားဝန်ထမ်း', deptFull: 'စက်ရုံဌာနချုပ်', deptAbbr: 'ဌနခ', gender: 'ကျား', dob: '1993-07-10', nrc: '၁၂/မဘန(နိုင်)၄၄၅၆၇၈', fatherName: 'ဦးမင်းလတ်', motherName: 'ဒေါ်တင်တင်', occupation: 'ခြံသန့်ရှင်းရေး', occupationType: 'အထွေထွေလုပ်ငန်း', position: 'အရပ်သားလုပ်သား', staffType: 'ယာယီတာဝန်', unitScope: 'တပ်တွင်း', race: 'ဗမာ', religion: 'ဗုဒ္ဓ', maritalStatus: 'အို', status: 'တန်းစီ', absentReason: '', location: 'စက်ရုံဌာနချုပ်', phone: '၀၉-၆၉၁၀၀၄၀၀၅', address: 'မှော်ဘီမြို့', remarks: 'ပတ်ဝန်းကျင်သန့်ရှင်းရေး', photo: '' }
         ];
         let securityDutyData = [
             { id: 'ကြည်း-၄၁၀၀၉', rankAbbr: 'ဗိုလ်', name: 'ဖြိုးဝေကျော်', deptAbbr: 'ထလရ-၂', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'တပ်တွင်းလုံခြုံရေးအဖွဲ့ခေါင်းဆောင်', dutyType: 'တပ်တွင်း', location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်', weaponType: 'MA-5 MK-II', weaponModel: '9mm Pistol', weaponCode: 'WPN-101', weaponSerial: 'SN-2026101', ammoCount: 'ကျည် ၃၀ တောင့်', startDate: '2026-11-15' },
@@ -2175,6 +2235,7 @@ var db = admin.firestore();</pre>
             officer: 1,
             soldier: 1,
             staff: 1,
+            civilian: 1,
             ALL: 1,
             absent: 1,
             duty: 1,
@@ -2186,6 +2247,7 @@ var db = admin.firestore();</pre>
             if (activePersonnelCategoryTab === 'အရာရှိ') return 'officer';
             if (activePersonnelCategoryTab === 'စစ်သည်') return 'soldier';
             if (activePersonnelCategoryTab === 'အမြဲတမ်းဝန်ထမ်း') return 'staff';
+            if (activePersonnelCategoryTab === 'အရပ်သားဝန်ထမ်း') return 'civilian';
             return 'ALL';
         }
 
@@ -2257,8 +2319,17 @@ var db = admin.firestore();</pre>
         }
 
         function resolvePersonnelRoleGroup(person) {
+            if (person.roleGroup === 'အရပ်သားဝန်ထမ်း') return 'အရပ်သားဝန်ထမ်း';
+            if (person.roleGroup === 'အမြဲတမ်းဝန်ထမ်း') return 'အမြဲတမ်းဝန်ထမ်း';
+            if (person.roleGroup === 'အရာရှိ') return 'အရာရှိ';
+            if (person.roleGroup === 'စစ်သည်') return 'စစ်သည်';
+
             const rankStr = String(person.rankAbbr || person.rankFull || '').trim();
             const typeStr = String(person.staffType || '').trim();
+            const idStr = String(person.id || '').trim();
+            if ((RANK_DEFINITIONS.civilian || []).some(r => r.abbr === rankStr || r.full === rankStr) || typeStr === 'အရပ်သားဝန်ထမ်း' || idStr.startsWith('အရပ်')) {
+                return 'အရပ်သားဝန်ထမ်း';
+            }
             if ((RANK_DEFINITIONS.officer || []).some(r => r.abbr === rankStr || r.full === rankStr) || typeStr === 'အရာရှိ') {
                 return 'အရာရှိ';
             }
@@ -2281,7 +2352,10 @@ var db = admin.firestore();</pre>
                 if (Array.isArray(parsed.staffTypeList) && parsed.staffTypeList.length) {
                     const legacyDefaults = ['အရာရှိ', 'စစ်သည်', 'အမြဲတမ်းဝန်ထမ်း'];
                     const isExactLegacy = parsed.staffTypeList.length === 3 && parsed.staffTypeList.every((v, i) => v === legacyDefaults[i]);
-                    staffTypeList = isExactLegacy ? ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်'] : parsed.staffTypeList;
+                    staffTypeList = isExactLegacy ? ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်', 'အရပ်သား'] : parsed.staffTypeList;
+                    if (!staffTypeList.includes('အရပ်သား')) {
+                        staffTypeList.push('အရပ်သား');
+                    }
                 }
                 if (Array.isArray(parsed.statusList) && parsed.statusList.length) statusList = parsed.statusList;
                 if (Array.isArray(parsed.securityDutyTypeList) && parsed.securityDutyTypeList.length) securityDutyTypeList = parsed.securityDutyTypeList;
@@ -2306,6 +2380,9 @@ var db = admin.firestore();</pre>
                             RANK_DEFINITIONS.staff.push({ full: 'ထမင်းချက်', abbr: 'ထမင်းချက်' });
                         }
                     }
+                    if (!Array.isArray(RANK_DEFINITIONS.civilian) || RANK_DEFINITIONS.civilian.length === 0) {
+                        RANK_DEFINITIONS.civilian = JSON.parse(JSON.stringify(DEFAULT_RANK_DEFINITIONS.civilian));
+                    }
                 }
                 if (Array.isArray(parsed.personnelData)) personnelData = parsed.personnelData;
                 if (Array.isArray(parsed.securityDutyData)) securityDutyData = parsed.securityDutyData;
@@ -2324,8 +2401,9 @@ var db = admin.firestore();</pre>
                 dashboard: { sectionId: 'dashboard-tab', title: 'Dashboard Summary', category: 'ALL' },
                 officer: { sectionId: 'personnel-tab', title: 'အရာရှိအမည်စာရင်း', category: 'အရာရှိ' },
                 soldier: { sectionId: 'personnel-tab', title: 'စစ်သည်အမည်စာရင်း', category: 'စစ်သည်' },
-                staff: { sectionId: 'personnel-tab', title: 'ဝန်ထမ်းအမည်စာရင်း', category: 'အမြဲတမ်းဝန်ထမ်း' },
-                personnel: { sectionId: 'personnel-tab', title: 'ဝန်ထမ်းအမည်စာရင်း', category: 'ALL' },
+                staff: { sectionId: 'personnel-tab', title: 'အမြဲတမ်းဝန်ထမ်း', category: 'အမြဲတမ်းဝန်ထမ်း' },
+                civilian: { sectionId: 'personnel-tab', title: 'အရပ်သားဝန်ထမ်း', category: 'အရပ်သားဝန်ထမ်း' },
+                personnel: { sectionId: 'personnel-tab', title: 'အမြဲတမ်းဝန်ထမ်း', category: 'ALL' },
                 absent: { sectionId: 'absent-tab', title: 'တန်းစီအင်အားစာရင်းနှင့် ပျက်ကွက်အမည်စာရင်း', category: 'ALL' },
                 duty: { sectionId: 'duty-tab', title: 'လုံခြုံရေးတာဝန်အမည်စာရင်း', category: 'ALL' },
                 armory: { sectionId: 'armory-tab', title: 'လက်နက် / ခဲယမ်းစာရင်း', category: 'ALL' },
@@ -2359,7 +2437,7 @@ var db = admin.firestore();</pre>
             // Render active view
             if (tabName === 'dashboard') {
                 renderDashboardView();
-            } else if (['officer', 'soldier', 'staff', 'personnel'].includes(tabName)) {
+            } else if (['officer', 'soldier', 'staff', 'civilian', 'personnel'].includes(tabName)) {
                 initInlinePersonnelControls();
                 renderPersonnelDirectory();
             } else if (tabName === 'absent') {
@@ -2384,6 +2462,159 @@ var db = admin.firestore();</pre>
         function toMyanmarNumerals(val) {
             const digits = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
             return String(val ?? '').replace(/[0-9]/g, d => digits[Number(d)]);
+        }
+
+        function formatDisplayDate(dateStr) {
+            const raw = String(dateStr || '').trim();
+            if (!raw || raw === '-') return '-';
+            const parts = raw.split('-');
+            if (parts.length === 3 && parts[0].length === 4) {
+                return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+            return raw;
+        }
+
+        function openPersonnelDetail(index) {
+            const p = personnelData[index];
+            if (!p) return;
+            const modal = document.getElementById('personnel-modal');
+            if (!modal) return;
+
+            const photoContainer = document.getElementById('detail-photo-container');
+            if (photoContainer) {
+                photoContainer.innerHTML = p.photo
+                    ? `<img src="${p.photo}" alt="${p.name}" class="w-full h-full object-cover">`
+                    : `<span id="detail-avatar-fallback">👤</span>`;
+            }
+
+            const setText = (id, val) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = (val !== undefined && val !== null && String(val).trim() !== '') ? val : '-';
+            };
+
+            setText('detail-name', `${getRankAbbr(p.rankAbbr || p.rankFull)} ${p.name}`);
+            setText('detail-role', `${resolvePersonnelRoleGroup(p)} • ${getDeptFull(p.deptAbbr || p.deptFull)}`);
+            setText('detail-id', p.id);
+            setText('detail-rank', p.rankFull || p.rankAbbr);
+            setText('detail-fullname', p.name);
+            setText('detail-dept', p.deptFull || p.deptAbbr);
+            setText('detail-gender', p.gender || 'ကျား');
+            setText('detail-dob', formatDisplayDate(p.dob));
+            setText('detail-nrc', p.nrc);
+            setText('detail-father', p.fatherName);
+            setText('detail-mother', p.motherName);
+            setText('detail-occupation', p.occupation);
+            setText('detail-occ-type', p.occupationType);
+            setText('detail-position', p.position);
+            setText('detail-staff-type', p.staffType);
+            setText('detail-unit-scope', p.unitScope || 'တပ်တွင်း');
+            setText('detail-race', p.race);
+            setText('detail-religion', p.religion);
+            setText('detail-marital', p.maritalStatus);
+            setText('detail-status', p.status);
+            setText('detail-absent-reason-inline', p.status === 'ပျက်ကွက်' ? (p.absentReason || '-') : '-');
+            setText('detail-location', p.location);
+            setText('detail-phone', p.phone);
+            setText('detail-address', p.address);
+            setText('detail-remarks', p.remarks);
+
+            const absentRow = document.getElementById('detail-absent-reason-row');
+            if (absentRow) {
+                if (p.status === 'ပျက်ကွက်' && p.absentReason) {
+                    absentRow.classList.remove('hidden');
+                    setText('detail-absent-reason', p.absentReason);
+                } else {
+                    absentRow.classList.add('hidden');
+                }
+            }
+
+            const editBtn = document.getElementById('detail-edit-btn');
+            if (editBtn) {
+                editBtn.onclick = () => {
+                    closePersonnelModal();
+                    openPersonnelForm(index);
+                };
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closePersonnelModal() {
+            document.getElementById('personnel-modal')?.classList.add('hidden');
+        }
+
+        function populateStaffTypeSelect() {
+            const sel = document.getElementById('p-form-type');
+            if (!sel) return;
+            sel.innerHTML = staffTypeList.map(t => `<option value="${t}">${t}</option>`).join('') + `<option value="CUSTOM">Custom</option>`;
+        }
+
+        function populateDeptSelect(selectId) {
+            const sel = document.getElementById(selectId);
+            if (!sel) return;
+            sel.innerHTML = DEPT_MAPPING.map(d => `<option value="${d.abbr}">${d.full} (${d.abbr})</option>`).join('') + `<option value="CUSTOM">Custom</option>`;
+        }
+
+        function populateStatusSelect() {
+            const sel = document.getElementById('p-form-status');
+            if (!sel) return;
+            sel.innerHTML = statusList.map(s => `<option value="${s}">${s}</option>`).join('') + `<option value="CUSTOM">Custom</option>`;
+        }
+
+        function handleStaffTypeChange() {
+            const typeSel = document.getElementById('p-form-type');
+            const customType = document.getElementById('p-form-type-custom');
+            const rankSel = document.getElementById('p-form-rank');
+            if (!typeSel || !rankSel) return;
+
+            if (customType) {
+                if (typeSel.value === 'CUSTOM') {
+                    customType.classList.remove('hidden');
+                    customType.setAttribute('required', 'required');
+                } else {
+                    customType.classList.add('hidden');
+                    customType.removeAttribute('required');
+                }
+            }
+
+            const scope = activePersonnelCategoryTab !== 'ALL' ? activePersonnelCategoryTab : typeSel.value;
+            let cats = ['officer', 'soldier', 'staff', 'civilian'];
+            if (scope === 'အရာရှိ') cats = ['officer'];
+            else if (scope === 'စစ်သည်') cats = ['soldier'];
+            else if (scope === 'အမြဲတမ်းဝန်ထမ်း') cats = ['staff'];
+            else if (scope === 'အရပ်သားဝန်ထမ်း') cats = ['civilian'];
+
+            const ranks = [];
+            cats.forEach(c => (RANK_DEFINITIONS[c] || []).forEach(r => ranks.push(r)));
+            rankSel.innerHTML = ranks.map(r => `<option value="${r.abbr}" data-full="${r.full}">${r.full} (${r.abbr})</option>`).join('') + `<option value="CUSTOM">Custom</option>`;
+            handleRankChange();
+        }
+
+        function handleRankChange() {
+            const rankSel = document.getElementById('p-form-rank');
+            const customInput = document.getElementById('p-form-rank-custom');
+            if (!rankSel || !customInput) return;
+            if (rankSel.value === 'CUSTOM') {
+                customInput.classList.remove('hidden');
+                customInput.setAttribute('required', 'required');
+            } else {
+                customInput.classList.add('hidden');
+                customInput.removeAttribute('required');
+            }
+        }
+
+        function handlePhotoUpload(event) {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Str = e.target.result;
+                const hiddenEl = document.getElementById('p-form-photo-base64');
+                const previewEl = document.getElementById('p-form-photo-preview');
+                if (hiddenEl) hiddenEl.value = base64Str;
+                if (previewEl) previewEl.innerHTML = `<img src="${base64Str}" class="w-full h-full object-cover">`;
+            };
+            reader.readAsDataURL(file);
         }
 
         function showToast(message, type = 'info') {
@@ -2423,7 +2654,7 @@ var db = admin.firestore();</pre>
 
         function getRankAbbr(rankVal) {
             const val = String(rankVal || '').trim();
-            for (const cat of ['officer', 'soldier', 'staff']) {
+            for (const cat of ['officer', 'soldier', 'staff', 'civilian']) {
                 const found = (RANK_DEFINITIONS[cat] || []).find(r => r.full === val || r.abbr === val);
                 if (found) return found.abbr;
             }
@@ -2432,7 +2663,7 @@ var db = admin.firestore();</pre>
 
         function getRankFull(rankVal) {
             const val = String(rankVal || '').trim();
-            for (const cat of ['officer', 'soldier', 'staff']) {
+            for (const cat of ['officer', 'soldier', 'staff', 'civilian']) {
                 const found = (RANK_DEFINITIONS[cat] || []).find(r => r.full === val || r.abbr === val);
                 if (found) return found.full;
             }
@@ -2456,7 +2687,8 @@ var db = admin.firestore();</pre>
             const orderedAll = [
                 ...(RANK_DEFINITIONS.officer || []),
                 ...(RANK_DEFINITIONS.soldier || []),
-                ...(RANK_DEFINITIONS.staff || [])
+                ...(RANK_DEFINITIONS.staff || []),
+                ...(RANK_DEFINITIONS.civilian || [])
             ];
             const idx = orderedAll.findIndex(r => r.abbr === rVal || r.full === rVal);
             return idx === -1 ? 999 : idx;
@@ -2591,7 +2823,7 @@ var db = admin.firestore();</pre>
                     userData = userData.filter(u => (u.username || '').toLowerCase() === 'ppa45929@gmail.com');
                 }
                 if (checkedTargets.includes('settings')) {
-                    staffTypeList = ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်'];
+                    staffTypeList = ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်', 'အရပ်သား'];
                     statusList = ['တန်းစီ', 'ပျက်ကွက်'];
                     securityDutyTypeList = ['တပ်တွင်း', 'တပ်ပြင်'];
                     armoryStatusList = ['ထုတ်ပေး', 'စတိုကျန်', 'ပြင်ဆင်ဆဲ'];
@@ -3430,20 +3662,318 @@ var db = admin.firestore();</pre>
         function syncInlinePersonnelRanks() {
             const rankSel = document.getElementById('p-in-rank');
             if (!rankSel) return;
-            let targetCats = ['officer', 'soldier', 'staff'];
-            if (activePersonnelCategoryTab === 'အရာရှိ') targetCats = ['officer'];
-            else if (activePersonnelCategoryTab === 'စစ်သည်') targetCats = ['soldier'];
-            else if (activePersonnelCategoryTab === 'အမြဲတမ်းဝန်ထမ်း') targetCats = ['staff'];
+            const selectedStaffType = document.getElementById('p-in-type')?.value || '';
+            const categoryScope = activePersonnelCategoryTab !== 'ALL' ? activePersonnelCategoryTab : selectedStaffType;
+            let targetCats = ['officer', 'soldier', 'staff', 'civilian'];
+            if (categoryScope === 'အရာရှိ') targetCats = ['officer'];
+            else if (categoryScope === 'စစ်သည်') targetCats = ['soldier'];
+            else if (categoryScope === 'အမြဲတမ်းဝန်ထမ်း') targetCats = ['staff'];
+            else if (categoryScope === 'အရပ်သားဝန်ထမ်း') targetCats = ['civilian'];
 
             const ranks = [];
             targetCats.forEach(cat => {
                 (RANK_DEFINITIONS[cat] || []).forEach(r => ranks.push(r));
             });
-            const curVal = rankSel.value;
             rankSel.innerHTML = ranks.map(r => `<option value="${r.abbr}" data-full="${r.full}">${r.full} (${r.abbr})</option>`).join('');
-            if (curVal && ranks.some(r => r.abbr === curVal)) {
-                rankSel.value = curVal;
+        }
+
+        function toggleDutyFormPanel(forceOpen) {
+            const body = document.getElementById('d-collapsible-form-body');
+            const arrow = document.getElementById('d-form-toggle-arrow');
+            if (!body) return;
+            const willOpen = typeof forceOpen === 'boolean' ? forceOpen : body.classList.contains('hidden');
+            body.classList.toggle('hidden', !willOpen);
+            if (arrow) {
+                arrow.style.transform = willOpen ? 'rotate(180deg)' : 'rotate(0deg)';
             }
+        }
+
+        function autoFillDutyById() {
+            const idVal = (document.getElementById('d-in-id')?.value || '').trim();
+            if (!idVal) return;
+            const matched = personnelData.find(p => (p.id || '').trim().toLowerCase() === idVal.toLowerCase());
+            if (!matched) return;
+
+            const typeSel = document.getElementById('d-in-type');
+            if (typeSel && matched.staffType) {
+                typeSel.value = matched.staffType;
+                syncInlineDutyRanks();
+            }
+            const rankSel = document.getElementById('d-in-rank');
+            if (rankSel) {
+                const abbr = getRankAbbr(matched.rankAbbr || matched.rankFull);
+                if (!Array.from(rankSel.options).some(o => o.value === abbr)) {
+                    rankSel.add(new Option(`${matched.rankFull || abbr} (${abbr})`, abbr));
+                }
+                rankSel.value = abbr;
+            }
+            const nameEl = document.getElementById('d-in-name');
+            if (nameEl) nameEl.value = matched.name || '';
+            const deptSel = document.getElementById('d-in-dept');
+            if (deptSel) deptSel.value = getDeptAbbr(matched.deptAbbr || matched.deptFull);
+        }
+
+        function selectDutyForInlineEdit(index) {
+            const d = securityDutyData[index];
+            if (!d) return;
+            toggleDutyFormPanel(true);
+            document.getElementById('d-inline-index').value = index;
+            document.getElementById('d-in-id').value = d.id || '';
+            const typeSel = document.getElementById('d-in-type');
+            if (typeSel && d.staffType) typeSel.value = d.staffType;
+            syncInlineDutyRanks();
+
+            const rankSel = document.getElementById('d-in-rank');
+            if (rankSel) {
+                const abbr = getRankAbbr(d.rankAbbr || '');
+                if (abbr && !Array.from(rankSel.options).some(o => o.value === abbr)) {
+                    rankSel.add(new Option(abbr, abbr));
+                }
+                rankSel.value = abbr;
+            }
+            document.getElementById('d-in-name').value = d.name || '';
+            document.getElementById('d-in-dept').value = getDeptAbbr(d.deptAbbr || '');
+            document.getElementById('d-in-duty-type').value = d.dutyType || 'တပ်တွင်း';
+            document.getElementById('d-in-location').value = d.location || '';
+
+            const weaponSel = document.getElementById('d-in-weapon');
+            const customInput = document.getElementById('d-in-weapon-custom');
+            const wType = (d.weaponType || '').trim();
+            if (weaponSel) {
+                if (Array.from(weaponSel.options).some(o => o.value === wType)) {
+                    weaponSel.value = wType;
+                    if (customInput) {
+                        customInput.value = '';
+                        customInput.classList.add('hidden');
+                    }
+                } else if (wType && wType !== '-') {
+                    weaponSel.value = 'Custom';
+                    if (customInput) {
+                        customInput.value = wType;
+                        customInput.classList.remove('hidden');
+                    }
+                } else {
+                    weaponSel.value = '';
+                }
+            }
+            document.getElementById('d-in-weapon-model').value = d.weaponModel && d.weaponModel !== '-' ? d.weaponModel : '';
+            document.getElementById('d-in-weapon-code').value = d.weaponCode && d.weaponCode !== '-' ? d.weaponCode : '';
+            document.getElementById('d-in-weapon-serial').value = d.weaponSerial && d.weaponSerial !== '-' ? d.weaponSerial : '';
+            document.getElementById('d-in-ammo').value = d.ammoCount && d.ammoCount !== '-' ? d.ammoCount : '';
+            document.getElementById('d-in-date').value = d.startDate && d.startDate !== '-' ? d.startDate : '';
+            document.getElementById('d-in-remarks').value = d.remarks || '';
+
+            document.getElementById('main-workspace')?.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast(`"${d.name}" ၏ လုံခြုံရေးတာဝန် အချက်အလက်အား ပြင်ဆင်ရန် ရွေးချယ်ပြီးပါပြီ`, 'info');
+        }
+
+        function readDutyFormPayload() {
+            const weaponSelVal = document.getElementById('d-in-weapon')?.value || '';
+            const customWeaponVal = (document.getElementById('d-in-weapon-custom')?.value || '').trim();
+            const weaponType = weaponSelVal === 'Custom' ? (customWeaponVal || '-') : (weaponSelVal || '-');
+
+            return {
+                id: document.getElementById('d-in-id').value.trim(),
+                rankAbbr: document.getElementById('d-in-rank').value,
+                name: document.getElementById('d-in-name').value.trim().replace(/^(ဦး|ဒေါ်)\s*/g, ''),
+                deptAbbr: document.getElementById('d-in-dept').value,
+                staffType: document.getElementById('d-in-type').value,
+                status: 'ပျက်ကွက်',
+                absentReason: 'လုံခြုံရေးတာဝန်',
+                dutyType: document.getElementById('d-in-duty-type').value,
+                location: document.getElementById('d-in-location').value.trim() || '-',
+                weaponType,
+                weaponModel: document.getElementById('d-in-weapon-model').value.trim() || '-',
+                weaponCode: document.getElementById('d-in-weapon-code').value.trim() || '-',
+                weaponSerial: document.getElementById('d-in-weapon-serial').value.trim() || '-',
+                ammoCount: document.getElementById('d-in-ammo').value.trim() || '-',
+                startDate: document.getElementById('d-in-date').value || new Date().toISOString().split('T')[0],
+                remarks: document.getElementById('d-in-remarks').value.trim()
+            };
+        }
+
+        function inlineAddDuty() {
+            if (!guardWritePermission()) return;
+            const payload = readDutyFormPayload();
+            if (!payload.id || !payload.name) {
+                showToast('ကိုယ်ပိုင်အမှတ်နှင့် အမည် ဖြည့်သွင်းပေးပါ', 'error');
+                return;
+            }
+            securityDutyData.unshift(payload);
+            const pIdx = personnelData.findIndex(p => (p.id || '').trim() === payload.id);
+            if (pIdx >= 0) {
+                personnelData[pIdx].status = 'ပျက်ကွက်';
+                personnelData[pIdx].absentReason = 'လုံခြုံရေးတာဝန်';
+                personnelData[pIdx].location = payload.location;
+            }
+            saveSystemState();
+            inlineClearDuty(false);
+            renderSecurityDuty();
+            renderDashboardView();
+            showToast('လုံခြုံရေးတာဝန် စာရင်းသစ် ထည့်သွင်းပြီးပါပြီ', 'success');
+        }
+
+        function inlineSaveDuty() {
+            if (!guardWritePermission()) return;
+            const idx = parseInt(document.getElementById('d-inline-index').value);
+            if (idx < 0 || !securityDutyData[idx]) {
+                showToast('ပြင်ဆင်လိုသော စာရင်းအား ဇယားကွက်အတွင်းမှ Edit ခလုတ်နှိပ်၍ အရင်ရွေးချယ်ပါ', 'error');
+                return;
+            }
+            const payload = readDutyFormPayload();
+            if (!payload.id || !payload.name) {
+                showToast('ကိုယ်ပိုင်အမှတ်နှင့် အမည် ဖြည့်သွင်းပေးပါ', 'error');
+                return;
+            }
+            securityDutyData[idx] = { ...securityDutyData[idx], ...payload };
+            saveSystemState();
+            inlineClearDuty(false);
+            renderSecurityDuty();
+            renderDashboardView();
+            showToast('လုံခြုံရေးတာဝန် အချက်အလက်အား သိမ်းဆည်း (Save) ပြီးပါပြီ', 'success');
+        }
+
+        function inlineDeleteDuty() {
+            const idx = parseInt(document.getElementById('d-inline-index').value);
+            if (idx < 0 || !securityDutyData[idx]) {
+                showToast('ဖျက်လိုသော စာရင်းအား စာရင်းမှ အရင်ရွေးချယ်ပါ', 'error');
+                return;
+            }
+            confirmDeleteDuty(idx, true);
+        }
+
+        function confirmDeleteDuty(index, clearInline = false) {
+            if (!guardWritePermission()) return;
+            const d = securityDutyData[index];
+            if (!d) return;
+            openConfirmModal(`"${d.name}" (${d.id}) ၏ လုံခြုံရေးတာဝန် စာရင်းကို ဖျက်မည်။ သေချာပါသလား?`, () => {
+                securityDutyData.splice(index, 1);
+                saveSystemState();
+                if (clearInline) inlineClearDuty(false);
+                renderSecurityDuty();
+                renderDashboardView();
+                showToast('လုံခြုံရေးတာဝန် စာရင်းအား ဖျက်ကွက်ပြီးပါပြီ', 'error');
+            });
+        }
+
+        function inlineClearDuty(notify = true) {
+            document.getElementById('d-inline-index').value = -1;
+            document.getElementById('d-in-id').value = '';
+            document.getElementById('d-in-name').value = '';
+            document.getElementById('d-in-location').value = '';
+            const weaponSel = document.getElementById('d-in-weapon');
+            const customInput = document.getElementById('d-in-weapon-custom');
+            if (weaponSel) weaponSel.value = '';
+            if (customInput) {
+                customInput.value = '';
+                customInput.classList.add('hidden');
+            }
+            document.getElementById('d-in-weapon-model').value = '';
+            document.getElementById('d-in-weapon-code').value = '';
+            document.getElementById('d-in-weapon-serial').value = '';
+            document.getElementById('d-in-ammo').value = '';
+            document.getElementById('d-in-date').value = '';
+            document.getElementById('d-in-remarks').value = '';
+            if (notify) showToast('အကွက်များအား ရှင်းလင်းပြီးပါပြီ', 'info');
+        }
+
+        function renderSecurityDuty() {
+            const container = document.getElementById('duty-list-container');
+            const mobileContainer = document.getElementById('duty-mobile-container');
+            if (!container) return;
+
+            const query = (document.getElementById('duty-search')?.value || '').trim().toLowerCase();
+            const dutyTypeFilter = document.getElementById('duty-filter-dutytype')?.value || 'ALL';
+            const deptFilter = document.getElementById('duty-filter-dept')?.value || 'ALL';
+            const typeFilter = document.getElementById('duty-filter-type')?.value || 'ALL';
+
+            const filtered = securityDutyData.filter(d => {
+                const matchesQuery = (d.id || '').toLowerCase().includes(query) ||
+                                     (d.rankAbbr || '').toLowerCase().includes(query) ||
+                                     (d.name || '').toLowerCase().includes(query) ||
+                                     (d.deptAbbr || '').toLowerCase().includes(query) ||
+                                     (d.location || '').toLowerCase().includes(query) ||
+                                     (d.weaponType || '').toLowerCase().includes(query) ||
+                                     (d.weaponSerial || '').toLowerCase().includes(query) ||
+                                     (d.remarks || '').toLowerCase().includes(query);
+                const matchesDutyType = dutyTypeFilter === 'ALL' || d.dutyType === dutyTypeFilter;
+                const matchesDept = deptFilter === 'ALL' || getDeptAbbr(d.deptAbbr) === deptFilter;
+                const matchesType = typeFilter === 'ALL' || d.staffType === typeFilter;
+                return matchesQuery && matchesDutyType && matchesDept && matchesType;
+            }).sort(compareByRankSeniority);
+
+            updateDutySummaryBoxes(filtered);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<tr><td colspan="12" class="text-center py-8 text-slate-400">လုံခြုံရေးတာဝန် စာရင်း မရှိသေးပါ</td></tr>`;
+                if (mobileContainer) {
+                    mobileContainer.innerHTML = `<div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">လုံခြုံရေးတာဝန် စာရင်း မရှိသေးပါ</div>`;
+                }
+                renderPaginationControls('duty-pagination-bar', 'duty', 1, 0, 'ဦး');
+                return;
+            }
+
+            const dTotalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+            if (tablePageState.duty > dTotalPages) tablePageState.duty = dTotalPages;
+            const dCurrentPage = tablePageState.duty || 1;
+            const dStartIdx = (dCurrentPage - 1) * ITEMS_PER_PAGE;
+            const paginatedDuty = filtered.slice(dStartIdx, dStartIdx + ITEMS_PER_PAGE);
+
+            container.innerHTML = paginatedDuty.map((d, idx) => {
+                const realIndex = securityDutyData.indexOf(d);
+                return `
+                    <tr onclick="selectDutyForInlineEdit(${realIndex})" class="hover:bg-blue-50/60 dark:hover:bg-slate-700/50 transition text-slate-800 dark:text-slate-200 cursor-pointer">
+                        <td class="p-3 text-center font-bold text-slate-600 dark:text-slate-300">${toMyanmarNumerals(dStartIdx + idx + 1)}</td>
+                        <td class="p-3 font-semibold text-slate-900 dark:text-white">${d.id}</td>
+                        <td class="p-3 font-semibold text-blue-600 dark:text-blue-400">${getRankAbbr(d.rankAbbr)}</td>
+                        <td class="p-3 font-bold text-slate-900 dark:text-white">${d.name}</td>
+                        <td class="p-3 font-semibold">${getDeptAbbr(d.deptAbbr)}</td>
+                        <td class="p-3 font-semibold text-indigo-700 dark:text-indigo-300">${d.weaponType || '-'}</td>
+                        <td class="p-3">${d.weaponModel || '-'}</td>
+                        <td class="p-3 font-mono">${d.weaponCode || '-'}</td>
+                        <td class="p-3 font-semibold">${d.weaponSerial || '-'}</td>
+                        <td class="p-3">${d.ammoCount || '-'}</td>
+                        <td class="p-3">${d.startDate || '-'}</td>
+                        <td class="p-3 text-center space-x-1" onclick="event.stopPropagation()">
+                            <button onclick="selectDutyForInlineEdit(${realIndex})" class="role-write-action p-1.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold transition" title="ပြင်ဆင်မည်">✏️</button>
+                            <button onclick="confirmDeleteDuty(${realIndex})" class="role-write-action p-1.5 text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-700 rounded-lg transition" title="ဖျက်မည်">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            if (mobileContainer) {
+                mobileContainer.innerHTML = paginatedDuty.map((d) => {
+                    const realIndex = securityDutyData.indexOf(d);
+                    const badgeClass = d.dutyType === 'တပ်ပြင်'
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800'
+                        : 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800';
+                    return `
+                        <div onclick="selectDutyForInlineEdit(${realIndex})" class="bg-white dark:bg-slate-800 p-3.5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2 cursor-pointer">
+                            <div class="flex justify-between items-start gap-2">
+                                <div>
+                                    <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">${getRankAbbr(d.rankAbbr)}</span>
+                                    <span class="font-bold text-slate-900 dark:text-white text-sm ml-1">${d.name}</span>
+                                    <div class="text-[11px] text-slate-500 dark:text-slate-400">${d.id} &bull; ဌာန: <strong>${getDeptAbbr(d.deptAbbr)}</strong> &bull; ${d.location || '-'}</div>
+                                </div>
+                                <span class="px-2 py-0.5 rounded-md font-bold text-[11px] border ${badgeClass}">${d.dutyType || 'တပ်တွင်း'}</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-1 text-[11px] text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-700/40 p-2 rounded-lg">
+                                <div>လက်နက်: <strong>${d.weaponType || '-'}</strong></div>
+                                <div>နံပါတ်: <strong>${d.weaponSerial || '-'}</strong></div>
+                                <div>ခဲယမ်း: <strong>${d.ammoCount || '-'}</strong></div>
+                                <div>ရက်စွဲ: <strong>${d.startDate || '-'}</strong></div>
+                            </div>
+                            <div class="role-write-action flex justify-end gap-1.5 pt-1 border-t dark:border-slate-700" onclick="event.stopPropagation()">
+                                <button onclick="selectDutyForInlineEdit(${realIndex})" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold text-[11px]">✏️ Edit</button>
+                                <button onclick="confirmDeleteDuty(${realIndex})" class="px-2.5 py-1 bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-lg font-bold text-[11px]">🗑️ ဖျက်မည်</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            renderPaginationControls('duty-pagination-bar', 'duty', dCurrentPage, filtered.length, 'ဦး');
         }
 
         function toggleInlinePersonnelAbsent() {
@@ -3483,10 +4013,11 @@ var db = admin.firestore();</pre>
 
             if (fRank) {
                 const curRank = fRank.value || 'ALL';
-                let targetCats = ['officer', 'soldier', 'staff'];
+                let targetCats = ['officer', 'soldier', 'staff', 'civilian'];
                 if (activePersonnelCategoryTab === 'အရာရှိ') targetCats = ['officer'];
                 else if (activePersonnelCategoryTab === 'စစ်သည်') targetCats = ['soldier'];
                 else if (activePersonnelCategoryTab === 'အမြဲတမ်းဝန်ထမ်း') targetCats = ['staff'];
+                else if (activePersonnelCategoryTab === 'အရပ်သားဝန်ထမ်း') targetCats = ['civilian'];
                 const ranks = [];
                 targetCats.forEach(cat => (RANK_DEFINITIONS[cat] || []).forEach(r => ranks.push(r)));
                 fRank.innerHTML = `<option value="ALL">အဆင့်အားလုံး</option>` + ranks.map(r => `<option value="${r.abbr}">${r.abbr}</option>`).join('');
@@ -3513,16 +4044,19 @@ var db = admin.firestore();</pre>
             const officers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရာရှိ').length;
             const soldiers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'စစ်သည်').length;
             const staff = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အမြဲတမ်းဝန်ထမ်း').length;
+            const civilians = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရပ်သားဝန်ထမ်း').length;
             const total = personnelData.length;
 
             const elO = document.getElementById('p-sub-officer');
             const elS = document.getElementById('p-sub-soldier');
             const elSt = document.getElementById('p-sub-staff');
+            const elCiv = document.getElementById('p-sub-civilian');
             const elT = document.getElementById('p-sub-total');
 
             if (elO) elO.textContent = toMyanmarNumerals(officers);
             if (elS) elS.textContent = toMyanmarNumerals(soldiers);
             if (elSt) elSt.textContent = toMyanmarNumerals(staff);
+            if (elCiv) elCiv.textContent = toMyanmarNumerals(civilians);
             if (elT) elT.textContent = toMyanmarNumerals(total);
         }
 
@@ -3589,12 +4123,16 @@ var db = admin.firestore();</pre>
             const rankFull = rankSel?.options[rankSel.selectedIndex]?.getAttribute('data-full') || getRankFull(rankAbbr);
             const deptAbbr = document.getElementById('p-in-dept').value;
             const statusVal = document.getElementById('p-in-status').value;
+            const inferredRoleGroup = activePersonnelCategoryTab !== 'ALL'
+                ? activePersonnelCategoryTab
+                : resolvePersonnelRoleGroup({ id: idVal, rankAbbr, rankFull, staffType: document.getElementById('p-in-type').value });
 
             personnelData.unshift({
                 id: idVal,
                 rankFull,
                 rankAbbr,
                 name: nameVal,
+                roleGroup: inferredRoleGroup,
                 deptFull: getDeptFull(deptAbbr),
                 deptAbbr,
                 gender: document.getElementById('p-in-gender')?.value || 'ကျား',
@@ -4060,6 +4598,7 @@ var db = admin.firestore();</pre>
             const officers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရာရှိ').length;
             const soldiers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'စစ်သည်').length;
             const staff = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အမြဲတမ်းဝန်ထမ်း').length;
+            const civilians = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရပ်သားဝန်ထမ်း').length;
             const total = personnelData.length;
             const absentCount = personnelData.filter(p => p.status === 'ပျက်ကွက်').length;
             const presentCount = Math.max(0, total - absentCount);
@@ -4067,6 +4606,7 @@ var db = admin.firestore();</pre>
             const elOff = document.getElementById('count-officer');
             const elSol = document.getElementById('count-soldier');
             const elStf = document.getElementById('count-staff');
+            const elCiv = document.getElementById('count-civilian');
             const elTot = document.getElementById('count-total');
             const elPres = document.getElementById('dash-present-badge');
             const elAbs = document.getElementById('dash-absent-badge');
@@ -4074,6 +4614,7 @@ var db = admin.firestore();</pre>
             if (elOff) elOff.textContent = toMyanmarNumerals(officers);
             if (elSol) elSol.textContent = toMyanmarNumerals(soldiers);
             if (elStf) elStf.textContent = toMyanmarNumerals(staff);
+            if (elCiv) elCiv.textContent = toMyanmarNumerals(civilians);
             if (elTot) elTot.textContent = toMyanmarNumerals(total);
             if (elPres) elPres.textContent = `တန်းစီ: ${toMyanmarNumerals(presentCount)}`;
             if (elAbs) elAbs.textContent = `ပျက်ကွက်: ${toMyanmarNumerals(absentCount)}`;
@@ -5016,577 +5557,6 @@ var db = admin.firestore();</pre>
                 (RANK_DEFINITIONS[cat] || []).forEach(r => ranks.push(r));
             });
             rankSel.innerHTML = ranks.map(r => `<option value="${r.abbr}" data-full="${r.full}">${r.full} (${r.abbr})</option>`).join('');
-        }
-
-        function autoFillDutyById() {
-            const rawInput = document.getElementById('d-in-id')?.value.trim();
-            if (!rawInput) return;
-
-            const normalize = str => String(str)
-                .replace(/[၀-၉]/g, d => '၀၁၂၃၄၅၆၇၈၉'.indexOf(d))
-                .replace(/[\s\-_]/g, '')
-                .toLowerCase();
-            const normInput = normalize(rawInput);
-
-            const match = personnelData.find(p => normalize(p.id) === normInput || p.id.toLowerCase() === rawInput.toLowerCase());
-            if (match) {
-                const typeSel = document.getElementById('d-in-type');
-                if (typeSel && !Array.from(typeSel.options).some(o => o.value === match.staffType)) {
-                    typeSel.add(new Option(match.staffType, match.staffType));
-                }
-                typeSel.value = match.staffType;
-
-                syncInlineDutyRanks();
-                const rankSel = document.getElementById('d-in-rank');
-                if (rankSel && !Array.from(rankSel.options).some(o => o.value === match.rankAbbr)) {
-                    rankSel.add(new Option(`${match.rankFull} (${match.rankAbbr})`, match.rankAbbr));
-                }
-                rankSel.value = match.rankAbbr;
-
-                document.getElementById('d-in-name').value = match.name;
-
-                const deptSel = document.getElementById('d-in-dept');
-                if (deptSel && !Array.from(deptSel.options).some(o => o.value === match.deptAbbr)) {
-                    deptSel.add(new Option(`${match.deptFull} (${match.deptAbbr})`, match.deptAbbr));
-                }
-                deptSel.value = match.deptAbbr;
-
-                document.getElementById('d-in-status').value = 'ပျက်ကွက်';
-            }
-        }
-
-        function selectDutyForInlineEdit(index) {
-            const d = securityDutyData[index];
-            if (!d) return;
-            toggleDutyFormPanel(true);
-            document.getElementById('d-inline-index').value = index;
-            document.getElementById('d-in-id').value = d.id || '';
-            document.getElementById('d-in-type').value = d.staffType || 'အရာရှိ';
-            syncInlineDutyRanks();
-            document.getElementById('d-in-rank').value = d.rankAbbr || '';
-            document.getElementById('d-in-name').value = d.name || '';
-            document.getElementById('d-in-dept').value = d.deptAbbr || '';
-            document.getElementById('d-in-status').value = 'ပျက်ကွက်';
-            document.getElementById('d-in-remarks').value = d.remarks || '';
-            document.getElementById('d-in-duty-type').value = d.dutyType || 'တပ်တွင်း';
-            document.getElementById('d-in-location').value = d.location || '';
-
-            populateDutyWeaponDropdown();
-            const weaponSel = document.getElementById('d-in-weapon');
-            const customWeaponInput = document.getElementById('d-in-weapon-custom');
-            const savedWeapon = (d.weaponType || '').trim();
-            if (weaponSel) {
-                if (savedWeapon && savedWeapon !== '-') {
-                    const hasOpt = Array.from(weaponSel.options).some(o => o.value === savedWeapon);
-                    if (hasOpt) {
-                        weaponSel.value = savedWeapon;
-                        if (customWeaponInput) {
-                            customWeaponInput.value = '';
-                            customWeaponInput.classList.add('hidden');
-                        }
-                    } else {
-                        weaponSel.value = 'Custom';
-                        if (customWeaponInput) {
-                            customWeaponInput.value = savedWeapon;
-                            customWeaponInput.classList.remove('hidden');
-                        }
-                    }
-                } else {
-                    weaponSel.value = '';
-                    if (customWeaponInput) {
-                        customWeaponInput.value = '';
-                        customWeaponInput.classList.add('hidden');
-                    }
-                }
-            }
-            document.getElementById('d-in-weapon-model').value = d.weaponModel && d.weaponModel !== '-' ? d.weaponModel : '';
-            document.getElementById('d-in-weapon-code').value = d.weaponCode && d.weaponCode !== '-' ? d.weaponCode : '';
-            document.getElementById('d-in-weapon-serial').value = d.weaponSerial && d.weaponSerial !== '-' ? d.weaponSerial : '';
-
-            document.getElementById('d-in-ammo').value = d.ammoCount || '';
-            document.getElementById('d-in-date').value = d.startDate || '';
-            document.getElementById('main-workspace')?.scrollTo({ top: 0, behavior: 'smooth' });
-            showToast(`"${d.name}" ၏ တာဝန်အချက်အလက်အား ပြင်ဆင်ရန် ရွေးချယ်ပြီးပါပြီ`, 'info');
-        }
-
-        function toggleDutyFormPanel(forceOpen) {
-            const body = document.getElementById('d-collapsible-form-body');
-            const arrow = document.getElementById('d-form-toggle-arrow');
-            if (!body) return;
-            const willOpen = typeof forceOpen === 'boolean' ? forceOpen : body.classList.contains('hidden');
-            body.classList.toggle('hidden', !willOpen);
-            if (arrow) {
-                arrow.style.transform = willOpen ? 'rotate(180deg)' : 'rotate(0deg)';
-            }
-        }
-
-        function inlineAddDuty() {
-            if (!guardWritePermission()) return;
-            const idVal = document.getElementById('d-in-id').value.trim();
-            let nameVal = document.getElementById('d-in-name').value.trim().replace(/^(ဦး|ဒေါ်)\s*/g, '');
-            const locationVal = document.getElementById('d-in-location').value.trim() || 'အထွေထွေလုံခြုံရေး';
-            if (!idVal || !nameVal) {
-                showToast('ကိုယ်ပိုင်အမှတ်နှင့် အမည် ဖြည့်သွင်းပေးပါ', 'error');
-                return;
-            }
-
-            const weaponSelVal = document.getElementById('d-in-weapon').value;
-            const customWeaponVal = (document.getElementById('d-in-weapon-custom')?.value || '').trim();
-            const finalWeaponType = weaponSelVal === 'Custom' ? (customWeaponVal || '-') : (weaponSelVal || '-');
-
-            securityDutyData.unshift({
-                id: idVal,
-                rankAbbr: document.getElementById('d-in-rank').value,
-                name: nameVal,
-                deptAbbr: document.getElementById('d-in-dept').value,
-                staffType: document.getElementById('d-in-type').value,
-                status: 'ပျက်ကွက်',
-                absentReason: 'လုံခြုံရေးတာဝန်',
-                remarks: document.getElementById('d-in-remarks').value.trim(),
-                dutyType: document.getElementById('d-in-duty-type').value,
-                location: locationVal,
-                weaponType: finalWeaponType,
-                weaponModel: document.getElementById('d-in-weapon-model').value.trim() || '-',
-                weaponCode: document.getElementById('d-in-weapon-code').value.trim() || '-',
-                weaponSerial: document.getElementById('d-in-weapon-serial').value.trim() || '-',
-                ammoCount: document.getElementById('d-in-ammo').value.trim() || '-',
-                startDate: document.getElementById('d-in-date').value || '-'
-            });
-
-            saveSystemState();
-            inlineClearDuty(false);
-            renderSecurityDuty();
-            renderDashboardView();
-            showToast('လုံခြုံရေးတာဝန်သစ် ထည့်သွင်းပြီးပါပြီ', 'success');
-        }
-
-        function inlineSaveDuty() {
-            if (!guardWritePermission()) return;
-            const idx = parseInt(document.getElementById('d-inline-index').value);
-            if (idx < 0 || !securityDutyData[idx]) {
-                showToast('ပြင်ဆင်လိုသော တာဝန်အား ဇယားကွက်အတွင်းမှ Edit ခလုတ်နှိပ်၍ အရင်ရွေးချယ်ပါ', 'error');
-                return;
-            }
-            const idVal = document.getElementById('d-in-id').value.trim();
-            let nameVal = document.getElementById('d-in-name').value.trim().replace(/^(ဦး|ဒေါ်)\s*/g, '');
-            const locationVal = document.getElementById('d-in-location').value.trim() || 'အထွေထွေလုံခြုံရေး';
-            if (!idVal || !nameVal) {
-                showToast('ကိုယ်ပိုင်အမှတ်နှင့် အမည် ဖြည့်သွင်းပေးပါ', 'error');
-                return;
-            }
-
-            const weaponSelVal = document.getElementById('d-in-weapon').value;
-            const customWeaponVal = (document.getElementById('d-in-weapon-custom')?.value || '').trim();
-            const finalWeaponType = weaponSelVal === 'Custom' ? (customWeaponVal || '-') : (weaponSelVal || '-');
-
-            securityDutyData[idx] = {
-                id: idVal,
-                rankAbbr: document.getElementById('d-in-rank').value,
-                name: nameVal,
-                deptAbbr: document.getElementById('d-in-dept').value,
-                staffType: document.getElementById('d-in-type').value,
-                status: 'ပျက်ကွက်',
-                absentReason: 'လုံခြုံရေးတာဝန်',
-                remarks: document.getElementById('d-in-remarks').value.trim(),
-                dutyType: document.getElementById('d-in-duty-type').value,
-                location: locationVal,
-                weaponType: finalWeaponType,
-                weaponModel: document.getElementById('d-in-weapon-model').value.trim() || '-',
-                weaponCode: document.getElementById('d-in-weapon-code').value.trim() || '-',
-                weaponSerial: document.getElementById('d-in-weapon-serial').value.trim() || '-',
-                ammoCount: document.getElementById('d-in-ammo').value.trim() || '-',
-                startDate: document.getElementById('d-in-date').value || '-'
-            };
-
-            saveSystemState();
-            inlineClearDuty(false);
-            renderSecurityDuty();
-            renderDashboardView();
-            showToast('လုံခြုံရေးတာဝန်အား သိမ်းဆည်း (Save) ပြီးပါပြီ', 'success');
-        }
-
-        function inlineDeleteDuty() {
-            const idx = parseInt(document.getElementById('d-inline-index').value);
-            if (idx < 0 || !securityDutyData[idx]) {
-                showToast('ဖျက်လိုသော တာဝန်အား စာရင်းမှ အရင်ရွေးချယ်ပါ', 'error');
-                return;
-            }
-            confirmDeleteDuty(idx, true);
-        }
-
-        function confirmDeleteDuty(index, clearInline = false) {
-            if (!guardWritePermission()) return;
-            const d = securityDutyData[index];
-            if (!d) return;
-            openConfirmModal(`"${d.name}" ၏ လုံခြုံရေးတာဝန်ကျမှုကို ဖျက်မည်။ သေချာပါသလား?`, () => {
-                securityDutyData.splice(index, 1);
-                saveSystemState();
-                if (clearInline) inlineClearDuty(false);
-                renderSecurityDuty();
-                renderDashboardView();
-                showToast('တာဝန်ကျမှုအား ဖျက်ကွက်ပြီးပါပြီ', 'error');
-            });
-        }
-
-        function inlineClearDuty(notify = true) {
-            document.getElementById('d-inline-index').value = -1;
-            document.getElementById('d-in-id').value = '';
-            document.getElementById('d-in-name').value = '';
-            document.getElementById('d-in-status').value = 'ပျက်ကွက်';
-            document.getElementById('d-in-remarks').value = '';
-            document.getElementById('d-in-location').value = '';
-            document.getElementById('d-in-weapon').value = '';
-            const customWeaponInput = document.getElementById('d-in-weapon-custom');
-            if (customWeaponInput) {
-                customWeaponInput.value = '';
-                customWeaponInput.classList.add('hidden');
-            }
-            document.getElementById('d-in-weapon-model').value = '';
-            document.getElementById('d-in-weapon-code').value = '';
-            document.getElementById('d-in-weapon-serial').value = '';
-            document.getElementById('d-in-ammo').value = '';
-            document.getElementById('d-in-date').value = '';
-            if (notify) showToast('အကွက်များအား ရှင်းလင်းပြီးပါပြီ', 'info');
-        }
-
-        function formatDisplayDate(dateStr) {
-            if (!dateStr || dateStr === '-') return '-';
-            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
-                const [y, m, d] = dateStr.split('-');
-                return toMyanmarNumerals(`${d}-${m}-${y}`);
-            }
-            return toMyanmarNumerals(dateStr);
-        }
-
-        function renderSecurityDuty() {
-            const container = document.getElementById('duty-list-container');
-            const mobileContainer = document.getElementById('duty-mobile-container');
-            if (!container) return;
-
-            const query = (document.getElementById('duty-search')?.value || '').trim().toLowerCase();
-            const deptFilter = document.getElementById('duty-filter-dept')?.value || 'ALL';
-            const typeFilter = document.getElementById('duty-filter-type')?.value || 'ALL';
-            const dutyTypeFilter = document.getElementById('duty-filter-dutytype')?.value || 'ALL';
-
-            const filtered = securityDutyData.filter(d => {
-                const matchesQuery = (d.id || '').toLowerCase().includes(query) ||
-                       (d.rankAbbr || '').toLowerCase().includes(query) ||
-                       (d.name || '').toLowerCase().includes(query) ||
-                       (d.deptAbbr || '').toLowerCase().includes(query) ||
-                       (d.location || '').toLowerCase().includes(query) ||
-                       (d.dutyType || '').toLowerCase().includes(query) ||
-                       (d.weaponType || '').toLowerCase().includes(query) ||
-                       (d.weaponModel || '').toLowerCase().includes(query) ||
-                       (d.weaponCode || '').toLowerCase().includes(query) ||
-                       (d.weaponSerial || '').toLowerCase().includes(query) ||
-                       (d.ammoCount || '').toLowerCase().includes(query) ||
-                       (d.startDate || '').toLowerCase().includes(query) ||
-                       (d.remarks || '').toLowerCase().includes(query);
-
-                const matchesDept = deptFilter === 'ALL' || d.deptAbbr === deptFilter;
-                const matchesType = typeFilter === 'ALL' || d.staffType === typeFilter;
-                const matchesDutyType = dutyTypeFilter === 'ALL' || d.dutyType === dutyTypeFilter;
-
-                return matchesQuery && matchesDept && matchesType && matchesDutyType;
-            }).sort(compareByRankSeniority);
-
-            updateDutySummaryBoxes(filtered);
-
-            if (filtered.length === 0) {
-                container.innerHTML = `<tr><td colspan="12" class="text-center py-8 text-slate-400">တာဝန်ကျမှု စာရင်း မရှိသေးပါ</td></tr>`;
-                if (mobileContainer) {
-                    mobileContainer.innerHTML = `<div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">တာဝန်ကျမှု စာရင်း မရှိသေးပါ</div>`;
-                }
-                renderPaginationControls('duty-pagination-bar', 'duty', 1, 0, 'ဦး');
-                return;
-            }
-
-            // Build ordered list grouped by dutyType and location so pagination strictly limits to 15 personnel per page
-            const dutyCategories = [...new Set([...securityDutyTypeList, ...filtered.map(item => item.dutyType).filter(Boolean)])];
-            const orderedDutyRecords = [];
-            dutyCategories.forEach(cat => {
-                const catItems = filtered.filter(item => item.dutyType === cat);
-                if (catItems.length === 0) return;
-                const locationGroups = {};
-                catItems.forEach(item => {
-                    const loc = item.location || 'အထွေထွေတည်နေရာ';
-                    if (!locationGroups[loc]) locationGroups[loc] = [];
-                    locationGroups[loc].push(item);
-                });
-                Object.keys(locationGroups).forEach(loc => {
-                    locationGroups[loc].forEach(d => {
-                        orderedDutyRecords.push({
-                            record: d,
-                            cat,
-                            catCount: catItems.length,
-                            loc,
-                            locCount: locationGroups[loc].length
-                        });
-                    });
-                });
-            });
-
-            const dTotalPages = Math.max(1, Math.ceil(orderedDutyRecords.length / ITEMS_PER_PAGE));
-            if (tablePageState.duty > dTotalPages) tablePageState.duty = dTotalPages;
-            const dCurrentPage = tablePageState.duty || 1;
-            const dStartIdx = (dCurrentPage - 1) * ITEMS_PER_PAGE;
-            const paginatedDutyRecords = orderedDutyRecords.slice(dStartIdx, dStartIdx + ITEMS_PER_PAGE);
-
-            let htmlRows = '';
-            let mobileHtml = '';
-            let serialCounter = dStartIdx + 1;
-            let lastRenderedCat = null;
-            let lastRenderedLocKey = null;
-            let mobileLocGridOpen = false;
-
-            paginatedDutyRecords.forEach(({ record: d, cat, catCount, loc, locCount }) => {
-                if (cat !== lastRenderedCat) {
-                    if (mobileLocGridOpen) {
-                        mobileHtml += `</div>`;
-                        mobileLocGridOpen = false;
-                    }
-                    lastRenderedCat = cat;
-                    lastRenderedLocKey = null;
-
-                    const badgeStyle = cat === 'တပ်တွင်း'
-                        ? 'bg-blue-900 text-white'
-                        : cat === 'တပ်ပြင်'
-                        ? 'bg-emerald-800 text-white'
-                        : 'bg-indigo-800 text-white';
-
-                    htmlRows += `
-                        <tr class="${badgeStyle}">
-                            <td colspan="12" class="px-3 py-2 font-bold text-xs tracking-wide">
-                                🛡️ ${cat} လုံခြုံရေးအဖွဲ့ (${toMyanmarNumerals(catCount)} ဦး)
-                            </td>
-                        </tr>
-                    `;
-
-                    mobileHtml += `
-                        <div class="${badgeStyle} px-3.5 py-2 rounded-xl font-bold text-xs shadow-sm">
-                            🛡️ ${cat} လုံခြုံရေးအဖွဲ့ (${toMyanmarNumerals(catCount)} ဦး)
-                        </div>
-                    `;
-                }
-
-                const locKey = `${cat}::${loc}`;
-                if (locKey !== lastRenderedLocKey) {
-                    if (mobileLocGridOpen) {
-                        mobileHtml += `</div>`;
-                    }
-                    lastRenderedLocKey = locKey;
-                    htmlRows += `
-                        <tr class="bg-slate-200/80 dark:bg-slate-700/90 text-slate-800 dark:text-slate-100">
-                            <td colspan="12" class="px-4 py-1.5 font-bold text-xs border-l-4 border-blue-600">
-                                📍 လုံခြုံရေးတည်နေရာ : <span class="text-blue-700 dark:text-blue-300">${loc}</span> (${toMyanmarNumerals(locCount)} ဦး)
-                            </td>
-                        </tr>
-                    `;
-                    mobileHtml += `
-                        <div class="bg-slate-200/90 dark:bg-slate-700/90 text-slate-800 dark:text-slate-100 px-3 py-1.5 rounded-lg font-bold text-xs border-l-4 border-blue-600">
-                            📍 ${loc} (${toMyanmarNumerals(locCount)} ဦး)
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    `;
-                    mobileLocGridOpen = true;
-                }
-
-                const realIndex = securityDutyData.indexOf(d);
-                const currentSerial = serialCounter++;
-                const rankAbbrDisplay = getRankAbbr(d.rankAbbr || d.rankFull);
-                const deptAbbrDisplay = getDeptAbbr(d.deptAbbr || d.deptFull);
-                htmlRows += `
-                    <tr onclick="selectDutyForInlineEdit(${realIndex})" class="hover:bg-blue-50/60 dark:hover:bg-slate-700/50 transition text-slate-800 dark:text-slate-200 cursor-pointer">
-                        <td class="p-3 text-center font-bold text-slate-600 dark:text-slate-300">${toMyanmarNumerals(currentSerial)}</td>
-                        <td class="p-3 font-semibold text-slate-900 dark:text-white">${d.id || '-'}</td>
-                        <td class="p-3 text-blue-600 dark:text-blue-400 font-semibold">${rankAbbrDisplay}</td>
-                        <td class="p-3 font-bold text-slate-900 dark:text-white">${d.name || '-'}</td>
-                        <td class="p-3">${deptAbbrDisplay}</td>
-                        <td class="p-3 font-medium text-amber-700 dark:text-amber-300">${d.weaponType || '-'}</td>
-                        <td class="p-3 font-medium text-slate-700 dark:text-slate-300">${d.weaponModel || '-'}</td>
-                        <td class="p-3 font-semibold text-blue-600 dark:text-blue-400">${d.weaponCode || '-'}</td>
-                        <td class="p-3 font-semibold">${d.weaponSerial || '-'}</td>
-                        <td class="p-3 font-semibold">${d.ammoCount || '-'}</td>
-                        <td class="p-3">${formatDisplayDate(d.startDate)}</td>
-                        <td class="p-3 text-center space-x-1" onclick="event.stopPropagation()">
-                            <button onclick="selectDutyForInlineEdit(${realIndex})" class="role-write-action p-1.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold transition" title="ပြင်ဆင်မည်">✏️</button>
-                            <button onclick="confirmDeleteDuty(${realIndex})" class="role-write-action p-1.5 text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-700 rounded-lg transition" title="ဖျက်မည်">🗑️</button>
-                        </td>
-                    </tr>
-                `;
-
-                mobileHtml += `
-                    <div onclick="selectDutyForInlineEdit(${realIndex})" class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2 cursor-pointer">
-                        <div class="flex justify-between items-start gap-2">
-                            <div>
-                                <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">${rankAbbrDisplay}</span>
-                                <span class="font-bold text-slate-900 dark:text-white text-sm ml-1">${d.name || '-'}</span>
-                                <div class="text-[11px] text-slate-500 dark:text-slate-400">${d.id || '-'} &bull; ဌာန: <strong>${deptAbbrDisplay}</strong></div>
-                            </div>
-                            <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-bold text-[10px]">#${toMyanmarNumerals(currentSerial)}</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-1.5 text-[11px] bg-slate-50 dark:bg-slate-700/50 p-2 rounded-lg">
-                            <span class="text-amber-700 dark:text-amber-300 font-semibold">🔫 ${d.weaponType || '-'} (${d.weaponModel || '-'})</span>
-                            <span class="text-blue-600 dark:text-blue-400 font-semibold">ကုတ်: ${d.weaponCode || '-'} | No: ${d.weaponSerial || '-'}</span>
-                            <span class="text-slate-700 dark:text-slate-300 font-semibold">ခဲယမ်း: ${d.ammoCount || '-'}</span>
-                            <span class="text-slate-600 dark:text-slate-300">📅 ${formatDisplayDate(d.startDate)}</span>
-                        </div>
-                        <div class="role-write-action flex justify-end gap-1.5 pt-1 border-t dark:border-slate-700" onclick="event.stopPropagation()">
-                            <button onclick="selectDutyForInlineEdit(${realIndex})" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold text-[11px]">✏️ Edit</button>
-                            <button onclick="confirmDeleteDuty(${realIndex})" class="px-2.5 py-1 bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-lg font-bold text-[11px]">🗑️ ဖျက်မည်</button>
-                        </div>
-                    </div>
-                `;
-            });
-            if (mobileLocGridOpen) {
-                mobileHtml += `</div>`;
-            }
-
-            container.innerHTML = htmlRows;
-            if (mobileContainer) {
-                mobileContainer.innerHTML = mobileHtml;
-            }
-            renderPaginationControls('duty-pagination-bar', 'duty', dCurrentPage, orderedDutyRecords.length, 'ဦး');
-        }
-
-        // Open Detail Modal (Always shows Full Names for Rank and Department + All Detailed Fields)
-        function openPersonnelDetail(index) {
-            const p = personnelData[index];
-            if (!p) return;
-
-            const rankFullDisplay = getRankFull(p.rankFull || p.rankAbbr);
-            const deptFullDisplay = getDeptFull(p.deptFull || p.deptAbbr);
-
-            const photoContainer = document.getElementById('detail-photo-container');
-            if (p.photo) {
-                photoContainer.innerHTML = `<img src="${p.photo}" class="w-full h-full object-cover">`;
-            } else {
-                const firstChar = p.name ? p.name.charAt(0) : '👤';
-                photoContainer.innerHTML = `<span>${firstChar}</span>`;
-            }
-
-            document.getElementById('detail-name').textContent = p.name;
-            document.getElementById('detail-role').textContent = `${rankFullDisplay} • အသေးစိတ်အချက်အလက်များ`;
-            document.getElementById('detail-id').textContent = p.id || '-';
-            document.getElementById('detail-rank').textContent = rankFullDisplay || '-';
-            document.getElementById('detail-fullname').textContent = p.name || '-';
-            document.getElementById('detail-dept').textContent = deptFullDisplay || '-';
-            if (document.getElementById('detail-gender')) document.getElementById('detail-gender').textContent = p.gender || '-';
-            if (document.getElementById('detail-dob')) document.getElementById('detail-dob').textContent = p.dob ? formatDisplayDate(p.dob) : '-';
-            if (document.getElementById('detail-nrc')) document.getElementById('detail-nrc').textContent = p.nrc || '-';
-            if (document.getElementById('detail-father')) document.getElementById('detail-father').textContent = p.fatherName || '-';
-            if (document.getElementById('detail-mother')) document.getElementById('detail-mother').textContent = p.motherName || '-';
-            if (document.getElementById('detail-occupation')) document.getElementById('detail-occupation').textContent = p.occupation || '-';
-            if (document.getElementById('detail-occ-type')) document.getElementById('detail-occ-type').textContent = p.occupationType || '-';
-            if (document.getElementById('detail-position')) document.getElementById('detail-position').textContent = p.position || '-';
-            document.getElementById('detail-staff-type').textContent = p.staffType || '-';
-            if (document.getElementById('detail-unit-scope')) document.getElementById('detail-unit-scope').textContent = p.unitScope || '-';
-            if (document.getElementById('detail-race')) document.getElementById('detail-race').textContent = p.race || '-';
-            if (document.getElementById('detail-religion')) document.getElementById('detail-religion').textContent = p.religion || '-';
-            if (document.getElementById('detail-marital')) document.getElementById('detail-marital').textContent = p.maritalStatus || '-';
-            document.getElementById('detail-status').textContent = p.status || '-';
-            document.getElementById('detail-status').className = `font-bold ${p.status === 'တန်းစီ' ? 'text-emerald-600' : 'text-rose-600'}`;
-            if (document.getElementById('detail-absent-reason-inline')) {
-                document.getElementById('detail-absent-reason-inline').textContent = p.status === 'ပျက်ကွက်' ? (p.absentReason || '-') : '-';
-            }
-            if (document.getElementById('detail-location')) document.getElementById('detail-location').textContent = p.location || '-';
-            document.getElementById('detail-phone').textContent = p.phone || '-';
-            document.getElementById('detail-address').textContent = p.address || '-';
-            document.getElementById('detail-remarks').textContent = p.remarks || '-';
-
-            const reasonRow = document.getElementById('detail-absent-reason-row');
-            if (p.status === 'ပျက်ကွက်') {
-                reasonRow.classList.remove('hidden');
-                document.getElementById('detail-absent-reason').textContent = p.absentReason || 'ဖော်ပြမထားပါ';
-            } else {
-                reasonRow.classList.add('hidden');
-            }
-
-            document.getElementById('detail-edit-btn').onclick = function() {
-                closePersonnelModal();
-                openPersonnelForm(index);
-            };
-
-            document.getElementById('personnel-modal').classList.remove('hidden');
-        }
-
-        function closePersonnelModal() {
-            document.getElementById('personnel-modal').classList.add('hidden');
-        }
-
-        // Photo Upload Handling
-        function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const base64Str = e.target.result;
-                document.getElementById('p-form-photo-base64').value = base64Str;
-                document.getElementById('p-form-photo-preview').innerHTML = `<img src="${base64Str}" class="w-full h-full object-cover">`;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function populateStaffTypeSelect() {
-            const typeSelect = document.getElementById('p-form-type');
-            if (!typeSelect) return;
-            typeSelect.innerHTML = staffTypeList.map(t => `<option value="${t}">${t}</option>`).join('') + `<option value="CUSTOM">Custom (စိတ်ကြိုက်)</option>`;
-        }
-
-        function populateDeptSelect(selectId) {
-            const deptSelect = document.getElementById(selectId);
-            if (!deptSelect) return;
-            deptSelect.innerHTML = DEPT_MAPPING.map(d => `<option value="${d.abbr}">${d.full} (${d.abbr})</option>`).join('') + `<option value="CUSTOM">Custom (စိတ်ကြိုက်)</option>`;
-        }
-
-        function populateStatusSelect() {
-            const statusSelect = document.getElementById('p-form-status');
-            if (!statusSelect) return;
-            statusSelect.innerHTML = statusList.map(s => `<option value="${s}">${s}</option>`).join('') + `<option value="CUSTOM">Custom (စိတ်ကြိုက်)</option>`;
-        }
-
-        function handleStaffTypeChange() {
-            const val = document.getElementById('p-form-type').value;
-            const customInput = document.getElementById('p-form-type-custom');
-            if (val === 'CUSTOM') {
-                customInput.classList.remove('hidden');
-                customInput.setAttribute('required', 'required');
-            } else {
-                customInput.classList.add('hidden');
-                customInput.removeAttribute('required');
-                updateRankOptionsInForm();
-            }
-            handleRankChange();
-        }
-
-        function updateRankOptionsInForm() {
-            const staffType = document.getElementById('p-form-type')?.value || '';
-            const rankSelect = document.getElementById('p-form-rank');
-            if (!rankSelect) return;
-
-            let targetCats = ['officer', 'soldier', 'staff'];
-            if (staffType === 'အရာရှိ') targetCats = ['officer'];
-            else if (staffType === 'စစ်သည်') targetCats = ['soldier'];
-            else if (staffType === 'အမြဲတမ်းဝန်ထမ်း') targetCats = ['staff'];
-
-            const ranks = [];
-            targetCats.forEach(cat => {
-                (RANK_DEFINITIONS[cat] || []).forEach(r => ranks.push(r));
-            });
-            rankSelect.innerHTML = ranks.map(r => `<option value="${r.abbr}" data-full="${r.full}">${r.full} (${r.abbr})</option>`).join('') + `<option value="CUSTOM">Custom (စိတ်ကြိုက်)</option>`;
-        }
-
-        function handleRankChange() {
-            const val = document.getElementById('p-form-rank').value;
-            const customInput = document.getElementById('p-form-rank-custom');
-            if (val === 'CUSTOM') {
-                customInput.classList.remove('hidden');
-                customInput.setAttribute('required', 'required');
-            } else {
-                customInput.classList.add('hidden');
-                customInput.removeAttribute('required');
-            }
         }
 
         function handleDeptChange() {
@@ -7051,7 +7021,7 @@ var db = admin.firestore();</pre>
             const container = document.getElementById('rank-definitions-list');
             if (!container) return;
 
-            ['officer', 'soldier', 'staff'].forEach(c => {
+            ['officer', 'soldier', 'staff', 'civilian'].forEach(c => {
                 const btn = document.getElementById('rank-tab-' + c);
                 if (btn) {
                     if (c === cat) {

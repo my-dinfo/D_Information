@@ -381,33 +381,57 @@
             <section id="dashboard-tab" class="tab-content space-y-5">
                 <!-- 5 Top Force Summary Cards -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
-                        <div>
-                            <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အရာရှိအင်အား</span>
-                            <span id="count-officer" class="text-2xl font-black text-amber-600 dark:text-amber-400 mt-1 block">၀</span>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အရာရှိအင်အား</span>
+                                <span id="count-officer" class="text-2xl font-black text-amber-600 dark:text-amber-400 mt-0.5 block">၀</span>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-base">⭐</div>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-base">⭐</div>
+                        <div class="flex gap-1.5 mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-[10px] font-bold">
+                            <span id="dash-officer-present-badge" class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">တန်းစီ: ၀</span>
+                            <span id="dash-officer-absent-badge" class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300">ပျက်ကွက်: ၀</span>
+                        </div>
                     </div>
-                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
-                        <div>
-                            <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">စစ်သည်အင်အား</span>
-                            <span id="count-soldier" class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1 block">၀</span>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">စစ်သည်အင်အား</span>
+                                <span id="count-soldier" class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-0.5 block">၀</span>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-base">🛡️</div>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-base">🛡️</div>
+                        <div class="flex gap-1.5 mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-[10px] font-bold">
+                            <span id="dash-soldier-present-badge" class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">တန်းစီ: ၀</span>
+                            <span id="dash-soldier-absent-badge" class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300">ပျက်ကွက်: ၀</span>
+                        </div>
                     </div>
-                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
-                        <div>
-                            <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အမြဲတမ်းဝန်ထမ်း</span>
-                            <span id="count-staff" class="text-2xl font-black text-orange-700 dark:text-orange-400 mt-1 block">၀</span>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အမြဲတမ်းဝန်ထမ်း</span>
+                                <span id="count-staff" class="text-2xl font-black text-orange-700 dark:text-orange-400 mt-0.5 block">၀</span>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 flex items-center justify-center font-bold text-base">👷</div>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 flex items-center justify-center font-bold text-base">👷</div>
+                        <div class="flex gap-1.5 mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-[10px] font-bold">
+                            <span id="dash-staff-present-badge" class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">တန်းစီ: ၀</span>
+                            <span id="dash-staff-absent-badge" class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300">ပျက်ကွက်: ၀</span>
+                        </div>
                     </div>
-                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
-                        <div>
-                            <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အရပ်သားဝန်ထမ်း</span>
-                            <span id="count-civilian" class="text-2xl font-black text-teal-600 dark:text-teal-400 mt-1 block">၀</span>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-slate-500 dark:text-slate-400 text-xs font-semibold block">အရပ်သားဝန်ထမ်း</span>
+                                <span id="count-civilian" class="text-2xl font-black text-teal-600 dark:text-teal-400 mt-0.5 block">၀</span>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 flex items-center justify-center font-bold text-base">👔</div>
                         </div>
-                        <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 flex items-center justify-center font-bold text-base">👔</div>
+                        <div class="flex gap-1.5 mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-[10px] font-bold">
+                            <span id="dash-civilian-present-badge" class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">တန်းစီ: ၀</span>
+                            <span id="dash-civilian-absent-badge" class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300">ပျက်ကွက်: ၀</span>
+                        </div>
                     </div>
                     <div class="col-span-2 sm:col-span-1 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
                         <div class="flex items-center justify-between">
@@ -4595,13 +4619,27 @@ var db = admin.firestore();</pre>
         }
 
         function renderDashboardView() {
-            const officers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရာရှိ').length;
-            const soldiers = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'စစ်သည်').length;
-            const staff = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အမြဲတမ်းဝန်ထမ်း').length;
-            const civilians = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရပ်သားဝန်ထမ်း').length;
+            const officerList = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရာရှိ');
+            const soldierList = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'စစ်သည်');
+            const staffList = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အမြဲတမ်းဝန်ထမ်း');
+            const civilianList = personnelData.filter(p => resolvePersonnelRoleGroup(p) === 'အရပ်သားဝန်ထမ်း');
+
+            const officers = officerList.length;
+            const soldiers = soldierList.length;
+            const staff = staffList.length;
+            const civilians = civilianList.length;
             const total = personnelData.length;
             const absentCount = personnelData.filter(p => p.status === 'ပျက်ကွက်').length;
             const presentCount = Math.max(0, total - absentCount);
+
+            const updateCategoryBadges = (list, presId, absId) => {
+                const abs = list.filter(p => p.status === 'ပျက်ကွက်').length;
+                const pres = Math.max(0, list.length - abs);
+                const elP = document.getElementById(presId);
+                const elA = document.getElementById(absId);
+                if (elP) elP.textContent = `တန်းစီ: ${toMyanmarNumerals(pres)}`;
+                if (elA) elA.textContent = `ပျက်ကွက်: ${toMyanmarNumerals(abs)}`;
+            };
 
             const elOff = document.getElementById('count-officer');
             const elSol = document.getElementById('count-soldier');
@@ -4618,6 +4656,11 @@ var db = admin.firestore();</pre>
             if (elTot) elTot.textContent = toMyanmarNumerals(total);
             if (elPres) elPres.textContent = `တန်းစီ: ${toMyanmarNumerals(presentCount)}`;
             if (elAbs) elAbs.textContent = `ပျက်ကွက်: ${toMyanmarNumerals(absentCount)}`;
+
+            updateCategoryBadges(officerList, 'dash-officer-present-badge', 'dash-officer-absent-badge');
+            updateCategoryBadges(soldierList, 'dash-soldier-present-badge', 'dash-soldier-absent-badge');
+            updateCategoryBadges(staffList, 'dash-staff-present-badge', 'dash-staff-absent-badge');
+            updateCategoryBadges(civilianList, 'dash-civilian-present-badge', 'dash-civilian-absent-badge');
 
             // Clustered Column Chart by Department
             const compChartEl = document.getElementById('dashboard-dept-composition-chart');

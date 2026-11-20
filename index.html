@@ -316,8 +316,8 @@
                 <button id="nav-duty" onclick="switchTab('duty')" title="လုံခြုံရေးတာဝန်အမည်စာရင်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
                     <span class="font-bold">လုံခြုံရေးတာဝန်အမည်စာရင်း</span>
                 </button>
-                <button id="nav-armory" onclick="switchTab('armory')" title="လက်နက် / ခဲယမ်းစာရင်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
-                    <span class="font-bold">လက်နက် / ခဲယမ်းစာရင်း</span>
+                <button id="nav-armory" onclick="switchTab('armory')" title="ကြီးကြပ်/ကန့်သတ်စာရင်း" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
+                    <span class="font-bold">ကြီးကြပ်/ကန့်သတ်စာရင်း</span>
                 </button>
                 <button id="nav-prod" onclick="switchTab('prod')" title="Prod; Statement" class="nav-btn flex items-center justify-start px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 whitespace-nowrap transition">
                     <span class="font-bold">Prod; Statement</span>
@@ -482,7 +482,7 @@
                                 <path d="M2 15l5-4h13l3-2h14l2 2h19v2h-16l-2 2h-8l-2 6h-4l2-6h-6l-4 5H3l-1-5zm26-2h5v-1h-5v1zm11-2h13v1H39v-1z"/>
                                 <path d="M31 15l1.5 6h3l-1.5-6h-3z"/>
                             </svg>
-                            <span>လက်နက် / ခဲယမ်း အခြေအနေ</span>
+                            <span>ကြီးကြပ်/ကန့်သတ်စာရင်း အခြေအနေ</span>
                         </h3>
                         <div id="dashboard-armory-chart" class="space-y-2.5 text-xs"></div>
                     </div>
@@ -496,9 +496,9 @@
                                 <path d="M2 15l5-4h13l3-2h14l2 2h19v2h-16l-2 2h-8l-2 6h-4l2-6h-6l-4 5H3l-1-5zm26-2h5v-1h-5v1zm11-2h13v1H39v-1z"/>
                                 <path d="M31 15l1.5 6h3l-1.5-6h-3z"/>
                             </svg>
-                            <span>လက်နက်အမျိုးအစားနှင့် ဖြန့်ခွဲ-ထုတ်ပေးမှု အနှစ်ချုပ် (%)</span>
+                            <span>ကြီးကြပ်/ကန့်သတ်စာရင်း အမျိုးအစားနှင့် ဖြန့်ခွဲမှု အနှစ်ချုပ် (%)</span>
                         </h3>
-                        <span id="dashboard-weapon-total-badge" class="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-bold text-[11px]">စုစုပေါင်းလက်နက်: ၀ လက်</span>
+                        <span id="dashboard-weapon-total-badge" class="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-bold text-[11px]">စုစုပေါင်း: ၀</span>
                     </div>
                     <div id="dashboard-weapon-distribution-linechart" class="overflow-x-auto pt-2 pb-1"></div>
                     <div id="dashboard-weapon-distribution-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-xs"></div>
@@ -693,7 +693,7 @@
                                 <th class="p-3 text-left">အမည်</th>
                                 <th class="p-3 text-left">ဌာနအမည်</th>
                                 <th class="p-3 text-left">ဝန်ထမ်းအမျိုးအစား</th>
-                                <th class="p-3 text-left">တပ်တွင်း/ပြင်</th>
+                                <th class="p-3 text-left">နေရပ်လိပ်စာ</th>
                                 <th class="p-3 text-left">လက်ရှိအခြေအနေ</th>
                                 <th class="p-3 text-left">ပျက်ကွက်အကြောင်းရင်း</th>
                                 <th class="p-3 text-left">တည်နေရာ</th>
@@ -805,6 +805,7 @@
                                     <th class="p-3 text-left">အမည်</th>
                                     <th class="p-3 text-left">ဌာန</th>
                                     <th class="p-3 text-left">ဝန်ထမ်းအမျိုးအစား</th>
+                                    <th class="p-3 text-left">လက်ရှိအခြေအနေ</th>
                                     <th class="p-3 text-left">ပျက်ကွက်အကြောင်းအရင်း</th>
                                     <th class="p-3 text-left">မှတ်ချက်</th>
                                     <th class="p-3 text-center">Function</th>
@@ -962,17 +963,17 @@
                 <div id="duty-pagination-bar"></div>
             </section>
 
-            <!-- ARMORY & AMMUNITION TAB (လက်နက် / ခဲယမ်းစာရင်း) -->
+            <!-- CONTROLLED / RESTRICTED INVENTORY TAB (ကြီးကြပ်/ကန့်သတ်စာရင်း) -->
             <section id="armory-tab" class="tab-content hidden space-y-4">
                 <div class="bg-white dark:bg-slate-800 p-3.5 sm:p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-3">
                     <!-- 4 Summary Cards -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                         <div class="bg-blue-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-blue-200 dark:border-slate-600 flex justify-between items-center">
-                            <span class="text-slate-600 dark:text-slate-300 font-semibold">စုစုပေါင်း</span>
+                            <span class="text-slate-600 dark:text-slate-300 font-semibold">လယ်ဂျာရှိ စုစုပေါင်း</span>
                             <span id="a-sub-total" class="font-bold text-blue-700 dark:text-blue-300">၀</span>
                         </div>
                         <div class="bg-amber-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-amber-200 dark:border-slate-600 flex justify-between items-center">
-                            <span class="text-slate-600 dark:text-slate-300 font-semibold">ထုတ်ပေး</span>
+                            <span class="text-slate-600 dark:text-slate-300 font-semibold">ထုတ်ပေး / ဖြန့်ခွဲ</span>
                             <span id="a-sub-issued" class="font-bold text-amber-700 dark:text-amber-300">၀</span>
                         </div>
                         <div class="bg-emerald-50 dark:bg-slate-700/60 p-2.5 rounded-lg border border-emerald-200 dark:border-slate-600 flex justify-between items-center">
@@ -994,24 +995,21 @@
                         <span id="a-form-toggle-arrow" class="text-xs font-extrabold transition-transform duration-200">▼</span>
                     </button>
 
-                    <!-- Inline Armory Input Form & Actions (Default Hidden) -->
+                    <!-- Inline Controlled/Restricted Inventory Input Form & Actions (Default Hidden) -->
                     <div id="a-collapsible-form-body" class="hidden flex flex-col lg:flex-row gap-4 justify-between pt-1">
                         <div class="flex-1">
                             <input type="hidden" id="a-inline-index" value="-1">
                             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 text-xs bg-slate-50 dark:bg-slate-700/40 p-3 rounded-lg border border-slate-200 dark:border-slate-600">
                                 <div>
                                     <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">အမျိုးအစား</label>
-                                    <select id="a-in-category" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
-                                        <option value="လက်နက်">လက်နက်</option>
-                                        <option value="ခဲယမ်း">ခဲယမ်း</option>
-                                    </select>
+                                    <select id="a-in-category" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none"></select>
                                 </div>
                                 <div>
-                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">လက်နက် / ခဲယမ်း အမည်</label>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">အမည်</label>
                                     <input type="text" id="a-in-weapon" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">မော်ဒယ် (Model)</label>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">မော်ဒယ်</label>
                                     <input type="text" id="a-in-model" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
                                 </div>
                                 <div>
@@ -1019,23 +1017,31 @@
                                     <input type="text" id="a-in-code" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">လက်နက်နံပါတ် / အရေအတွက်</label>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">နံပါတ်</label>
                                     <input type="text" id="a-in-serial" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ထုတ်ပေးအကြောင်းအရင်း</label>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ထုတ်ပေးအကြောင်းရင်း</label>
                                     <select id="a-in-dept" onchange="handleArmoryPurposeChange()" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none"></select>
-                                    <input type="text" id="a-in-dept-custom" placeholder="အကြောင်းအရင်းအမည်..." class="hidden w-full mt-1 bg-white dark:bg-slate-700 border border-blue-400 rounded-lg px-2.5 py-1 outline-none">
+                                    <input type="text" id="a-in-dept-custom" placeholder="အကြောင်းရင်းအမည်..." class="hidden w-full mt-1 bg-white dark:bg-slate-700 border border-blue-400 rounded-lg px-2.5 py-1 outline-none">
                                 </div>
                                 <div>
-                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">တည်နေရာ</label>
-                                    <input type="text" id="a-in-location" oninput="renderArmory()" placeholder="တည်နေရာ..." class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ဖြန့်ခွဲ /ထုတ်ပေး / စတိုကျန်</label>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">ဖြန့်ခွဲမှု</label>
                                     <select id="a-in-status" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none"></select>
                                 </div>
-                                <div class="sm:col-span-2 md:col-span-4">
+                                <div>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">အရေအတွက်</label>
+                                    <input type="number" min="0" id="a-in-qty" oninput="recalcArmoryStoreBalance()" placeholder="0" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">လယ်ဂျာရှိ</label>
+                                    <input type="number" min="0" id="a-in-ledger" oninput="recalcArmoryStoreBalance()" placeholder="0" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">စတိုကျန်</label>
+                                    <input type="number" min="0" id="a-in-store" placeholder="0" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
+                                </div>
+                                <div class="sm:col-span-2">
                                     <label class="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">မှတ်ချက်</label>
                                     <input type="text" id="a-in-remarks" class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-1.5 outline-none">
                                 </div>
@@ -1054,13 +1060,9 @@
                 </div>
 
                 <div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col lg:flex-row gap-2.5 justify-between items-stretch lg:items-center">
-                    <input type="text" id="armory-search" oninput="resetTablePage('armory'); renderArmory()" placeholder="လက်နက် / ခဲယမ်း ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none">
+                    <input type="text" id="armory-search" oninput="resetTablePage('armory'); renderArmory()" placeholder="ကြီးကြပ်/ကန့်သတ်စာရင်း ရှာဖွေရန်..." class="w-full lg:flex-1 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 text-xs outline-none">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full lg:w-auto">
-                        <select id="armory-filter-cat" onchange="resetTablePage('armory'); renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none">
-                            <option value="ALL">အမျိုးအစားအားလုံး</option>
-                            <option value="လက်နက်">လက်နက်</option>
-                            <option value="ခဲယမ်း">ခဲယမ်း</option>
-                        </select>
+                        <select id="armory-filter-cat" onchange="resetTablePage('armory'); renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
                         <select id="armory-filter-name" onchange="resetTablePage('armory'); renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
                         <select id="armory-filter-status" onchange="resetTablePage('armory'); renderArmory()" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg px-2.5 py-2 text-xs outline-none"></select>
                     </div>
@@ -1521,10 +1523,19 @@ var db = admin.firestore();</pre>
                         <div id="security-duty-types-list" class="space-y-2"></div>
                     </div>
 
-                    <!-- Armory Issue / Distribution Type Management (ဖြန့်ခွဲ-ထုတ်ပေး) -->
+                    <!-- Controlled/Restricted Category Management (ကြီးကြပ်/ကန့်သတ်စာရင်း အမျိုးအစား သတ်မှတ်ချက်) -->
                     <div class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-4">
                         <div class="flex justify-between items-center border-b dark:border-slate-700 pb-2">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs">လက်နက်ခဲယမ်း ဖြန့်ခွဲ-ထုတ်ပေး</h3>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs">ကြီးကြပ်/ကန့်သတ်စာရင်း အမျိုးအစား သတ်မှတ်ချက်</h3>
+                            <button onclick="addArmoryCategoryItem()" class="text-blue-600 dark:text-blue-400 hover:underline text-xs font-bold py-1">+ အသစ်ထည့်</button>
+                        </div>
+                        <div id="armory-category-types-list" class="space-y-2"></div>
+                    </div>
+
+                    <!-- Armory Issue / Distribution Type Management (ကြီးကြပ်/ကန့်သတ်စာရင်း ဖြန့်ခွဲမှု) -->
+                    <div class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-4">
+                        <div class="flex justify-between items-center border-b dark:border-slate-700 pb-2">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs">ကြီးကြပ်/ကန့်သတ်စာရင်း ဖြန့်ခွဲမှု</h3>
                             <button onclick="addArmoryStatusItem()" class="text-blue-600 dark:text-blue-400 hover:underline text-xs font-bold py-1">+ အသစ်ထည့်</button>
                         </div>
                         <div id="armory-status-types-list" class="space-y-2"></div>
@@ -1848,7 +1859,7 @@ var db = admin.firestore();</pre>
                     </div>
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" name="reset-target" value="armory" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
-                        <span>လက်နက် / ခဲယမ်းစာရင်း (Armory &amp; Ammunition)</span>
+                        <span>ကြီးကြပ်/ကန့်သတ်စာရင်း (Controlled &amp; Restricted List)</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" name="reset-target" value="prod" onchange="handleResetTargetCheckboxChange()" class="rounded text-blue-600">
@@ -2027,6 +2038,7 @@ var db = admin.firestore();</pre>
         let staffTypeList = ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်', 'အရပ်သား'];
         let statusList = ['တန်းစီ', 'ပျက်ကွက်'];
         let securityDutyTypeList = ['တပ်တွင်း', 'တပ်ပြင်'];
+        let armoryCategoryList = ['လက်နက်', 'ခဲယမ်း', 'ကြီးကြပ်', 'ကန့်သတ်', 'ဆက်စပ်ပစ္စည်း'];
         let armoryStatusList = ['ထုတ်ပေး', 'စတိုကျန်', 'ပြင်ဆင်ဆဲ'];
         let absentReasonCategories = ['ခွင့်', 'ဆေးရုံတက်', 'တာဝန်ခရီး', 'သင်တန်း', 'လုံခြုံရေးတာဝန်', 'အခြား'];
         let absentReasonRows = absentReasonCategories.map(r => ({
@@ -2091,16 +2103,16 @@ var db = admin.firestore();</pre>
             { id: 'တ-၅၁၀၀၀၁', rankAbbr: 'အရခဗ', name: 'ဦးမြင့်သိန်း', deptAbbr: 'ဌနခ', staffType: 'သန္ဓေ', status: 'ပျက်ကွက်', absentReason: 'လုံခြုံရေးတာဝန်', remarks: 'ညပိုင်းလှည့်ကင်းကြီးကြပ်', dutyType: 'တပ်ပြင်', location: 'အရှေ့ဘက်ကင်းစခန်း', weaponType: 'MA-4 MK-II', weaponModel: '5.56mm + 40mm', weaponCode: 'WPN-110', weaponSerial: 'SN-2026110', ammoCount: 'ကျည် ၁၅၀ + ဗုံးသီး ၆ လုံး', startDate: '2026-11-18' }
         ];
         let armoryData = [
-            { category: 'လက်နက်', weaponType: 'MA-1 MK-II', model: '5.56mm Assault Rifle', code: 'WPN-101', serial: 'SN-2026101', dept: 'တပ်တွင်းလခရ', location: 'ဂိတ် (၁) - ပင်မဝင်ပေါက်', status: 'ထုတ်ပေး', remarks: 'တပ်တွင်းလုံခြုံရေးတာဝန်' },
-            { category: 'လက်နက်', weaponType: 'MA-1 MK-II', model: '5.56mm Assault Rifle', code: 'WPN-102', serial: 'SN-2026102', dept: 'တပ်ပြင်လခရ', location: 'အနောက်ဘက်စစ်ဆေးရေးဂိတ်', status: 'ထုတ်ပေး', remarks: 'တပ်ပြင်လုံခြုံရေးတာဝန်' },
-            { category: 'လက်နက်', weaponType: 'MA-2 MK-II', model: '5.56mm Light Machine Gun', code: 'WPN-103', serial: 'SN-2026103', dept: 'တပ်ပြင်လခရ', location: 'တောင်ဘက်မျှော်စင်ကင်းစခန်း', status: 'ထုတ်ပေး', remarks: 'မျှော်စင်ကင်းစခန်းသုံး' },
-            { category: 'လက်နက်', weaponType: 'MA-3 MK-II', model: '5.56mm Carbine', code: 'WPN-104', serial: 'SN-2026104', dept: 'ယာယီတာဝန်', location: 'ယာဉ်တန်းလုံခြုံရေးအဖွဲ့', status: 'ထုတ်ပေး', remarks: 'ယာယီတာဝန်ခရီးထုတ်ပေး' },
-            { category: 'လက်နက်', weaponType: 'MA-4 MK-II', model: '5.56mm Rifle + Grenade Launcher', code: 'WPN-105', serial: 'SN-2026105', dept: 'သင်တန်း', location: 'လေ့ကျင့်ရေးကွင်း', status: 'ထုတ်ပေး', remarks: 'မွမ်းမံသင်တန်းအတွက်' },
-            { category: 'လက်နက်', weaponType: 'MA-5 MK-II', model: '9mm Semi-Auto Pistol', code: 'WPN-106', serial: 'SN-2026106', dept: 'တပ်တွင်းလခရ', location: 'စက်ရုံဌာနချုပ်', status: 'ထုတ်ပေး', remarks: 'အရာရှိတာဝန်ခံကိုင်ဆောင်' },
-            { category: 'လက်နက်', weaponType: 'MA-1 MK-III', model: '5.56mm Standard Rifle', code: 'WPN-107', serial: 'SN-2026107', dept: '-', location: 'ဗဟိုလက်နက်တိုက်', status: 'စတိုကျန်', remarks: 'အရန်သင့်အခြေအနေ' },
-            { category: 'လက်နက်', weaponType: 'MA-2 MK-III', model: '5.56mm Squad Automatic', code: 'WPN-108', serial: 'SN-2026108', dept: '-', location: 'လက်နက်ပြင်အလုပ်ရုံ', status: 'ပြင်ဆင်ဆဲ', remarks: 'မောင်းတုံးစပရိန်လဲလှယ်ဆဲ' },
-            { category: 'ခဲယမ်း', weaponType: '5.56mm Ball Cartridge', model: 'M193 Standard', code: 'AMO-201', serial: '၁၂,၀၀၀', dept: '-', location: 'ခဲယမ်းသိုလှောင်ရုံ (၁)', status: 'စတိုကျန်', remarks: 'သေတ္တာ ၁၂ လုံး' },
-            { category: 'ခဲယမ်း', weaponType: '9mm Parabellum', model: 'FMJ 115gr', code: 'AMO-202', serial: '၂,၅၀၀', dept: 'တပ်တွင်းလခရ', location: 'ဗဟိုလက်နက်တိုက်', status: 'ထုတ်ပေး', remarks: 'လုံခြုံရေးအရာရှိများသို့ ထုတ်ပေး' }
+            { category: 'လက်နက်', weaponType: 'MA-1 MK-II', model: '5.56mm Assault Rifle', code: 'WPN-101', serial: 'SN-2026101', dept: 'တပ်တွင်းလခရ', status: 'ထုတ်ပေး', quantity: 1, ledgerQty: 1, storeQty: 0, remarks: 'တပ်တွင်းလုံခြုံရေးတာဝန်' },
+            { category: 'လက်နက်', weaponType: 'MA-1 MK-II', model: '5.56mm Assault Rifle', code: 'WPN-102', serial: 'SN-2026102', dept: 'တပ်ပြင်လခရ', status: 'ထုတ်ပေး', quantity: 1, ledgerQty: 1, storeQty: 0, remarks: 'တပ်ပြင်လုံခြုံရေးတာဝန်' },
+            { category: 'လက်နက်', weaponType: 'MA-2 MK-II', model: '5.56mm Light Machine Gun', code: 'WPN-103', serial: 'SN-2026103', dept: 'တပ်ပြင်လခရ', status: 'ထုတ်ပေး', quantity: 1, ledgerQty: 1, storeQty: 0, remarks: 'မျှော်စင်ကင်းစခန်းသုံး' },
+            { category: 'လက်နက်', weaponType: 'MA-3 MK-II', model: '5.56mm Carbine', code: 'WPN-104', serial: 'SN-2026104', dept: 'ယာယီတာဝန်', status: 'ထုတ်ပေး', quantity: 1, ledgerQty: 1, storeQty: 0, remarks: 'ယာဉ်တန်းလုံခြုံရေးအဖွဲ့' },
+            { category: 'လက်နက်', weaponType: 'MA-4 MK-II', model: '5.56mm Rifle + Grenade Launcher', code: 'WPN-105', serial: 'SN-2026105', dept: 'သင်တန်း', status: 'ထုတ်ပေး', quantity: 1, ledgerQty: 1, storeQty: 0, remarks: 'မွမ်းမံသင်တန်းအတွက်' },
+            { category: 'လက်နက်', weaponType: 'MA-5 MK-II', model: '9mm Semi-Auto Pistol', code: 'WPN-106', serial: 'SN-2026106', dept: 'တပ်တွင်းလခရ', status: 'ထုတ်ပေး', quantity: 1, ledgerQty: 1, storeQty: 0, remarks: 'အရာရှိတာဝန်ခံကိုင်ဆောင်' },
+            { category: 'လက်နက်', weaponType: 'MA-1 MK-III', model: '5.56mm Standard Rifle', code: 'WPN-107', serial: 'SN-2026107', dept: '-', status: 'စတိုကျန်', quantity: 0, ledgerQty: 1, storeQty: 1, remarks: 'အရန်သင့်အခြေအနေ' },
+            { category: 'ကြီးကြပ်', weaponType: 'ညကြည့်မှန်ပြောင်း (Night Vision)', model: 'NVG-Gen3', code: 'CTL-301', serial: 'NV-202601', dept: 'တပ်ပြင်လခရ', status: 'ထုတ်ပေး', quantity: 2, ledgerQty: 5, storeQty: 3, remarks: 'ကင်းစခန်းကြီးကြပ်သုံး' },
+            { category: 'ခဲယမ်း', weaponType: '5.56mm Ball Cartridge', model: 'M193 Standard', code: 'AMO-201', serial: 'LOT-556A', dept: '-', status: 'စတိုကျန်', quantity: 0, ledgerQty: 12000, storeQty: 12000, remarks: 'သေတ္တာ ၁၂ လုံး' },
+            { category: 'ဆက်စပ်ပစ္စည်း', weaponType: '5.56mm ကျည်အိမ် (Magazine)', model: '30-Round Polymer', code: 'ACC-401', serial: 'MAG-2026', dept: 'တပ်တွင်းလခရ', status: 'ထုတ်ပေး', quantity: 20, ledgerQty: 100, storeQty: 80, remarks: 'လုံခြုံရေးအဖွဲ့သို့ ထုတ်ပေး' }
         ];
         let prodStatementData = [
             { nomenclature: '5.56mm Rifle Barrel Assembly', au: 'Nos', debtYear: '25-26', debt2526: 120, planYear: '26-27', plan2627: 600, totalPlan: 720, description: 'Prod;', apr: 60, may: 65, jun: 70, jul: 60, aug: 55, sep: 60, oct: 50, nov: 0, dec: 0, jan: 0, feb: 0, mar: 0, total: 420, remark: 'ထလရ-၁ ပုံမှန်ထုတ်လုပ်မှု', financialYears: '2026-2027' },
@@ -2249,6 +2261,7 @@ var db = admin.firestore();</pre>
         let editingRankIndex = -1;
         let editingStatusIndex = -1;
         let editingSecurityDutyTypeIndex = -1;
+        let editingArmoryCategoryIndex = -1;
         let editingArmoryStatusIndex = -1;
         let editingAbsentReasonIndex = -1;
         let activePersonnelCategoryTab = 'ALL';
@@ -2383,6 +2396,7 @@ var db = admin.firestore();</pre>
                 }
                 if (Array.isArray(parsed.statusList) && parsed.statusList.length) statusList = parsed.statusList;
                 if (Array.isArray(parsed.securityDutyTypeList) && parsed.securityDutyTypeList.length) securityDutyTypeList = parsed.securityDutyTypeList;
+                if (Array.isArray(parsed.armoryCategoryList) && parsed.armoryCategoryList.length) armoryCategoryList = parsed.armoryCategoryList;
                 if (Array.isArray(parsed.armoryStatusList) && parsed.armoryStatusList.length) armoryStatusList = parsed.armoryStatusList;
                 if (Array.isArray(parsed.absentReasonCategories) && parsed.absentReasonCategories.length) absentReasonCategories = parsed.absentReasonCategories;
                 if (Array.isArray(parsed.absentReasonRows)) absentReasonRows = parsed.absentReasonRows;
@@ -2430,7 +2444,7 @@ var db = admin.firestore();</pre>
                 personnel: { sectionId: 'personnel-tab', title: 'အမြဲတမ်းဝန်ထမ်း', category: 'ALL' },
                 absent: { sectionId: 'absent-tab', title: 'တန်းစီအင်အားစာရင်းနှင့် ပျက်ကွက်အမည်စာရင်း', category: 'ALL' },
                 duty: { sectionId: 'duty-tab', title: 'လုံခြုံရေးတာဝန်အမည်စာရင်း', category: 'ALL' },
-                armory: { sectionId: 'armory-tab', title: 'လက်နက် / ခဲယမ်းစာရင်း', category: 'ALL' },
+                armory: { sectionId: 'armory-tab', title: 'ကြီးကြပ်/ကန့်သတ်စာရင်း', category: 'ALL' },
                 prod: { sectionId: 'prod-tab', title: 'Prod; Statement', category: 'ALL' },
                 users: { sectionId: 'users-tab', title: 'User Management', category: 'ALL' },
                 settings: { sectionId: 'settings-tab', title: 'Setting', category: 'ALL' }
@@ -2751,7 +2765,7 @@ var db = admin.firestore();</pre>
         function exportFullSystemBackup() {
             const payload = {
                 exportedAt: new Date().toISOString(),
-                staffTypeList, statusList, securityDutyTypeList, armoryStatusList,
+                staffTypeList, statusList, securityDutyTypeList, armoryCategoryList, armoryStatusList,
                 absentReasonCategories, absentReasonRows, DEPT_MAPPING, RANK_DEFINITIONS,
                 personnelData, securityDutyData, armoryData, prodStatementData, userRoles, userData
             };
@@ -2850,6 +2864,7 @@ var db = admin.firestore();</pre>
                     staffTypeList = ['သန္ဓေ', 'တွဲဖက်', 'ယာယီတာဝန်', 'အရပ်သား'];
                     statusList = ['တန်းစီ', 'ပျက်ကွက်'];
                     securityDutyTypeList = ['တပ်တွင်း', 'တပ်ပြင်'];
+                    armoryCategoryList = ['လက်နက်', 'ခဲယမ်း', 'ကြီးကြပ်', 'ကန့်သတ်', 'ဆက်စပ်ပစ္စည်း'];
                     armoryStatusList = ['ထုတ်ပေး', 'စတိုကျန်', 'ပြင်ဆင်ဆဲ'];
                     DEPT_MAPPING = JSON.parse(JSON.stringify(DEFAULT_DEPT_MAPPING));
                     RANK_DEFINITIONS = JSON.parse(JSON.stringify(DEFAULT_RANK_DEFINITIONS));
@@ -2881,6 +2896,7 @@ var db = admin.firestore();</pre>
                     staffTypeList,
                     statusList,
                     securityDutyTypeList,
+                    armoryCategoryList,
                     armoryStatusList,
                     absentReasonCategories,
                     absentReasonRows,
@@ -2912,6 +2928,7 @@ var db = admin.firestore();</pre>
                 if (Array.isArray(remoteData.staffTypeList) && remoteData.staffTypeList.length) staffTypeList = remoteData.staffTypeList;
                 if (Array.isArray(remoteData.statusList) && remoteData.statusList.length) statusList = remoteData.statusList;
                 if (Array.isArray(remoteData.securityDutyTypeList) && remoteData.securityDutyTypeList.length) securityDutyTypeList = remoteData.securityDutyTypeList;
+                if (Array.isArray(remoteData.armoryCategoryList) && remoteData.armoryCategoryList.length) armoryCategoryList = remoteData.armoryCategoryList;
                 if (Array.isArray(remoteData.armoryStatusList) && remoteData.armoryStatusList.length) armoryStatusList = remoteData.armoryStatusList;
                 if (Array.isArray(remoteData.absentReasonCategories) && remoteData.absentReasonCategories.length) absentReasonCategories = remoteData.absentReasonCategories;
                 if (Array.isArray(remoteData.absentReasonRows)) absentReasonRows = remoteData.absentReasonRows;
@@ -2954,6 +2971,7 @@ var db = admin.firestore();</pre>
                     staffTypeList,
                     statusList,
                     securityDutyTypeList,
+                    armoryCategoryList,
                     armoryStatusList,
                     absentReasonCategories,
                     absentReasonRows,
@@ -4312,6 +4330,7 @@ var db = admin.firestore();</pre>
                                      (p.deptAbbr || '').toLowerCase().includes(query) ||
                                      (p.deptFull || '').toLowerCase().includes(query) ||
                                      (p.occupation || '').toLowerCase().includes(query) ||
+                                     (p.address || '').toLowerCase().includes(query) ||
                                      (p.unitScope || '').toLowerCase().includes(query) ||
                                      (p.absentReason || '').toLowerCase().includes(query) ||
                                      (p.location || '').toLowerCase().includes(query) ||
@@ -4342,10 +4361,6 @@ var db = admin.firestore();</pre>
 
             container.innerHTML = paginated.map(p => {
                 const realIndex = personnelData.indexOf(p);
-                const unitScopeText = p.unitScope || 'တပ်တွင်း';
-                const unitScopeClass = unitScopeText === 'တပ်ပြင်'
-                    ? 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800'
-                    : 'bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-800';
                 const absentReasonText = p.status === 'ပျက်ကွက်' ? (p.absentReason || '-') : '-';
 
                 return `
@@ -4355,8 +4370,8 @@ var db = admin.firestore();</pre>
                         <td class="p-3 font-bold text-slate-900 dark:text-white">${p.name}</td>
                         <td class="p-3 font-semibold">${getDeptAbbr(p.deptAbbr || p.deptFull)}</td>
                         <td class="p-3">${p.staffType || '-'}</td>
-                        <td class="p-3"><span class="px-2 py-0.5 rounded-md font-bold text-[11px] border ${unitScopeClass}">${unitScopeText}</span></td>
-                        <td class="p-3"><span class="px-2 py-0.5 rounded-md font-bold text-[11px] border ${getStatusBadgeClass(p.status)}">${p.status}</span></td>
+                        <td class="p-3 text-slate-700 dark:text-slate-300">${p.address || '-'}</td>
+                        <td class="p-3 text-slate-800 dark:text-slate-200">${p.status || '-'}</td>
                         <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">${absentReasonText}</td>
                         <td class="p-3">${p.location || '-'}</td>
                         <td class="p-3 text-slate-600 dark:text-slate-400">${p.remarks || '-'}</td>
@@ -4379,22 +4394,15 @@ var db = admin.firestore();</pre>
                                 <div>
                                     <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">${getRankAbbr(p.rankAbbr || p.rankFull)}</span>
                                     <span class="font-bold text-slate-900 dark:text-white text-sm ml-1">${p.name}</span>
-                                    <div class="text-[11px] text-slate-500 dark:text-slate-400">${p.id} &bull; ဌာန: <strong>${getDeptAbbr(p.deptAbbr || p.deptFull)}</strong> &bull; ${p.unitScope || 'တပ်တွင်း'}</div>
+                                    <div class="text-[11px] text-slate-500 dark:text-slate-400">${p.id} &bull; ဌာန: <strong>${getDeptAbbr(p.deptAbbr || p.deptFull)}</strong> &bull; နေရပ်လိပ်စာ: <strong>${p.address || '-'}</strong></div>
                                 </div>
                                 <span class="px-2 py-0.5 rounded-md font-bold text-[11px] border ${getStatusBadgeClass(p.status)}">${p.status}</span>
                             </div>
                             <div class="grid grid-cols-2 gap-1 text-[11px] text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-700/40 p-2 rounded-lg">
                                 <div>အမျိုးအစား: <strong>${p.staffType || '-'}</strong></div>
                                 <div>တည်နေရာ: <strong>${p.location || '-'}</strong></div>
+                                <div class="col-span-2">နေရပ်လိပ်စာ: <strong>${p.address || '-'}</strong></div>
                                 <div class="col-span-2">ပျက်ကွက်အကြောင်းရင်း: <strong class="text-rose-600 dark:text-rose-400">${absentReasonText}</strong></div>
-                            </div>
-                                <span class="px-2 py-0.5 rounded-md font-bold text-[11px] border ${getStatusBadgeClass(p.status)}">${p.status}</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-1 text-[11px] text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-700/40 p-2 rounded-lg">
-                                <div>အလုပ်ကိုင်: <strong>${p.occupation || '-'}</strong></div>
-                                <div>အမျိုးအစား: <strong>${p.staffType || '-'}</strong></div>
-                                <div>ပျက်ကွက်အကြောင်းရင်း: <strong class="text-rose-600 dark:text-rose-400">${absentReasonText}</strong></div>
-                                <div>တည်နေရာ: <strong>${p.location || '-'}</strong></div>
                             </div>
                             <div class="role-write-action flex justify-end gap-1.5 pt-1 border-t dark:border-slate-700" onclick="event.stopPropagation()">
                                 <button onclick="selectPersonnelForInlineEdit(${realIndex})" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold text-[11px]">✏️ Edit</button>
@@ -4547,7 +4555,7 @@ var db = admin.firestore();</pre>
 
             if (detailBody) {
                 if (absentPeople.length === 0) {
-                    detailBody.innerHTML = `<tr><td colspan="9" class="text-center py-6 text-slate-400">ပျက်ကွက်ဝန်ထမ်း စာရင်း မရှိပါ</td></tr>`;
+                    detailBody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-slate-400">ပျက်ကွက်ဝန်ထမ်း စာရင်း မရှိပါ</td></tr>`;
                 } else {
                     detailBody.innerHTML = paginatedAbsent.map((p, idx) => {
                         const realIndex = personnelData.indexOf(p);
@@ -4559,7 +4567,8 @@ var db = admin.firestore();</pre>
                                 <td class="p-3 font-bold">${p.name}</td>
                                 <td class="p-3">${getDeptAbbr(p.deptAbbr || p.deptFull)}</td>
                                 <td class="p-3">${p.staffType}</td>
-                                <td class="p-3"><span class="px-2 py-0.5 rounded bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300 font-bold text-[11px]">${p.absentReason || '-'}</span></td>
+                                <td class="p-3 text-slate-800 dark:text-slate-200">${p.status || 'ပျက်ကွက်'}</td>
+                                <td class="p-3 text-slate-800 dark:text-slate-200">${p.absentReason || '-'}</td>
                                 <td class="p-3 text-slate-500">${p.remarks || '-'}</td>
                                 <td class="p-3 text-center" onclick="event.stopPropagation()">
                                     <button onclick="openPersonnelForm(${realIndex})" class="role-write-action p-1 bg-amber-50 text-amber-700 rounded-lg font-bold" title="ပြင်ဆင်မည်">✏️</button>
@@ -4750,20 +4759,19 @@ var db = admin.firestore();</pre>
 
             const armoryChartEl = document.getElementById('dashboard-armory-chart');
             if (armoryChartEl) {
-                const weaponsOnly = armoryData.filter(w => (w.category || 'လက်နက်') === 'လက်နက်');
-                const issuedCnt = weaponsOnly.filter(w => w.status === 'ထုတ်ပေး').length;
-                const storeCnt = weaponsOnly.filter(w => w.status === 'စတိုကျန်').length;
-                const repairCnt = weaponsOnly.filter(w => w.status === 'ပြင်ဆင်ဆဲ').length;
+                const issuedCnt = armoryData.filter(w => w.status === 'ထုတ်ပေး').length;
+                const storeCnt = armoryData.filter(w => w.status === 'စတိုကျန်').length;
+                const repairCnt = armoryData.filter(w => w.status === 'ပြင်ဆင်ဆဲ').length;
                 armoryChartEl.innerHTML = buildDonutChartHtml([
                     { label: 'ထုတ်ပေး', value: issuedCnt, color: '#f59e0b' },
                     { label: 'စတိုကျန်', value: storeCnt, color: '#10b981' },
                     { label: 'ပြင်ဆင်ဆဲ', value: repairCnt, color: '#ef4444' }
-                ], weaponsOnly.length, 'လက်နက်');
+                ], armoryData.length, 'စာရင်းဝင်');
             }
         }
 
         function updateDashboardWeaponLineChart() {
-            // Weapon Type & Issue Purpose Breakdown Card (Line Chart Style + Summary Legend)
+            // Controlled/Restricted Type & Issue Purpose Breakdown Card (Line Chart Style + Summary Legend)
             const weaponLineChartEl = document.getElementById('dashboard-weapon-distribution-linechart');
             const weaponDistGrid = document.getElementById('dashboard-weapon-distribution-grid');
             const weaponTotalBadge = document.getElementById('dashboard-weapon-total-badge');
@@ -4787,7 +4795,7 @@ var db = admin.firestore();</pre>
                 const trainingCount = issuedWeapons.filter(w => matchPurpose(w, ['သင်တန်း'])).length;
 
                 if (weaponTotalBadge) {
-                    weaponTotalBadge.textContent = `စုစုပေါင်းလက်နက်: ${toMyanmarNumerals(totalWeapons)} လက်`;
+                    weaponTotalBadge.textContent = `စုစုပေါင်းစာရင်း: ${toMyanmarNumerals(armoryData.length)} မျိုး (လက်နက် ${toMyanmarNumerals(totalWeapons)})`;
                 }
 
                 const calcPct = (val, base) => base > 0 ? Math.round((val / base) * 100) : 0;
@@ -5219,19 +5227,24 @@ var db = admin.firestore();</pre>
                 syncToFirebaseFirestore(`duty_local_import:${fileName}`);
             } else if (target === 'armory') {
                 rows.forEach(r => {
-                    const wName = String(r['လက်နက် / ခဲယမ်း အမည်'] || r['လက်နက်အမျိုးအစား'] || r['Name'] || '').trim();
+                    const wName = String(r['အမည်'] || r['လက်နက် / ခဲယမ်း အမည်'] || r['လက်နက်အမျိုးအစား'] || r['Name'] || '').trim();
                     if (!wName) return;
-                    const rawPurpose = String(r['ထုတ်ပေးအကြောင်းအရင်း'] || r['မည်သည့်ကိစ္စအတွက်'] || r['မည့်သည့်ကိစ္စအတွက်'] || r['ထုတ်ပေး ဌာန'] || r['Department'] || 'တပ်တွင်းလခရ').trim();
-                    const rawLocation = String(r['တည်နေရာ'] || r['Location'] || '').trim();
+                    const rawPurpose = String(r['ထုတ်ပေးအကြောင်းရင်း'] || r['ထုတ်ပေးအကြောင်းအရင်း'] || r['မည်သည့်ကိစ္စအတွက်'] || r['Department'] || '-').trim();
+                    const rawSerial = String(r['နံပါတ်'] || r['လက်နက်နံပါတ် / အရေအတွက်'] || r['Serial'] || '-').trim();
+                    const qtyVal = Number(r['အရေအတွက်'] ?? r['Quantity']) || 0;
+                    const ledgerVal = Number(r['လယ်ဂျာရှိ'] ?? r['Ledger']) || (qtyVal > 0 ? qtyVal : 1);
+                    const storeVal = r['စတိုကျန်'] !== undefined ? Number(r['စတိုကျန်']) : Math.max(0, ledgerVal - qtyVal);
                     armoryData.unshift({
                         category: String(r['အမျိုးအစား'] || 'လက်နက်'),
                         weaponType: wName,
-                        model: String(r['မော်ဒယ် (Model)'] || r['Model'] || '-'),
+                        model: String(r['မော်ဒယ်'] || r['မော်ဒယ် (Model)'] || r['Model'] || '-'),
                         code: String(r['ကုတ်နံပါတ်'] || r['Code'] || '-'),
-                        serial: String(r['လက်နက်နံပါတ် / အရေအတွက်'] || r['စက်နံပါတ် / အရေအတွက်'] || r['Serial'] || '-'),
+                        serial: rawSerial,
                         dept: rawPurpose,
-                        location: rawLocation,
-                        status: String(r['ဖြန့်ခွဲ /ထုတ်ပေး / စတိုကျန်'] || r['အခြေအနေ'] || r['Status'] || 'စတိုကျန်'),
+                        status: String(r['ဖြန့်ခွဲမှု'] || r['ဖြန့်ခွဲ /ထုတ်ပေး / စတိုကျန်'] || r['Status'] || 'စတိုကျန်'),
+                        quantity: qtyVal,
+                        ledgerQty: ledgerVal,
+                        storeQty: storeVal,
                         remarks: String(r['မှတ်ချက်'] || '')
                     });
                 });
@@ -5239,7 +5252,7 @@ var db = admin.firestore();</pre>
                 populateArmoryNameFilter();
                 renderArmory();
                 renderDashboardView();
-                showToast(`Local ဖိုင်မှ လက်နက်/ခဲယမ်း ${toMyanmarNumerals(rows.length)} ခု ထည့်သွင်းပြီးပါပြီ`, 'success');
+                showToast(`Local ဖိုင်မှ ကြီးကြပ်/ကန့်သတ်စာရင်း ${toMyanmarNumerals(rows.length)} ခု ထည့်သွင်းပြီးပါပြီ`, 'success');
                 syncToFirebaseFirestore(`armory_local_import:${fileName}`);
             } else if (target === 'prod') {
                 const debtYrInput = document.getElementById('pr-in-debt-year')?.value.trim() || '';
@@ -5809,47 +5822,58 @@ var db = admin.firestore();</pre>
                 status: statusVal,
                 absentReason: rawStatus === 'ပျက်ကွက်' ? document.getElementById('p-form-absent-reason').value.trim() : '',
                 location: document.getElementById('p-form-location')?.value.trim() || '',
-                phone: document.getElementById('p-form-phone').value.trim(),
-                address: document.getElementById('p-form-address').value.trim(),
-                remarks: document.getElementById('p-form-remarks').value.trim(),
-                photo: document.getElementById('p-form-photo-base64').value
+                phone: document.getElementById('p-form-phone')?.value.trim() || '',
+                address: document.getElementById('p-form-address')?.value.trim() || '',
+                remarks: document.getElementById('p-form-remarks')?.value.trim() || '',
+                photo: document.getElementById('p-form-photo-base64')?.value || ''
             };
 
-            if (index >= 0) {
-                personnelData[index] = pData;
-                showToast('ဝန်ထမ်းအချက်အလက်အား ပြင်ဆင်ပြီးပါပြီ', 'success');
+            if (index >= 0 && personnelData[index]) {
+                pData.roleGroup = personnelData[index].roleGroup || resolvePersonnelRoleGroup(pData);
+                personnelData[index] = { ...personnelData[index], ...pData };
             } else {
+                pData.roleGroup = activePersonnelCategoryTab !== 'ALL'
+                    ? activePersonnelCategoryTab
+                    : resolvePersonnelRoleGroup(pData);
                 personnelData.unshift(pData);
-                showToast('ဝန်ထမ်းအသစ် ထည့်သွင်းပြီးပါပြီ', 'success');
             }
 
             saveSystemState();
             closePersonnelFormModal();
             renderPersonnelDirectory();
-            renderDashboardView();
             renderAbsentSummary();
-            updateHeaderBadge();
+            renderDashboardView();
+            showToast(index >= 0 ? 'ဝန်ထမ်းအချက်အလက် ပြင်ဆင်ပြီးပါပြီ' : 'ဝန်ထမ်းအသစ် ထည့်သွင်းပြီးပါပြီ', 'success');
         }
 
-        // --- ARMORY & AMMUNITION CRUD TABLE ---
+        // --- CONTROLLED / RESTRICTED INVENTORY (ကြီးကြပ်/ကန့်သတ်စာရင်း) CRUD TABLE ---
         const ARMORY_PURPOSE_PRESETS = ['တပ်တွင်းလခရ', 'တပ်ပြင်လခရ'];
 
-        function revealArmoryPurposeAndLocation() {
-            const locInput = document.getElementById('a-in-location');
-            if (locInput) {
-                locInput.classList.remove('hidden');
+        function getArmoryRowQuantities(w) {
+            const rawSerial = String(w?.serial ?? '').trim();
+            const parsedFromSerial = Number(rawSerial.replace(/,/g, '').replace(/[^\d.]/g, '')) || 0;
+            const quantity = w?.quantity !== undefined && w?.quantity !== '' ? (Number(w.quantity) || 0) : (w?.status === 'ထုတ်ပေး' ? (parsedFromSerial || 1) : 0);
+            const ledgerQty = w?.ledgerQty !== undefined && w?.ledgerQty !== '' ? (Number(w.ledgerQty) || 0) : (parsedFromSerial || 1);
+            const storeQty = w?.storeQty !== undefined && w?.storeQty !== '' ? (Number(w.storeQty) || 0) : Math.max(0, ledgerQty - quantity);
+            return { quantity, ledgerQty, storeQty };
+        }
+
+        function recalcArmoryStoreBalance() {
+            const qtyEl = document.getElementById('a-in-qty');
+            const ledgerEl = document.getElementById('a-in-ledger');
+            const storeEl = document.getElementById('a-in-store');
+            if (!qtyEl || !ledgerEl || !storeEl) return;
+            const qty = Number(qtyEl.value) || 0;
+            const ledger = Number(ledgerEl.value) || 0;
+            if (ledger > 0) {
+                storeEl.value = Math.max(0, ledger - qty);
             }
         }
 
         function handleArmoryPurposeChange() {
             const purposeSel = document.getElementById('a-in-dept');
             const customInput = document.getElementById('a-in-dept-custom');
-            const locInput = document.getElementById('a-in-location');
             if (!purposeSel || !customInput) return;
-
-            if (purposeSel.value !== '') {
-                if (locInput) locInput.classList.remove('hidden');
-            }
 
             if (purposeSel.value === 'Custom') {
                 customInput.classList.remove('hidden');
@@ -5861,11 +5885,23 @@ var db = admin.firestore();</pre>
         }
 
         function initInlineArmoryControls() {
+            const catSel = document.getElementById('a-in-category');
+            const filterCatSel = document.getElementById('armory-filter-cat');
             const deptSel = document.getElementById('a-in-dept');
-            const locInput = document.getElementById('a-in-location');
             const statusSel = document.getElementById('a-in-status');
             const filterStatusSel = document.getElementById('armory-filter-status');
 
+            if (catSel) {
+                const curCat = catSel.value || (armoryCategoryList[0] || 'လက်နက်');
+                catSel.innerHTML = armoryCategoryList.map(c => `<option value="${c}">${c}</option>`).join('');
+                if (armoryCategoryList.includes(curCat)) catSel.value = curCat;
+            }
+            if (filterCatSel) {
+                const curFilterCat = filterCatSel.value || 'ALL';
+                filterCatSel.innerHTML = `<option value="ALL">အမျိုးအစားအားလုံး</option>` +
+                    armoryCategoryList.map(c => `<option value="${c}">${c}</option>`).join('');
+                filterCatSel.value = curFilterCat;
+            }
             if (deptSel) {
                 const curVal = deptSel.value || '';
                 deptSel.innerHTML = `
@@ -5876,9 +5912,6 @@ var db = admin.firestore();</pre>
                 `;
                 deptSel.value = ['တပ်တွင်းလခရ', 'တပ်ပြင်လခရ', 'Custom'].includes(curVal) ? curVal : '';
                 handleArmoryPurposeChange();
-                if (!deptSel.value && locInput && !(locInput.value || '').trim()) {
-                    locInput.classList.add('hidden');
-                }
             }
             if (statusSel) {
                 const curSt = statusSel.value || (armoryStatusList[0] || 'ထုတ်ပေး');
@@ -5887,7 +5920,7 @@ var db = admin.firestore();</pre>
             }
             if (filterStatusSel) {
                 const curFilterSt = filterStatusSel.value || 'ALL';
-                filterStatusSel.innerHTML = `<option value="ALL">ဖြန့်ခွဲ /ထုတ်ပေး / စတိုကျန် (အားလုံး)</option>` +
+                filterStatusSel.innerHTML = `<option value="ALL">ဖြန့်ခွဲမှု (အားလုံး)</option>` +
                     armoryStatusList.map(s => `<option value="${s}">${s}</option>`).join('');
                 filterStatusSel.value = curFilterSt;
             }
@@ -5900,25 +5933,36 @@ var db = admin.firestore();</pre>
             if (!nameFilterSel) return;
             const currentVal = nameFilterSel.value || 'ALL';
             const uniqueNames = [...new Set(armoryData.map(w => w.weaponType).filter(Boolean))];
-            nameFilterSel.innerHTML = `<option value="ALL">လက်နက်/ခဲယမ်းအမည်အားလုံး</option>` + uniqueNames.map(n => `<option value="${n}">${n}</option>`).join('');
+            nameFilterSel.innerHTML = `<option value="ALL">အမည်အားလုံး</option>` + uniqueNames.map(n => `<option value="${n}">${n}</option>`).join('');
             nameFilterSel.value = currentVal;
         }
 
         function updateArmorySummaryBoxes(list = armoryData) {
-            const total = list.length;
-            const issued = list.filter(w => w.status === 'ထုတ်ပေး').length;
-            const store = list.filter(w => w.status === 'စတိုကျန်').length;
-            const repair = list.filter(w => w.status === 'ပြင်ဆင်ဆဲ').length;
+            let totalLedger = 0;
+            let totalIssued = 0;
+            let totalStore = 0;
+            let totalRepair = 0;
+
+            list.forEach(w => {
+                const q = getArmoryRowQuantities(w);
+                totalLedger += q.ledgerQty;
+                if (w.status === 'ပြင်ဆင်ဆဲ') {
+                    totalRepair += (q.quantity || 1);
+                } else {
+                    totalIssued += q.quantity;
+                }
+                totalStore += q.storeQty;
+            });
 
             const elTot = document.getElementById('a-sub-total');
             const elIss = document.getElementById('a-sub-issued');
             const elStr = document.getElementById('a-sub-store');
             const elRep = document.getElementById('a-sub-repair');
 
-            if (elTot) elTot.textContent = toMyanmarNumerals(total);
-            if (elIss) elIss.textContent = toMyanmarNumerals(issued);
-            if (elStr) elStr.textContent = toMyanmarNumerals(store);
-            if (elRep) elRep.textContent = toMyanmarNumerals(repair);
+            if (elTot) elTot.textContent = toMyanmarNumerals(totalLedger);
+            if (elIss) elIss.textContent = toMyanmarNumerals(totalIssued);
+            if (elStr) elStr.textContent = toMyanmarNumerals(totalStore);
+            if (elRep) elRep.textContent = toMyanmarNumerals(totalRepair);
         }
 
         function selectArmoryForInlineEdit(index) {
@@ -5926,7 +5970,13 @@ var db = admin.firestore();</pre>
             if (!w) return;
             toggleArmoryFormPanel(true);
             document.getElementById('a-inline-index').value = index;
-            document.getElementById('a-in-category').value = w.category || 'လက်နက်';
+            const catSel = document.getElementById('a-in-category');
+            if (catSel) {
+                if (w.category && !Array.from(catSel.options).some(o => o.value === w.category)) {
+                    catSel.add(new Option(w.category, w.category));
+                }
+                catSel.value = w.category || 'လက်နက်';
+            }
             document.getElementById('a-in-weapon').value = w.weaponType || '';
             document.getElementById('a-in-model').value = w.model || '';
             document.getElementById('a-in-code').value = w.code || '';
@@ -5934,7 +5984,6 @@ var db = admin.firestore();</pre>
 
             const purposeSel = document.getElementById('a-in-dept');
             const customInput = document.getElementById('a-in-dept-custom');
-            const locInput = document.getElementById('a-in-location');
             const savedPurpose = (w.dept || '').trim();
             if (ARMORY_PURPOSE_PRESETS.includes(savedPurpose)) {
                 purposeSel.value = savedPurpose;
@@ -5942,28 +5991,25 @@ var db = admin.firestore();</pre>
                     customInput.value = '';
                     customInput.classList.add('hidden');
                 }
-                if (locInput) locInput.classList.remove('hidden');
             } else if (savedPurpose && savedPurpose !== '-') {
                 purposeSel.value = 'Custom';
                 if (customInput) {
                     customInput.value = savedPurpose;
                     customInput.classList.remove('hidden');
                 }
-                if (locInput) locInput.classList.remove('hidden');
             } else {
                 purposeSel.value = '';
                 if (customInput) {
                     customInput.value = '';
                     customInput.classList.add('hidden');
                 }
-                if (locInput) {
-                    if ((w.location || '').trim()) locInput.classList.remove('hidden');
-                    else locInput.classList.add('hidden');
-                }
             }
 
-            if (locInput) locInput.value = w.location || '';
+            const q = getArmoryRowQuantities(w);
             document.getElementById('a-in-status').value = w.status || 'ထုတ်ပေး';
+            if (document.getElementById('a-in-qty')) document.getElementById('a-in-qty').value = q.quantity;
+            if (document.getElementById('a-in-ledger')) document.getElementById('a-in-ledger').value = q.ledgerQty;
+            if (document.getElementById('a-in-store')) document.getElementById('a-in-store').value = q.storeQty;
             document.getElementById('a-in-remarks').value = w.remarks || '';
             document.getElementById('main-workspace')?.scrollTo({ top: 0, behavior: 'smooth' });
             showToast(`"${w.weaponType}" အား ပြင်ဆင်ရန် ရွေးချယ်ပြီးပါပြီ`, 'info');
@@ -5982,11 +6028,8 @@ var db = admin.firestore();</pre>
 
         function formatArmorySerialDisplay(w) {
             const raw = String(w?.serial ?? '-').trim();
-            if ((w?.category || 'လက်နက်') === 'ခဲယမ်း') {
-                const cleaned = raw.replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
-                return cleaned || '-';
-            }
-            return raw || '-';
+            const cleaned = raw.replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
+            return cleaned || '-';
         }
 
         function inlineAddArmory() {
@@ -5994,19 +6037,18 @@ var db = admin.firestore();</pre>
             const categoryVal = document.getElementById('a-in-category').value;
             const weaponVal = document.getElementById('a-in-weapon').value.trim();
             const codeVal = document.getElementById('a-in-code').value.trim();
-            let serialVal = document.getElementById('a-in-serial').value.trim();
-            if (categoryVal === 'ခဲယမ်း') {
-                serialVal = serialVal.replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
-            }
+            let serialVal = document.getElementById('a-in-serial').value.trim().replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
             if (!weaponVal || !codeVal) {
-                showToast('လက်နက် / ခဲယမ်း အမည်နှင့် ကုတ်နံပါတ် ဖြည့်သွင်းပေးပါ', 'error');
+                showToast('အမည်နှင့် ကုတ်နံပါတ် ဖြည့်သွင်းပေးပါ', 'error');
                 return;
             }
 
             const purposeSelVal = document.getElementById('a-in-dept').value;
             const customPurposeVal = (document.getElementById('a-in-dept-custom')?.value || '').trim();
             const finalPurpose = purposeSelVal === 'Custom' ? (customPurposeVal || 'Custom') : (purposeSelVal || '-');
-            const locationVal = (document.getElementById('a-in-location')?.value || '').trim();
+            const qtyVal = Number(document.getElementById('a-in-qty')?.value) || 0;
+            const ledgerVal = Number(document.getElementById('a-in-ledger')?.value) || 0;
+            const storeVal = Number(document.getElementById('a-in-store')?.value) || 0;
 
             armoryData.unshift({
                 category: categoryVal,
@@ -6015,8 +6057,10 @@ var db = admin.firestore();</pre>
                 code: codeVal,
                 serial: serialVal || '-',
                 dept: finalPurpose,
-                location: locationVal,
                 status: document.getElementById('a-in-status').value,
+                quantity: qtyVal,
+                ledgerQty: ledgerVal,
+                storeQty: storeVal,
                 remarks: document.getElementById('a-in-remarks').value.trim()
             });
 
@@ -6025,7 +6069,7 @@ var db = admin.firestore();</pre>
             populateArmoryNameFilter();
             renderArmory();
             renderDashboardView();
-            showToast('လက်နက် / ခဲယမ်း စာရင်းသစ် ထည့်သွင်းပြီးပါပြီ', 'success');
+            showToast('ကြီးကြပ်/ကန့်သတ်စာရင်းသစ် ထည့်သွင်းပြီးပါပြီ', 'success');
         }
 
         function inlineSaveArmory() {
@@ -6038,19 +6082,18 @@ var db = admin.firestore();</pre>
             const categoryVal = document.getElementById('a-in-category').value;
             const weaponVal = document.getElementById('a-in-weapon').value.trim();
             const codeVal = document.getElementById('a-in-code').value.trim();
-            let serialVal = document.getElementById('a-in-serial').value.trim();
-            if (categoryVal === 'ခဲယမ်း') {
-                serialVal = serialVal.replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
-            }
+            let serialVal = document.getElementById('a-in-serial').value.trim().replace(/ကျည်/g, '').replace(/တောင့်/g, '').trim();
             if (!weaponVal || !codeVal) {
-                showToast('လက်နက် / ခဲယမ်း အမည်နှင့် ကုတ်နံပါတ် ဖြည့်သွင်းပေးပါ', 'error');
+                showToast('အမည်နှင့် ကုတ်နံပါတ် ဖြည့်သွင်းပေးပါ', 'error');
                 return;
             }
 
             const purposeSelVal = document.getElementById('a-in-dept').value;
             const customPurposeVal = (document.getElementById('a-in-dept-custom')?.value || '').trim();
             const finalPurpose = purposeSelVal === 'Custom' ? (customPurposeVal || 'Custom') : (purposeSelVal || '-');
-            const locationVal = (document.getElementById('a-in-location')?.value || '').trim();
+            const qtyVal = Number(document.getElementById('a-in-qty')?.value) || 0;
+            const ledgerVal = Number(document.getElementById('a-in-ledger')?.value) || 0;
+            const storeVal = Number(document.getElementById('a-in-store')?.value) || 0;
 
             armoryData[idx] = {
                 category: categoryVal,
@@ -6059,8 +6102,10 @@ var db = admin.firestore();</pre>
                 code: codeVal,
                 serial: serialVal || '-',
                 dept: finalPurpose,
-                location: locationVal,
                 status: document.getElementById('a-in-status').value,
+                quantity: qtyVal,
+                ledgerQty: ledgerVal,
+                storeQty: storeVal,
                 remarks: document.getElementById('a-in-remarks').value.trim()
             };
 
@@ -6069,7 +6114,7 @@ var db = admin.firestore();</pre>
             populateArmoryNameFilter();
             renderArmory();
             renderDashboardView();
-            showToast('လက်နက် / ခဲယမ်း စာရင်းအား သိမ်းဆည်း (Save) ပြီးပါပြီ', 'success');
+            showToast('ကြီးကြပ်/ကန့်သတ်စာရင်းအား သိမ်းဆည်း (Save) ပြီးပါပြီ', 'success');
         }
 
         function inlineDeleteArmory() {
@@ -6092,13 +6137,13 @@ var db = admin.firestore();</pre>
                 populateArmoryNameFilter();
                 renderArmory();
                 renderDashboardView();
-                showToast('လက်နက် / ခဲယမ်း စာရင်းအား ဖျက်ကွက်ပြီးပါပြီ', 'error');
+                showToast('ကြီးကြပ်/ကန့်သတ်စာရင်းအား ဖျက်ကွက်ပြီးပါပြီ', 'error');
             });
         }
 
         function inlineClearArmory(notify = true) {
             document.getElementById('a-inline-index').value = -1;
-            document.getElementById('a-in-category').value = 'လက်နက်';
+            document.getElementById('a-in-category').value = armoryCategoryList[0] || 'လက်နက်';
             document.getElementById('a-in-weapon').value = '';
             document.getElementById('a-in-model').value = '';
             document.getElementById('a-in-code').value = '';
@@ -6109,40 +6154,37 @@ var db = admin.firestore();</pre>
                 customInput.value = '';
                 customInput.classList.add('hidden');
             }
-            const locInput = document.getElementById('a-in-location');
-            if (locInput) {
-                locInput.value = '';
-                locInput.classList.add('hidden');
-            }
-            document.getElementById('a-in-status').value = 'ထုတ်ပေး';
+            document.getElementById('a-in-status').value = armoryStatusList[0] || 'ထုတ်ပေး';
+            if (document.getElementById('a-in-qty')) document.getElementById('a-in-qty').value = '';
+            if (document.getElementById('a-in-ledger')) document.getElementById('a-in-ledger').value = '';
+            if (document.getElementById('a-in-store')) document.getElementById('a-in-store').value = '';
             document.getElementById('a-in-remarks').value = '';
             renderArmory();
             if (notify) showToast('အကွက်များအား ရှင်းလင်းပြီးပါပြီ', 'info');
         }
 
         function exportArmoryExcel() {
-            const hasLocationData = armoryData.some(w => (w.location || '').trim() !== '');
             const exportRows = armoryData.map((w, i) => {
-                const row = {
+                const q = getArmoryRowQuantities(w);
+                return {
                     'စဉ်': i + 1,
                     'အမျိုးအစား': w.category || 'လက်နက်',
-                    'လက်နက် / ခဲယမ်း အမည်': w.weaponType,
-                    'မော်ဒယ် (Model)': w.model || '-',
+                    'အမည်': w.weaponType,
+                    'မော်ဒယ်': w.model || '-',
                     'ကုတ်နံပါတ်': w.code,
-                    'လက်နက်နံပါတ် / အရေအတွက်': w.serial,
-                    'ထုတ်ပေးအကြောင်းအရင်း': w.dept || '-'
+                    'နံပါတ်': formatArmorySerialDisplay(w),
+                    'ထုတ်ပေးအကြောင်းရင်း': w.dept || '-',
+                    'ဖြန့်ခွဲမှု': w.status,
+                    'အရေအတွက်': q.quantity,
+                    'လယ်ဂျာရှိ': q.ledgerQty,
+                    'စတိုကျန်': q.storeQty,
+                    'မှတ်ချက်': w.remarks || ''
                 };
-                if (hasLocationData) {
-                    row['တည်နေရာ'] = w.location || '-';
-                }
-                row['ဖြန့်ခွဲ /ထုတ်ပေး / စတိုကျန်'] = w.status;
-                row['မှတ်ချက်'] = w.remarks || '';
-                return row;
             });
             const ws = XLSX.utils.json_to_sheet(exportRows);
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Armory_Inventory');
-            saveWorkbookToLocal(wb, 'Weapons_And_Ammunition_List.xlsx', 'လက်နက် / ခဲယမ်း စာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
+            XLSX.utils.book_append_sheet(wb, ws, 'Controlled_Restricted_List');
+            saveWorkbookToLocal(wb, 'Controlled_And_Restricted_List.xlsx', 'ကြီးကြပ်/ကန့်သတ်စာရင်း Local Excel ဖိုင် သိမ်းဆည်းပြီးပါပြီ');
         }
 
         function renderArmory() {
@@ -6157,12 +6199,12 @@ var db = admin.firestore();</pre>
             const statusFilter = document.getElementById('armory-filter-status')?.value || 'ALL';
 
             const filtered = armoryData.filter(w => {
-                const matchesQuery = (w.weaponType || '').toLowerCase().includes(query) ||
+                const matchesQuery = (w.category || '').toLowerCase().includes(query) ||
+                                     (w.weaponType || '').toLowerCase().includes(query) ||
                                      (w.model || '').toLowerCase().includes(query) ||
                                      (w.code || '').toLowerCase().includes(query) ||
                                      (w.serial || '').toLowerCase().includes(query) ||
                                      (w.dept || '').toLowerCase().includes(query) ||
-                                     (w.location || '').toLowerCase().includes(query) ||
                                      (w.remarks || '').toLowerCase().includes(query);
                 const matchesName = nameFilter === 'ALL' || w.weaponType === nameFilter;
                 const matchesCat = catFilter === 'ALL' || (w.category || 'လက်နက်') === catFilter;
@@ -6170,21 +6212,20 @@ var db = admin.firestore();</pre>
                 return matchesQuery && matchesName && matchesCat && matchesStatus;
             });
 
-            const liveLocationInput = (document.getElementById('a-in-location')?.value || '').trim();
-            const showLocationCol = liveLocationInput !== '' || filtered.some(w => (w.location || '').trim() !== '');
-
             if (thead) {
                 thead.innerHTML = `
                     <tr>
                         <th class="p-3 text-center">စဉ်</th>
-                        <th class="p-3 text-center">အမျိုးအစား</th>
-                        <th class="p-3">လက်နက် / ခဲယမ်း အမည်</th>
-                        <th class="p-3">မော်ဒယ် (Model)</th>
+                        <th class="p-3">အမျိုးအစား</th>
+                        <th class="p-3">အမည်</th>
+                        <th class="p-3">မော်ဒယ်</th>
                         <th class="p-3">ကုတ်နံပါတ်</th>
-                        <th class="p-3">လက်နက်နံပါတ် / အရေအတွက်</th>
-                        <th class="p-3">ထုတ်ပေးအကြောင်းအရင်း</th>
-                        ${showLocationCol ? '<th class="p-3">တည်နေရာ</th>' : ''}
-                        <th class="p-3">ဖြန့်ခွဲ /ထုတ်ပေး / စတိုကျန်</th>
+                        <th class="p-3">နံပါတ်</th>
+                        <th class="p-3">ထုတ်ပေးအကြောင်းရင်း</th>
+                        <th class="p-3">ဖြန့်ခွဲမှု</th>
+                        <th class="p-3 text-right">အရေအတွက်</th>
+                        <th class="p-3 text-right">လယ်ဂျာရှိ</th>
+                        <th class="p-3 text-right">စတိုကျန်</th>
                         <th class="p-3">မှတ်ချက်</th>
                         <th class="p-3 text-center">Function</th>
                     </tr>
@@ -6194,12 +6235,11 @@ var db = admin.firestore();</pre>
             updateArmorySummaryBoxes(filtered);
 
             if (filtered.length === 0) {
-                const emptyColSpan = showLocationCol ? 11 : 10;
-                container.innerHTML = `<tr><td colspan="${emptyColSpan}" class="text-center py-8 text-slate-400">လက်နက် / ခဲယမ်း စာရင်း မရှိသေးပါ</td></tr>`;
+                container.innerHTML = `<tr><td colspan="13" class="text-center py-8 text-slate-400">ကြီးကြပ်/ကန့်သတ်စာရင်း မရှိသေးပါ</td></tr>`;
                 if (mobileContainer) {
-                    mobileContainer.innerHTML = `<div class="col-span-full bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">လက်နက် / ခဲယမ်း စာရင်း မရှိသေးပါ</div>`;
+                    mobileContainer.innerHTML = `<div class="col-span-full bg-white dark:bg-slate-800 rounded-xl p-6 text-center text-slate-400 border border-slate-200 dark:border-slate-700">ကြီးကြပ်/ကန့်သတ်စာရင်း မရှိသေးပါ</div>`;
                 }
-                renderPaginationControls('armory-pagination-bar', 'armory', 1, 0, 'လက်');
+                renderPaginationControls('armory-pagination-bar', 'armory', 1, 0, 'ခု');
                 return;
             }
 
@@ -6212,36 +6252,24 @@ var db = admin.firestore();</pre>
             // Desktop Rows
             container.innerHTML = paginatedArmory.map((w, idx) => {
                 const realIndex = armoryData.indexOf(w);
-                const isWeapon = (w.category || 'လက်နက်') === 'လက်နက်';
                 const serialDisplay = formatArmorySerialDisplay(w);
                 const purposeDisplay = w.dept || '-';
-                const locationCellHtml = showLocationCol
-                    ? `<td class="p-3 font-medium text-slate-700 dark:text-slate-300">${(w.location || '').trim() || '-'}</td>`
-                    : '';
-                const iconThumbnail = isWeapon 
-                    ? `<span class="inline-flex items-center justify-center w-9 h-7 rounded bg-blue-50 text-slate-900 dark:bg-slate-700 dark:text-blue-300 border border-blue-200 dark:border-slate-600 shadow-sm mx-auto" title="လက်နက်">
-                        <svg class="w-7 h-5 fill-current" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 15l5-4h13l3-2h14l2 2h19v2h-16l-2 2h-8l-2 6h-4l2-6h-6l-4 5H3l-1-5zm26-2h5v-1h-5v1zm11-2h13v1H39v-1z"/>
-                            <path d="M31 15l1.5 6h3l-1.5-6h-3z"/>
-                        </svg>
-                       </span>`
-                    : `<span class="inline-flex items-center justify-center w-9 h-7 rounded bg-amber-50 text-slate-900 dark:bg-slate-700 dark:text-amber-300 border border-amber-200 dark:border-slate-600 shadow-sm mx-auto" title="ခဲယမ်း">
-                        <svg class="w-6 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 2c1.2 0 2 2.5 2 5v11H5V7c0-2.5.8-5 2-5zm-2 17h4v2H5v-2zm7-17c1.2 0 2 2.5 2 5v11h-4V7c0-2.5.8-5 2-5zm-2 17h4v2h-4v-2zm7-17c1.2 0 2 2.5 2 5v11h-4V7c0-2.5.8-5 2-5zm-2 17h4v2h-4v-2z"/>
-                        </svg>
-                       </span>`;
+                const q = getArmoryRowQuantities(w);
+                const catName = w.category || 'လက်နက်';
 
                 return `
                     <tr onclick="selectArmoryForInlineEdit(${realIndex})" class="hover:bg-blue-50/60 dark:hover:bg-slate-700/50 transition text-slate-800 dark:text-slate-200 cursor-pointer">
                         <td class="p-3 text-center font-bold text-slate-600 dark:text-slate-300">${toMyanmarNumerals(aStartIdx + idx + 1)}</td>
-                        <td class="p-3 text-center">${iconThumbnail}</td>
+                        <td class="p-3 text-slate-800 dark:text-slate-200">${catName}</td>
                         <td class="p-3 font-bold text-slate-900 dark:text-white">${w.weaponType}</td>
                         <td class="p-3 font-medium text-slate-700 dark:text-slate-300">${w.model || '-'}</td>
                         <td class="p-3 font-semibold text-blue-600 dark:text-blue-400">${w.code}</td>
                         <td class="p-3 font-semibold">${serialDisplay}</td>
                         <td class="p-3 font-semibold">${purposeDisplay}</td>
-                        ${locationCellHtml}
-                        <td class="p-3"><span class="px-2 py-0.5 rounded-md font-bold text-[11px] border ${getArmoryBadgeClass(w.status)}">${w.status}</span></td>
+                        <td class="p-3 text-slate-800 dark:text-slate-200">${w.status || '-'}</td>
+                        <td class="p-3 text-right font-bold text-amber-700 dark:text-amber-300">${toMyanmarNumerals(q.quantity)}</td>
+                        <td class="p-3 text-right font-bold text-blue-700 dark:text-blue-300">${toMyanmarNumerals(q.ledgerQty)}</td>
+                        <td class="p-3 text-right font-bold text-emerald-700 dark:text-emerald-300">${toMyanmarNumerals(q.storeQty)}</td>
                         <td class="p-3 text-slate-600 dark:text-slate-400">${w.remarks || '-'}</td>
                         <td class="p-3 text-center space-x-1" onclick="event.stopPropagation()">
                             <button onclick="selectArmoryForInlineEdit(${realIndex})" class="role-write-action p-1.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg font-bold transition" title="ပြင်ဆင်မည်">✏️</button>
@@ -6255,24 +6283,27 @@ var db = admin.firestore();</pre>
             if (mobileContainer) {
                 mobileContainer.innerHTML = paginatedArmory.map((w) => {
                     const realIndex = armoryData.indexOf(w);
-                    const isWeapon = (w.category || 'လက်နက်') === 'လက်နက်';
+                    const catName = w.category || 'လက်နက်';
                     const serialDisplay = formatArmorySerialDisplay(w);
                     const purposeDisplay = w.dept || '-';
-                    const locText = (w.location || '').trim();
+                    const q = getArmoryRowQuantities(w);
                     return `
                         <div onclick="selectArmoryForInlineEdit(${realIndex})" class="bg-white dark:bg-slate-800 p-3.5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2 cursor-pointer">
                             <div class="flex justify-between items-start gap-2">
                                 <div>
-                                    <span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded ${isWeapon ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300'}">${w.category || 'လက်နက်'}</span>
-                                    <div class="font-bold text-slate-900 dark:text-white text-sm mt-1">${w.weaponType} <span class="text-slate-400 font-normal text-xs">(${w.model || '-'})</span></div>
+                                    <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">${catName}</span>
+                                    <div class="font-bold text-slate-900 dark:text-white text-sm mt-0.5">${w.weaponType} <span class="text-slate-400 font-normal text-xs">(${w.model || '-'})</span></div>
                                 </div>
+                                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300 flex-shrink-0">${w.status || '-'}</span>
+                            </div>
                                 <span class="px-2 py-0.5 rounded-md font-bold text-[11px] border flex-shrink-0 ${getArmoryBadgeClass(w.status)}">${w.status}</span>
                             </div>
                             <div class="grid grid-cols-2 gap-1.5 text-[11px] bg-slate-50 dark:bg-slate-700/50 p-2 rounded-lg text-slate-600 dark:text-slate-300">
-                                <div>ကုတ်: <strong class="text-blue-600 dark:text-blue-400">${w.code}</strong></div>
-                                <div>ထုတ်ပေးအကြောင်းအရင်း: <strong>${purposeDisplay}</strong></div>
-                                ${locText ? `<div class="col-span-2">တည်နေရာ: <strong>${locText}</strong></div>` : ''}
-                                <div class="col-span-2">လက်နက်နံပါတ်/အရေအတွက်: <strong>${serialDisplay}</strong></div>
+                                <div>ကုတ်နံပါတ်: <strong class="text-blue-600 dark:text-blue-400">${w.code}</strong></div>
+                                <div>နံပါတ်: <strong>${serialDisplay}</strong></div>
+                                <div class="col-span-2">ထုတ်ပေးအကြောင်းရင်း: <strong>${purposeDisplay}</strong></div>
+                                <div>အရေအတွက်: <strong class="text-amber-700 dark:text-amber-300">${toMyanmarNumerals(q.quantity)}</strong></div>
+                                <div>လယ်ဂျာရှိ / စတိုကျန်: <strong class="text-blue-700 dark:text-blue-300">${toMyanmarNumerals(q.ledgerQty)}</strong> / <strong class="text-emerald-700 dark:text-emerald-300">${toMyanmarNumerals(q.storeQty)}</strong></div>
                             </div>
                             ${w.remarks ? `<div class="text-[11px] text-slate-500 dark:text-slate-400 truncate">မှတ်ချက်: ${w.remarks}</div>` : ''}
                             <div class="role-write-action flex justify-end gap-1.5 pt-1 border-t dark:border-slate-700" onclick="event.stopPropagation()">
@@ -6284,7 +6315,7 @@ var db = admin.firestore();</pre>
                 }).join('');
             }
 
-            renderPaginationControls('armory-pagination-bar', 'armory', aCurrentPage, filtered.length, 'လက်');
+            renderPaginationControls('armory-pagination-bar', 'armory', aCurrentPage, filtered.length, 'ခု');
         }
 
         // --- USER MANAGEMENT CONTROLS & TABLE FUNCTIONS ---
@@ -6709,7 +6740,79 @@ var db = admin.firestore();</pre>
             showRankCategory(currentRankCategory);
             renderStatusSettings();
             renderSecurityDutyTypeSettings();
+            renderArmoryCategorySettings();
             renderArmoryStatusSettings();
+        }
+
+        // CONTROLLED / RESTRICTED INVENTORY CATEGORY SETTINGS (ကြီးကြပ်/ကန့်သတ်စာရင်း အမျိုးအစား သတ်မှတ်ချက်)
+        function renderArmoryCategorySettings() {
+            const container = document.getElementById('armory-category-types-list');
+            if (!container) return;
+
+            container.innerHTML = armoryCategoryList.map((cat, idx) => {
+                if (editingArmoryCategoryIndex === idx) {
+                    return `
+                        <div class="flex flex-wrap items-center gap-2 bg-white dark:bg-slate-800 p-2 rounded-lg border border-blue-400">
+                            <input type="text" id="edit-armory-category-val" value="${cat}" class="flex-1 min-w-[120px] bg-slate-100 dark:bg-slate-700 px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-600 outline-none">
+                            <div class="flex gap-1.5">
+                                <button onclick="saveArmoryCategoryItem(${idx})" class="px-2.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs">သိမ်းဆည်းရန်</button>
+                                <button onclick="cancelArmoryCategoryItem()" class="px-2.5 py-1.5 bg-slate-500 hover:bg-slate-600 text-white rounded-lg text-xs">Cancel</button>
+                            </div>
+                        </div>
+                    `;
+                }
+                return `
+                    <div class="flex justify-between items-center bg-white dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 text-xs">
+                        <span class="font-semibold text-slate-800 dark:text-slate-200">${cat}</span>
+                        <div class="flex gap-1.5">
+                            <button onclick="editArmoryCategoryItem(${idx})" title="Edit" class="p-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition inline-flex items-center justify-center">${SETTING_EDIT_ICON_SVG}</button>
+                            <button onclick="deleteArmoryCategoryItem(${idx})" title="Delete" class="p-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition inline-flex items-center justify-center">${SETTING_DELETE_ICON_SVG}</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addArmoryCategoryItem() {
+            if (!guardWritePermission()) return;
+            armoryCategoryList.push("အမျိုးအစားအသစ်");
+            editingArmoryCategoryIndex = armoryCategoryList.length - 1;
+            saveSystemState();
+            renderArmoryCategorySettings();
+        }
+
+        function editArmoryCategoryItem(idx) {
+            if (!guardWritePermission()) return;
+            editingArmoryCategoryIndex = idx;
+            renderArmoryCategorySettings();
+        }
+
+        function saveArmoryCategoryItem(idx) {
+            if (!guardWritePermission()) return;
+            const input = document.getElementById('edit-armory-category-val');
+            if (input && input.value.trim() !== "") {
+                armoryCategoryList[idx] = input.value.trim();
+                saveSystemState();
+                initInlineArmoryControls();
+                showToast('ကြီးကြပ်/ကန့်သတ်စာရင်း အမျိုးအစား မွမ်းမံပြီးပါပြီ', 'success');
+            }
+            editingArmoryCategoryIndex = -1;
+            renderArmoryCategorySettings();
+        }
+
+        function deleteArmoryCategoryItem(idx) {
+            if (!guardWritePermission()) return;
+            armoryCategoryList.splice(idx, 1);
+            editingArmoryCategoryIndex = -1;
+            saveSystemState();
+            initInlineArmoryControls();
+            showToast('ကြီးကြပ်/ကန့်သတ်စာရင်း အမျိုးအစား ဖျက်ကွက်ပြီးပါပြီ', 'error');
+            renderArmoryCategorySettings();
+        }
+
+        function cancelArmoryCategoryItem() {
+            editingArmoryCategoryIndex = -1;
+            renderArmoryCategorySettings();
         }
 
         // SECURITY DUTY TYPE SETTINGS (လုံခြုံရေးအမျိုးအစား)

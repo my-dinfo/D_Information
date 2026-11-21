@@ -616,8 +616,11 @@
                 <h1 id="page-header-title" class="font-bold text-sm sm:text-base tracking-wide truncate">Dashboard Summary</h1>
             </div>
             <div class="flex items-center gap-2.5 text-xs">
-                <!-- Light / Dark Mode Toggle Button (Positioned to the left of Firestore icon) -->
-                <button onclick="toggleTheme()" id="header-theme-toggle-btn" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/20 shadow-sm transition cursor-pointer" title="အလင်း/အမှောင် ပြောင်းရန်">🌓</button>
+                <!-- Light / Dark / System Mode Status Label & Toggle Button (Positioned to the left of Firestore icon) -->
+                <div class="inline-flex items-center gap-1.5">
+                    <span id="header-theme-status-label" onclick="toggleTheme()" class="text-white font-semibold tracking-wide cursor-pointer select-none px-1.5 py-0.5 rounded hover:bg-white/10 transition">Light</span>
+                    <button onclick="toggleTheme()" id="header-theme-toggle-btn" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/20 shadow-sm transition cursor-pointer" title="အလင်း/အမှောင်/System ပြောင်းရန်">🌓</button>
+                </div>
 
                 <!-- Firestore Cloud Status Icon (Green = Online, Orange = Queued, Red = Offline) -->
                 <div id="firebase-sync-indicator" title="Firestore Online" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/15 border border-white/20 shadow-sm transition cursor-pointer" onclick="syncToFirebaseFirestore('manual_header_click', true)">
@@ -3452,36 +3455,252 @@ var db = admin.firestore();</pre>
 
         function getDeptAbbr(deptVal) {
             const val = String(deptVal || '').trim();
-            const found = DEPT_MAPPING.find(d => d.full === val || d.abbr === val);
+            if (!val) return '';
+            const found = (DEPT_MAPPING || []).find(d => d.full === val || d.abbr === val);
             return found ? found.abbr : val;
         }
 
         function getDeptFull(deptVal) {
             const val = String(deptVal || '').trim();
-            const found = DEPT_MAPPING.find(d => d.full === val || d.abbr === val);
+            if (!val) return '';
+            const found = (DEPT_MAPPING || []).find(d => d.full === val || d.abbr === val);
             return found ? found.full : val;
         }
 
-        function getRankOrderIndex(person) {
-            const rVal = String(person.rankAbbr || person.rankFull || '').trim();
-            const orderedAll = [
+        function getRankSeniorityOrder(rankVal) {
+            const val = String(rankVal || '').trim();
+            if (!val) return 9999;
+            const orderedRanks = [
                 ...(RANK_DEFINITIONS.officer || []),
                 ...(RANK_DEFINITIONS.soldier || []),
                 ...(RANK_DEFINITIONS.staff || []),
                 ...(RANK_DEFINITIONS.civilian || [])
             ];
-            const idx = orderedAll.findIndex(r => r.abbr === rVal || r.full === rVal);
-            return idx === -1 ? 999 : idx;
+            const idx = orderedRanks.findIndex(r => r.abbr === val || r.full === val);
+            return idx >= 0 ? idx : 9999;
         }
 
         function compareByRankSeniority(a, b) {
-            return getRankOrderIndex(a) - getRankOrderIndex(b);
+            const rankA = getRankAbbr(a?.rankAbbr || a?.rankFull || '');
+            const rankB = getRankAbbr(b?.rankAbbr || b?.rankFull || '');
+            const orderA = getRankSeniorityOrder(rankA);
+            const orderB = getRankSeniorityOrder(rankB);
+            if (orderA !== orderB) return orderA - orderB;
+            return String(a?.id || '').localeCompare(String(b?.id || ''));
+        }
+
+        function triggerExcelImport(scope) {
+            if (!guardWritePermission()) return;
+            const map = {
+                personnel: 'p-excel-input',
+                absent: 'ab-excel-input',
+                duty: 'd-excel-input',
+                armory: 'a-excel-input',
+                prod: 'pr-excel-input',
+                users: 'u-excel-input'
+            };
+            const inputId = map[scope];
+            if (inputId) document.getElementById(inputId)?.click();
+        }
+
+        function handleExcelImport(event, scope) {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            if (typeof XLSX === 'undefined') {
+                showToast('Excel Library မရရှိနိုင်သေးပါ', 'error');
+                event.target.value = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const wb = XLSX.read(data, { type: 'array' });
+                    const firstSheet = wb.Sheets[wb.SheetNames[0]];
+                    const rows = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
+                    if (!Array.isArray(rows) || rows.length === 0) {
+                        showToast('ဖိုင်အတွင်း ဒေတာ မတွေ့ရှိပါ', 'error');
+                        return;
+                    }
+                    if (scope === 'personnel' || scope === 'absent') {
+                        rows.forEach(r => {
+                            const idVal = String(r['ကိုယ်ပိုင်အမှတ်'] || r['ID'] || '').trim();
+                            const nameVal = String(r['အမည်'] || r['Name'] || '').trim();
+                            if (!idVal || !nameVal) return;
+                            const rankRaw = String(r['အဆင့်'] || r['Rank'] || '').trim();
+                            const deptRaw = String(r['ဌာနအမည်'] || r['ဌာန'] || r['Dept'] || 'ဌနခ').trim();
+                            const statusRaw = String(r['လက်ရှိအခြေအနေ'] || (scope === 'absent' ? 'ပျက်ကွက်' : 'တန်းစီ')).trim();
+                            personnelData.unshift({
+                                id: idVal,
+                                rankFull: getRankFull(rankRaw),
+                                rankAbbr: getRankAbbr(rankRaw),
+                                name: nameVal,
+                                roleGroup: activePersonnelCategoryTab !== 'ALL' ? activePersonnelCategoryTab : resolvePersonnelRoleGroup({ id: idVal, rankAbbr: getRankAbbr(rankRaw), staffType: String(r['ဝန်ထမ်းအမျိုးအစား'] || 'သန္ဓေ') }),
+                                deptFull: getDeptFull(deptRaw),
+                                deptAbbr: getDeptAbbr(deptRaw),
+                                staffType: String(r['ဝန်ထမ်းအမျိုးအစား'] || 'သန္ဓေ').trim(),
+                                address: String(r['နေရပ်လိပ်စာ'] || '').trim(),
+                                status: statusRaw,
+                                absentReason: statusRaw === 'ပျက်ကွက်' ? String(r['ပျက်ကွက်အကြောင်းရင်း'] || 'အခြား').trim() : '',
+                                location: String(r['တည်နေရာ'] || '').trim(),
+                                remarks: String(r['မှတ်ချက်'] || '').trim(),
+                                photo: ''
+                            });
+                        });
+                        saveSystemState();
+                        renderPersonnelDirectory();
+                        renderAbsentSummary();
+                        renderDashboardView();
+                    } else if (scope === 'duty') {
+                        rows.forEach(r => {
+                            const idVal = String(r['ကိုယ်ပိုင်အမှတ်'] || '').trim();
+                            const nameVal = String(r['အမည်'] || '').trim();
+                            if (!idVal || !nameVal) return;
+                            securityDutyData.unshift({
+                                id: idVal,
+                                rankAbbr: getRankAbbr(String(r['အဆင့်'] || '').trim()),
+                                name: nameVal,
+                                deptAbbr: getDeptAbbr(String(r['ဌာန'] || 'ဌနခ').trim()),
+                                staffType: String(r['ဝန်ထမ်းအမျိုးအစား'] || 'သန္ဓေ').trim(),
+                                status: 'ပျက်ကွက်',
+                                absentReason: 'လုံခြုံရေးတာဝန်',
+                                dutyType: String(r['လုံခြုံရေးအမျိုးအစား'] || 'တပ်တွင်းလခရ').trim(),
+                                location: String(r['လုံခြုံရေးတည်နေရာ'] || '-').trim(),
+                                weaponType: String(r['လက်နက်အမျိုးအစား'] || '-').trim(),
+                                weaponModel: String(r['မော်ဒယ်'] || '-').trim(),
+                                weaponCode: String(r['ကုတ်အမှတ်'] || '-').trim(),
+                                weaponSerial: String(r['လက်နက်နံပါတ်'] || '-').trim(),
+                                ammoCount: String(r['ခဲယမ်း'] || '-').trim(),
+                                startDate: String(r['ရက်စွဲ'] || new Date().toISOString().split('T')[0]).trim(),
+                                remarks: String(r['မှတ်ချက်'] || '').trim()
+                            });
+                        });
+                        saveSystemState();
+                        renderSecurityDuty();
+                        renderDashboardView();
+                    } else if (scope === 'armory') {
+                        rows.forEach(r => {
+                            const wName = String(r['အမည်'] || '').trim();
+                            const wCode = String(r['ကုတ်နံပါတ်'] || '').trim();
+                            if (!wName && !wCode) return;
+                            armoryData.unshift({
+                                category: String(r['အမျိုးအစား'] || 'လက်နက်').trim(),
+                                weaponType: wName || '-',
+                                model: String(r['မော်ဒယ်'] || '-').trim(),
+                                code: wCode || '-',
+                                serial: String(r['နံပါတ်'] || '-').trim(),
+                                dept: String(r['ထုတ်ပေးအကြောင်းရင်း'] || '-').trim(),
+                                status: String(r['ဖြန့်ခွဲမှု'] || 'ထုတ်ပေး').trim(),
+                                quantity: Number(r['အရေအတွက်']) || 0,
+                                ledgerQty: Number(r['လယ်ဂျာရှိ']) || 0,
+                                storeQty: Number(r['စတိုကျန်']) || 0,
+                                remarks: String(r['မှတ်ချက်'] || '').trim()
+                            });
+                        });
+                        saveSystemState();
+                        populateArmoryNameFilter();
+                        renderArmory();
+                        renderDashboardView();
+                    } else if (scope === 'prod') {
+                        rows.forEach(r => {
+                            const nom = String(r['Nomenclature'] || '').trim();
+                            if (!nom) return;
+                            const dVal = Number(r['Debt']) || 0;
+                            const pVal = Number(r['Plan']) || 0;
+                            const mVals = {};
+                            let mSum = 0;
+                            PROD_MONTH_KEYS.forEach(mk => {
+                                const label = mk.charAt(0).toUpperCase() + mk.slice(1);
+                                const v = Number(r[label]) || 0;
+                                mVals[mk] = v;
+                                mSum += v;
+                            });
+                            prodStatementData.unshift({
+                                nomenclature: nom,
+                                au: String(r['A/U'] || 'Nos').trim(),
+                                debtYear: String(r['Debt Yr'] || '25-26').trim(),
+                                debt2526: dVal,
+                                planYear: String(r['Plan Yr'] || '26-27').trim(),
+                                plan2627: pVal,
+                                totalPlan: Number(r['Total Plan']) || (dVal + pVal),
+                                description: String(r['Description'] || 'Prod;').trim(),
+                                ...mVals,
+                                total: Number(r['Total']) || mSum,
+                                remark: String(r['Remark'] || '').trim(),
+                                financialYears: String(r['Financial_Years'] || '2026-2027').trim()
+                            });
+                        });
+                        saveSystemState();
+                        initInlineProdControls();
+                        renderProdStatement();
+                    } else if (scope === 'users') {
+                        rows.forEach(r => {
+                            const emailVal = String(r['Email Address'] || '').trim().toLowerCase();
+                            const nameVal = String(r['အမည်'] || '').trim();
+                            if (!emailVal || !nameVal) return;
+                            if (!userData.some(u => (u.username || '').toLowerCase() === emailVal)) {
+                                const dAbbr = getDeptAbbr(String(r['ဌာန'] || 'ဌနခ').trim());
+                                userData.push({
+                                    name: nameVal,
+                                    username: emailVal,
+                                    deptAbbr: dAbbr,
+                                    deptFull: getDeptFull(dAbbr),
+                                    role: String(r['Role'] || 'User3').trim(),
+                                    status: String(r['အခြေအနေ'] || 'Active').trim(),
+                                    regDate: new Date().toISOString().split('T')[0],
+                                    password: '',
+                                    authProvider: 'import',
+                                    photo: ''
+                                });
+                            }
+                        });
+                        saveSystemState();
+                        renderUserManagement();
+                    }
+                    showToast(`Excel ဖိုင်မှ ဒေတာ (${toMyanmarNumerals(rows.length)}) ခု ထည့်သွင်းပြီးပါပြီ`, 'success');
+                } catch (err) {
+                    console.error('Excel import error:', err);
+                    showToast('Excel ဖိုင် ဖတ်ရှုရာတွင် အမှားဖြစ်ပေါ်ပါသည်', 'error');
+                }
+                event.target.value = '';
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function applyThemeMode(mode, notify = false) {
+            const validModes = ['light', 'dark', 'system'];
+            const targetMode = validModes.includes(mode) ? mode : 'light';
+            localStorage.setItem('DI_THEME_MODE', targetMode);
+
+            let useDark = false;
+            if (targetMode === 'dark') {
+                useDark = true;
+            } else if (targetMode === 'system') {
+                useDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+
+            if (useDark) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+            }
+
+            const labelText = targetMode === 'dark' ? 'Dark' : targetMode === 'system' ? 'System' : 'Light';
+            const statusLabelEl = document.getElementById('header-theme-status-label');
+            if (statusLabelEl) {
+                statusLabelEl.textContent = labelText;
+            }
+            if (notify) {
+                showToast(`${labelText} Mode သို့ ပြောင်းလဲပြီးပါပြီ`, 'info');
+            }
         }
 
         function toggleTheme() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('DI_THEME_DARK', isDark ? '1' : '0');
-            showToast(isDark ? 'Dark Mode သို့ ပြောင်းလဲပြီးပါပြီ' : 'Light Mode သို့ ပြောင်းလဲပြီးပါပြီ', 'info');
+            const currentMode = localStorage.getItem('DI_THEME_MODE') || 'light';
+            const nextMode = currentMode === 'light' ? 'dark' : currentMode === 'dark' ? 'system' : 'light';
+            applyThemeMode(nextMode, true);
         }
 
         function updateHeaderBadge() {
@@ -8553,12 +8772,16 @@ var db = admin.firestore();</pre>
 
         // Initialization
         window.addEventListener('DOMContentLoaded', () => {
-            // Default to Light Mode unless user explicitly toggled Dark Mode
-            const savedTheme = localStorage.getItem('DI_THEME_DARK');
-            if (savedTheme === '1') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
+            // Default to Light Mode unless user explicitly chose Dark or System Mode
+            const savedThemeMode = localStorage.getItem('DI_THEME_MODE') || 'light';
+            applyThemeMode(savedThemeMode, false);
+
+            if (window.matchMedia) {
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                    if ((localStorage.getItem('DI_THEME_MODE') || 'light') === 'system') {
+                        applyThemeMode('system', false);
+                    }
+                });
             }
             loadSystemState();
             initFirebaseFirestore();
